@@ -5,13 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Agendamento extends javax.swing.JFrame {
 
- 
     public Agendamento() {
         initComponents();
         jPanel1.setFocusable(true); //Não seleciona nenhuma caixa de texto quando a tela é aberta
@@ -37,13 +34,11 @@ public class Agendamento extends javax.swing.JFrame {
             while (resultado.next()) {
                 model.addRow(new Object[]{
                     //retorna os dados da tabela do BD, cada campo e um coluna.
-                   // resultado.getString("codage"),
+                    // resultado.getString("codage"),
                     resultado.getString("nomcat"),
-                   // resultado.getString("dia"),
+                    // resultado.getString("dia"),
                     resultado.getString("horario"),
-                    resultado.getString("qtdpes"),
-                        
-                });
+                    resultado.getString("qtdpes"),});
             }
             banco.close();
             con.close();
@@ -74,13 +69,15 @@ public class Agendamento extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         USU = new javax.swing.JLabel();
         sair = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         categoria = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabelCategoria = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(50, 194, 128));
@@ -246,6 +243,7 @@ public class Agendamento extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jComboBox1.setSelectedItem(null);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -281,10 +279,27 @@ public class Agendamento extends javax.swing.JFrame {
         categoria.setForeground(new java.awt.Color(50, 194, 128));
         categoria.setText("jLabel12");
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(50, 194, 128));
         jButton3.setText("Sua Agenda");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabelCategoria.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelCategoria.setForeground(new java.awt.Color(50, 194, 128));
+        jLabelCategoria.setText("Categoria:");
+
+        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Musculação", "Pilates" }));
+        jComboBox2.setSelectedItem("Musculação");
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
             }
         });
 
@@ -299,31 +314,40 @@ public class Agendamento extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                        .addGap(403, 403, 403)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(sair)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                                .addGap(403, 403, 403))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabelCategoria)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel10))
-                            .addComponent(jLabel11))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(USU)
-                            .addComponent(categoria))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(sair)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel10))
+                                    .addComponent(jLabel11))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(USU)
+                                    .addComponent(categoria)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)))
                         .addGap(15, 15, 15))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(203, 203, 203)
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(53, 53, 53))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,11 +368,15 @@ public class Agendamento extends javax.swing.JFrame {
                             .addComponent(categoria))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelCategoria)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -374,20 +402,6 @@ public class Agendamento extends javax.swing.JFrame {
         this.setLocationRelativeTo(null); //Centraliza o JFrame
         conexao.dataComboBoxAgendamento(); //Pega as datas da semana
         sair.setText("<HTML><U>Sair</U></HTML>"); //Sublinha a label de sair
-
-       // if (categoria.getText().equals("1")) { //Verifica se a categoria é Musculação
-
-      //      this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 1 and a.qtdpes > 0 order by a.codage asc");
-
-    //    } else if (categoria.getText().equals("2")) { //Verifica se a categoria é Pilates
-
-     //       this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 2 order and a.qtdpes > 0 by a.codage asc");
-
-      //  } else { //Categoria é Livre
-
-         //   this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b where a.codhor=b.codhor and c.codcat=a.codcat and a.qtdpes > 0 order by a.codage asc");
-
-     //   }
 
     }//GEN-LAST:event_formWindowOpened
 
@@ -417,25 +431,37 @@ public class Agendamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        
-         String data = jComboBox1.getSelectedItem().toString(); //Seleciona o dia da ComboBox
 
-        //Atualiza a tabela de acordo com o dia especificado pelo usuário        
-        if (categoria.getText().equals("1")) { //Verifica se a categoria é Musculação
-
-            this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 1 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
-            //this.PopularJTable("select c.nomcat, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 1 and a.dia = '" + data + "' and a.qtdpes > 0 order by b.horario asc");
-
-        } else if (categoria.getText().equals("2")) { //Verifica se a categoria é Pilates
-
-            this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 2 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
-
-        } else { //Categoria é Livre
-
-            this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b where a.codhor=b.codhor and c.codcat=a.codcat and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
-
-        }
+        String data = jComboBox1.getSelectedItem().toString(); //Seleciona o dia da ComboBox Data
         //Atualiza a tabela de acordo com o dia especificado pelo usuário
+        switch (categoria.getText()) {
+            case "1": //Verifica se a categoria é Musculação
+
+                this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 1 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
+                jComboBox2.setVisible(false); //Não mostra a ComboBox de Categoria
+                jLabelCategoria.setVisible(false); //Não mostra a jLabel de Categoria
+                break;
+
+            case "2": //Verifica se a categoria é Pilates
+
+                this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 2 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
+                jComboBox2.setVisible(false); //Não mostra a ComboBox de Categoria
+                jLabelCategoria.setVisible(false); //Não mostra a jLabel de Categoria
+                break;
+
+            default: //Categoria é Livre
+
+                if (jComboBox2.getSelectedItem().toString().equals("Musculação")) { //Verifica se a ComboBox de Categoria está selecionada em 'Musculação'
+
+                    this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 1 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
+
+                } else { //ComboBox de Categoria está selecionada em 'Pilates'
+
+                    this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 2 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
+
+                }
+                break;
+        }
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -454,14 +480,32 @@ public class Agendamento extends javax.swing.JFrame {
         hor.setText(""); //Limpa o campo horário
         vag.setText(""); //Limpa o campo vagas disponíveis
         cat.setText(""); //Limpa o campo categoria
-        
+
         jDialog1.setVisible(false); //Fecha a tela de confirmaçãoobr
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       new AgendamentoConsulta().setVisible(true);
+
+        new AgendamentoConsulta().setVisible(true);
+
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+
+        String data = jComboBox1.getSelectedItem().toString(); //Seleciona o dia da ComboBox Data
+
+        if (jComboBox2.getSelectedItem().toString().equals("Musculação")) { //Verifica se a ComboBox de Categoria está selecionada em 'Musculação'
+
+            this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 1 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
+
+        } else { //ComboBox de Categoria está selecionada em 'Pilates'
+
+            this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 2 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
+
+        }
+
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     public static void main(String args[]) {
 
@@ -499,6 +543,7 @@ public class Agendamento extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     public static javax.swing.JComboBox<String> jComboBox1;
+    public static javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -510,6 +555,7 @@ public class Agendamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
