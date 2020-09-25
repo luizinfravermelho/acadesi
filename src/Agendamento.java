@@ -453,11 +453,11 @@ public class Agendamento extends javax.swing.JFrame {
 
                 if (jComboBox2.getSelectedItem().toString().equals("Musculação")) { //Verifica se a ComboBox de Categoria está selecionada em 'Musculação'
 
-                    this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 1 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
+                    this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and c.codcat = 1 and a.dia = '"+data+"' and a.qtdpes > 0  group by a.codage, c.nomcat, a.dia, b.horario, a.qtdpes order by a.codage asc;");
 
                 } else { //ComboBox de Categoria está selecionada em 'Pilates'
 
-                    this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 2 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
+                    this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and c.codcat = 2 and a.dia = '"+data+"' and a.qtdpes > 0  group by a.codage, c.nomcat, a.dia, b.horario, a.qtdpes order by a.codage asc;");
 
                 }
                 break;
@@ -497,11 +497,11 @@ public class Agendamento extends javax.swing.JFrame {
 
         if (jComboBox2.getSelectedItem().toString().equals("Musculação")) { //Verifica se a ComboBox de Categoria está selecionada em 'Musculação'
 
-            this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 1 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
+            this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and c.codcat = 1 and a.dia = '"+data+"' and a.qtdpes > 0  group by a.codage, c.nomcat, a.dia, b.horario, a.qtdpes order by a.codage asc;");
 
         } else { //ComboBox de Categoria está selecionada em 'Pilates'
 
-            this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and d.codcat = c.codcat and c.codcat = 2 and a.dia = '" + data + "' and a.qtdpes > 0 order by a.codage asc");
+            this.PopularJTable("select a.codage, c.nomcat, a.dia, b.horario, a.qtdpes from agendamento a, categoria c, horario b, cliente d where a.codhor=b.codhor and c.codcat=a.codcat and c.codcat = 2 and a.dia = '"+data+"' and a.qtdpes > 0  group by a.codage, c.nomcat, a.dia, b.horario, a.qtdpes order by a.codage asc;");
 
         }
 
