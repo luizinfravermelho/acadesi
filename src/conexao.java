@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
  //bom dia
+//boa noite, Pachequitos
 public class conexao {
 
     public static void insertAgendamento() {
