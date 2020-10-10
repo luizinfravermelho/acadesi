@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,7 +23,6 @@ public class CadastroTreinos extends javax.swing.JFrame {
         initComponents();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -101,8 +99,8 @@ public class CadastroTreinos extends javax.swing.JFrame {
         jLabelCategoria.setText("Sala:");
 
         jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Pilates" }));
-        jComboBox2.setSelectedItem("Musculação");
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Multifuncional" }));
+        jComboBox2.setSelectedItem(null);
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -114,8 +112,13 @@ public class CadastroTreinos extends javax.swing.JFrame {
         jLabelCategoria1.setText("Categoria:");
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2" }));
-        jComboBox3.setSelectedItem("Musculação");
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Yoga", "Pilates", "Funcional" }));
+        jComboBox3.setSelectedItem(null);
+        jComboBox3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox3ItemStateChanged(evt);
+            }
+        });
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox3ActionPerformed(evt);
@@ -151,8 +154,8 @@ public class CadastroTreinos extends javax.swing.JFrame {
         jLabelCategoria3.setText("Horários");
 
         jButton1.setBackground(new java.awt.Color(0, 153, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 153, 0));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("+");
 
         jCheckBox1.setText("jCheckBox1");
@@ -242,14 +245,14 @@ public class CadastroTreinos extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))))
                 .addGap(56, 56, 56)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabelCategoria)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabelCategoria1)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -289,27 +292,36 @@ public class CadastroTreinos extends javax.swing.JFrame {
     }//GEN-LAST:event_sairMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+        //jCheckBox1.setText("AHAHAHAH");
     }//GEN-LAST:event_formWindowOpened
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+   if (jComboBox2.getSelectedItem().equals("Musculação")) {
+            jComboBox3.removeAllItems();
+            jComboBox3.addItem("Musculação22");
+            jComboBox3.updateUI();
+                
+      
+        }
 
-        if (jComboBox2.getSelectedItem().equals(1)){
-            jCheckBox1.setText("AHAHAHAH");
-        }
-        else if (jComboBox2.getSelectedItem().equals(2)){
-            jCheckBox1.setText("HEHEHEH");
-        }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+       
 
-        
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
+         if (jComboBox3.getSelectedItem().equals("Musculação")) {
+            jCheckBox1.setText("AHAHAHAH");
+        } else if (jComboBox3.getSelectedItem() == "Pilates") {
+            jCheckBox1.setText("HEHEHEH");
+        }
+    }//GEN-LAST:event_jComboBox3ItemStateChanged
 
     /**
      * @param args the command line arguments
