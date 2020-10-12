@@ -105,7 +105,6 @@ public class CadastroTreinos extends javax.swing.JFrame {
         jLabelCategoria1.setText("Categoria:");
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Yoga", "Pilates", "Funcional" }));
         jComboBox3.setSelectedItem(null);
         jComboBox3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -387,31 +386,74 @@ public class CadastroTreinos extends javax.swing.JFrame {
     }//GEN-LAST:event_sairMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        //jCheckBox1.setText("AHAHAHAH");
+        HorM1.setVisible(false);
+        HorM2.setVisible(false);
+        HorM3.setVisible(false);
+        HorM4.setVisible(false);
+        HorM5.setVisible(false);
+        HorM6.setVisible(false);
+        HorM7.setVisible(false);
+        HorV1.setVisible(false);
+        HorV2.setVisible(false);
+        HorV3.setVisible(false);
+        HorV4.setVisible(false);
+        HorV5.setVisible(false);
+        HorV6.setVisible(false);
+        HorV7.setVisible(false);
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-   if (jComboBox2.getSelectedItem().equals("Musculação")) {
-            jComboBox3.removeAllItems();
+        if (jComboBox2.getSelectedItem().equals("Musculação")) {
             jComboBox3.addItem("Musculação");
+            jComboBox3.removeItem("Cons. Bem estar");
+            jComboBox3.removeItem("Funcional");
+            jComboBox3.removeItem("Pilates");
+            jComboBox3.removeItem("Yoga");
             jComboBox3.updateUI();
-                
-      
+        } else if (jComboBox2.getSelectedItem().equals("Multifuncional")) {
+
+            jComboBox3.addItem("Cons. Bem estar");
+            jComboBox3.addItem("Funcional");
+            jComboBox3.addItem("Pilates");
+            jComboBox3.addItem("Yoga");
+            jComboBox3.setSelectedItem("Cons. Bem estar");
+            jComboBox3.removeItem("Musculação");
+            jComboBox3.updateUI();
         }
+
 
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-       
+
 
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-     
+
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
     private void jComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox3ItemStateChanged
-         if (jComboBox3.getSelectedItem().equals("Musculação")) {
+
+        if (jComboBox3.getSelectedItem().equals("Musculação")) {
+            //HABILITA TODOS OS HORÁRIOS
+            HorM1.setVisible(true);
+            HorM2.setVisible(true);
+            HorM3.setVisible(true);
+            HorM4.setVisible(true);
+            HorM5.setVisible(true);
+            HorM6.setVisible(true);
+            HorM7.setVisible(true);
+            HorV1.setVisible(true);
+            HorV2.setVisible(true);
+            HorV3.setVisible(true);
+            HorV4.setVisible(true);
+            HorV5.setVisible(true);
+            HorV6.setVisible(true);
+            HorV7.setVisible(true);
+            
+            //CONFIGURA AS HORAS
             HorM1.setText("06:30 - 07:15");
             HorM2.setText("07:30 - 08:15");
             HorM3.setText("08:30 - 09:15");
@@ -426,9 +468,32 @@ public class CadastroTreinos extends javax.swing.JFrame {
             HorV5.setText("19:00 - 19:45");
             HorV6.setText("20:00 - 20:45");
             HorV7.setText("21:00 - 21:45");
+
+        } else {
+            //HABILITA TODOS OS HORÁRIOS
+            HorM1.setVisible(true);
+            HorM2.setVisible(true);
+            HorM3.setVisible(true);
+            HorV1.setVisible(true);
+            HorV2.setVisible(true);
+            HorV3.setVisible(true);
+            HorV4.setVisible(true);
             
-        } else if (jComboBox3.getSelectedItem() == "Pilates") {
-            HorM1.setText("HEHEHEH");
+            //CONFIGURA AS HORAS
+            HorM1.setText("07:00 - 07:45");
+            HorM2.setText("08:00 - 08:45");
+            HorM3.setText("09:00 - 09:55");
+            HorM4.setVisible(false);
+            HorM5.setVisible(false);
+            HorM6.setVisible(false);
+            HorM7.setVisible(false);
+            HorV1.setText("16:00 - 16:45");
+            HorV2.setText("17:00 - 17:45");
+            HorV3.setText("18:00 - 18:45");
+            HorV4.setText("19:00 - 19:45");
+            HorV5.setVisible(false);
+            HorV6.setVisible(false);
+            HorV7.setVisible(false);
         }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
