@@ -256,55 +256,27 @@ public class conexao {
             System.out.println("o erro foi " + ex);
         }
     }
-
-    public static void nomeClienteComboBox() {
+    
+    public static void nomcliLabel() {
 
         String driver = "org.postgresql.Driver";
         String user = "postgres";
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
-        String sql = "select nomcli from cliente;";
-
+        String a = (String) AlteracaoSenha.cpf.getText();
+        String sql = "select nomcli from cliente where cpf like '" + a + "';";
+ 
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
             PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
             banco.execute(); // cria o vetor
 
-            ResultSet resultado = banco.executeQuery();
+            ResultSet resultado = banco.executeQuery(); 
 
             while (resultado.next()) {
 
-                AlteracaoSenha.nome.addItem(resultado.getString(1));
+                AlteracaoSenha.nome.setText(resultado.getString(1));
                 AlteracaoSenha.nome.updateUI();
-
-            }
-            banco.close();
-            con.close();
-        } catch (SQLException ex) {
-            System.out.println("o erro foi " + ex);
-        }
-    }
-
-    public static void codigoClienteAlteracaoSenha() {
-
-        String driver = "org.postgresql.Driver";
-        String user = "postgres";
-        String senha = "senai";
-        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
-        String a = (String) AlteracaoSenha.nome.getSelectedItem();
-        String sql = "select codcli from cliente where nomcli like '" + a + "';";
-
-        try {
-            Connection con = DriverManager.getConnection(url, user, senha);
-            PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
-            banco.execute(); // cria o vetor
-
-            ResultSet resultado = banco.executeQuery();
-
-            while (resultado.next()) {
-
-                AlteracaoSenha.codigo.setText(resultado.getString(1));
-                AlteracaoSenha.codigo.updateUI();
 
             }
             banco.close();
@@ -329,11 +301,11 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-            String codigo = AlteracaoSenha.codigo.getText();
-            String bla = AlteracaoSenha.senha.getText();
+            String cpf = AlteracaoSenha.cpf.getText();
+            String sen = AlteracaoSenha.senha.getText();
         
 
-            String Insert = "update cliente set senha ="+bla+" where codcli ="+codigo+";";
+            String Insert = "update cliente set senha ="+sen+" where codcli =( select codcli from cliente where cpf like '"+cpf+"');";
 
             stmt.executeUpdate(Insert);
 
