@@ -9,6 +9,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class ConsultaCliente extends javax.swing.JFrame {
 
+    public static String cod;
+    
     public void PopularJTable(String sql) {
 
         String driver = "org.postgresql.Driver";
@@ -28,9 +30,9 @@ public class ConsultaCliente extends javax.swing.JFrame {
             while (resultado.next()) {
                 model.addRow(new Object[]{
                     //retorna os dados da tabela do BD, cada campo e um coluna.
-                    resultado.getString("codcli"),
+                    resultado.getString("cpf"),
                     resultado.getString("nomcli"),
-                    resultado.getString("telcli"),
+                    resultado.getString("celular"),
                     resultado.getString("nomcat")
                     
                   
@@ -62,7 +64,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        matricula = new javax.swing.JLabel();
+        estado = new javax.swing.JLabel();
         cpf = new javax.swing.JLabel();
         cliente = new javax.swing.JLabel();
         cidade = new javax.swing.JLabel();
@@ -71,6 +73,12 @@ public class ConsultaCliente extends javax.swing.JFrame {
         email = new javax.swing.JLabel();
         telefone = new javax.swing.JLabel();
         categoria = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        clientede = new javax.swing.JLabel();
+        tipo = new javax.swing.JLabel();
+        classi = new javax.swing.JLabel();
         jRadioButton2 = new javax.swing.JRadioButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel6 = new javax.swing.JLabel();
@@ -84,6 +92,9 @@ public class ConsultaCliente extends javax.swing.JFrame {
         livre = new javax.swing.JRadioButton();
         todos = new javax.swing.JRadioButton();
         codigo = new javax.swing.JLabel();
+        yoga = new javax.swing.JRadioButton();
+        func = new javax.swing.JRadioButton();
+        conv = new javax.swing.JRadioButton();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(500, 500));
         jDialog1.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -94,11 +105,11 @@ public class ConsultaCliente extends javax.swing.JFrame {
 
         jPanel2.setMinimumSize(new java.awt.Dimension(400, 400));
 
-        jLabel2.setText("Matrícula:");
+        jLabel2.setText("Estado:");
 
         jLabel3.setText("CPF:");
 
-        jLabel4.setText("Cliente:");
+        jLabel4.setText("Nome:");
 
         jLabel5.setText("Cidade:");
 
@@ -112,7 +123,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
 
         jLabel12.setText("Categoria");
 
-        matricula.setText("jLabel13");
+        estado.setText("jLabel13");
 
         cpf.setText("jLabel14");
 
@@ -130,6 +141,18 @@ public class ConsultaCliente extends javax.swing.JFrame {
 
         categoria.setText("jLabel22");
 
+        jLabel11.setText("Cliente de:");
+
+        jLabel13.setText("Tipo:");
+
+        jLabel14.setText("Classificação:");
+
+        clientede.setText("jLabel15");
+
+        tipo.setText("jLabel16");
+
+        classi.setText("jLabel17");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -145,9 +168,15 @@ public class ConsultaCliente extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel12))
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
                 .addGap(80, 80, 80)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(classi)
+                    .addComponent(tipo)
+                    .addComponent(clientede)
                     .addComponent(categoria)
                     .addComponent(telefone)
                     .addComponent(email)
@@ -156,7 +185,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
                     .addComponent(cidade)
                     .addComponent(cliente)
                     .addComponent(cpf)
-                    .addComponent(matricula))
+                    .addComponent(estado))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -165,7 +194,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(matricula))
+                    .addComponent(estado))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -190,15 +219,27 @@ public class ConsultaCliente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(email))
-                .addGap(36, 36, 36)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(telefone))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(categoria))
-                .addGap(45, 45, 45))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(clientede))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(tipo))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(classi))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -228,7 +269,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Matrícula", "Cliente", "Telefone", "Categoria"
+                "CPF", "Cliente", "Telefone", "Categoria"
             }
         ));
         tabela.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -267,46 +308,72 @@ public class ConsultaCliente extends javax.swing.JFrame {
         codigo.setForeground(new java.awt.Color(240, 240, 240));
         codigo.setText("jLabel11");
 
+        buttonGroup1.add(yoga);
+        yoga.setText("Yoga");
+
+        buttonGroup1.add(func);
+        func.setText("Funcional");
+
+        buttonGroup1.add(conv);
+        conv.setText("Conv. Bem Estar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
+                        .addGap(232, 232, 232)
+                        .addComponent(yoga)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(musc)
-                        .addGap(10, 10, 10)
-                        .addComponent(pila)
-                        .addGap(18, 18, 18)
-                        .addComponent(livre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(todos)
                         .addGap(10, 10, 10)
-                        .addComponent(procura))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(procura)))
                 .addGap(0, 4, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(codigo)
-                .addGap(26, 26, 26))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(func)
+                        .addGap(18, 18, 18)
+                        .addComponent(conv))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(musc)
+                        .addGap(10, 10, 10)
+                        .addComponent(pila)))
+                .addGap(18, 18, 18)
+                .addComponent(livre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(codigo))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(procura)
                     .addComponent(jLabel1)
                     .addComponent(musc)
                     .addComponent(pila)
-                    .addComponent(livre)
-                    .addComponent(todos))
-                .addGap(26, 26, 26)
+                    .addComponent(livre))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(procura)
+                            .addComponent(todos))
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(conv)
+                            .addComponent(func)
+                            .addComponent(yoga))
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -325,21 +392,32 @@ public class ConsultaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        this.PopularJTable("select a.codcli, a.nomcli, a.telcli, b.nomcat from cliente a, categoria b where a.codcat=b.codcat;");
+        this.PopularJTable("select a.cpf, a.nomcli, a.celular, b.nomcat from cliente a, categoria b where a.codcat=b.codcat;");
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void procuraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_procuraActionPerformed
         if (musc.isSelected()) {
-            this.PopularJTable("select a.codcli, a.nomcli, a.telcli, b.nomcat from cliente a, categoria b where a.codcat=b.codcat and b.nomcat ilike '%Musculacao%'");
+            this.PopularJTable("select a.cpf, a.nomcli, a.celular, b.nomcat from cliente a, categoria b where a.codcat=b.codcat and b.nomcat ilike '%Musculacao%'");
                     }
          if (pila.isSelected()) {
-            this.PopularJTable("select a.codcli, a.nomcli, a.telcli, b.nomcat from cliente a, categoria b where a.codcat=b.codcat and b.nomcat ilike '%Pilates%'");
+            this.PopularJTable("select a.cpf, a.nomcli, a.celular, b.nomcat from cliente a, categoria b where a.codcat=b.codcat and b.nomcat ilike '%Pilates%'");
                     }
          if (livre.isSelected()) {
-            this.PopularJTable("select a.codcli, a.nomcli, a.telcli, b.nomcat from cliente a, categoria b where a.codcat=b.codcat and b.nomcat ilike '%Livre%'");
+            this.PopularJTable("select a.cpf, a.nomcli, a.celular, b.nomcat from cliente a, categoria b where a.codcat=b.codcat and b.nomcat ilike '%Livre%'");
                     }
+         if (func.isSelected()) {
+            this.PopularJTable("select a.cpf, a.nomcli, a.celular, b.nomcat from cliente a, categoria b where a.codcat=b.codcat and b.nomcat ilike '%Funcional%'");
+                    }
+         if (yoga.isSelected()) {
+            this.PopularJTable("select a.cpf, a.nomcli, a.celular, b.nomcat from cliente a, categoria b where a.codcat=b.codcat and b.nomcat ilike '%Yoga%'");
+                    }
+         if (conv.isSelected()) {
+            this.PopularJTable("select a.cpf, a.nomcli, a.celular, b.nomcat from cliente a, categoria b where a.codcat=b.codcat and b.nomcat ilike '%Conv. Bem Estar%'");
+                    }
+         
          if (todos.isSelected()) {
-            this.PopularJTable("select a.codcli, a.nomcli, a.telcli, b.nomcat from cliente a, categoria b where a.codcat=b.codcat");
+            this.PopularJTable("select a.cpf, a.nomcli, a.celular, b.nomcat from cliente a, categoria b where a.codcat=b.codcat");
                     }
          
     }//GEN-LAST:event_procuraActionPerformed
@@ -351,9 +429,12 @@ public class ConsultaCliente extends javax.swing.JFrame {
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
         int selectedRow = tabela.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-        codigo.setText(model.getValueAt(selectedRow, 0).toString());
+       
+        cod = model.getValueAt(selectedRow, 0).toString();
+        
         jDialog1.setVisible(true);  
         conexao.PesquisaCliente();
+        System.out.println(cod);
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void tabelaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseEntered
@@ -399,16 +480,24 @@ public class ConsultaCliente extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     public static javax.swing.JLabel categoria;
     public static javax.swing.JLabel cidade;
+    public static javax.swing.JLabel classi;
     public static javax.swing.JLabel cliente;
+    public static javax.swing.JLabel clientede;
     public static javax.swing.JLabel codigo;
+    private javax.swing.JRadioButton conv;
     public static javax.swing.JLabel cpf;
     public static javax.swing.JLabel datnas;
     public static javax.swing.JLabel email;
     public static javax.swing.JLabel endereco;
+    public static javax.swing.JLabel estado;
+    private javax.swing.JRadioButton func;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -422,12 +511,13 @@ public class ConsultaCliente extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton livre;
-    public static javax.swing.JLabel matricula;
     private javax.swing.JRadioButton musc;
     private javax.swing.JRadioButton pila;
     private javax.swing.JButton procura;
     private javax.swing.JTable tabela;
     public static javax.swing.JLabel telefone;
+    public static javax.swing.JLabel tipo;
     private javax.swing.JRadioButton todos;
+    private javax.swing.JRadioButton yoga;
     // End of variables declaration//GEN-END:variables
 }
