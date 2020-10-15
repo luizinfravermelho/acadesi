@@ -218,8 +218,8 @@ public class conexao {
         String user = "postgres";
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
-        String cod = (String) ConsultaCliente.codigo.getText();
-        String sql = "select a.*, b.nomcid, c.nomcat from cliente a, cidade b, categoria c  where a.codcid = b.codcid and a.codcat = c.codcat and a.codcli =" + cod + "";
+        String cod = (String) ConsultaCliente.cod;
+        String sql = "select a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.datnas, a.email, a.celular, d.nomcat, a.clientede, a.tipo, a.classificacao from cliente a, cidade b, estado c, categoria d where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codcli = (select codcli from cliente where cpf like '"+cod+"');";
 
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
@@ -229,13 +229,13 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                ConsultaCliente.matricula.setText(resultado.getString(1));
-                ConsultaCliente.matricula.updateUI();
+                ConsultaCliente.estado.setText(resultado.getString(4));
+                ConsultaCliente.estado.updateUI();
                 ConsultaCliente.cpf.setText(resultado.getString(2));
                 ConsultaCliente.cpf.updateUI();
-                ConsultaCliente.cliente.setText(resultado.getString(3));
+                ConsultaCliente.cliente.setText(resultado.getString(1));
                 ConsultaCliente.cliente.updateUI();
-                ConsultaCliente.cidade.setText(resultado.getString(11));
+                ConsultaCliente.cidade.setText(resultado.getString(3));
                 ConsultaCliente.cidade.updateUI();
                 ConsultaCliente.endereco.setText(resultado.getString(5));
                 ConsultaCliente.endereco.updateUI();
@@ -245,9 +245,14 @@ public class conexao {
                 ConsultaCliente.email.updateUI();
                 ConsultaCliente.telefone.setText(resultado.getString(8));
                 ConsultaCliente.telefone.updateUI();
-                ConsultaCliente.categoria.setText(resultado.getString(12));
+                ConsultaCliente.categoria.setText(resultado.getString(9));
                 ConsultaCliente.categoria.updateUI();
-
+                ConsultaCliente.tipo.setText(resultado.getString(11));
+                ConsultaCliente.tipo.updateUI();
+                ConsultaCliente.clientede.setText(resultado.getString(10));
+                ConsultaCliente.clientede.updateUI();
+                ConsultaCliente.classi.setText(resultado.getString(12));
+                ConsultaCliente.classi.updateUI();
             }
             banco.close();
 
