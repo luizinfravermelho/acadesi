@@ -51,7 +51,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
         }
     }  //********** FIM DO MÉTODO PARA PUXAR DADOS DO BANCO **********//
 
-    public boolean data(String data, String datab) {
+     public boolean data(String data, String datab) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             sdf.setLenient(false);
