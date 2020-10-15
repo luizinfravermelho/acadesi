@@ -6,10 +6,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,35 +20,6 @@ import javax.swing.table.TableColumn;
  */
 public class AgendaTreinos extends javax.swing.JFrame {
 
-    public int contaColunas;
-
-    public void addTblCol(JTable jTable1, String name) {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        TableColumn col = new TableColumn(model.getColumnCount());
-
-        col.setHeaderValue(name);
-        jTable1.addColumn(col);
-        model.addColumn(name);
-        jTable1.revalidate();
-        contaColunas = 1;
-
-    }
-
-    ;
-    
-    public void removeColuna(JTable jTable1, int index) {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        TableColumn col = jTable1.getColumnModel().getColumn(index);
-        jTable1.removeColumn(col);
-        jTable1.revalidate();
-        contaColunas = 0;
-        
-        
-    }
-
-    ;
-    
-    
     public void PopularJTable(String sql) {
 
         String driver = "org.postgresql.Driver";
@@ -95,10 +64,12 @@ public class AgendaTreinos extends javax.swing.JFrame {
                 data2.setText(null);
             } else {
                 if (jComboBoxSala.getSelectedItem().equals("Musculação")) {
-                    if (contaColunas == 1) {
-                        removeColuna(jTable1, 3);
+
+                    if (jTable1.getColumnCount() == 4) {
+                        jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
                     }
-                    this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, b.horariomc as horario, (a.qtdpesmc-15)||'/15' as pessoas, c.nomcat as categoria\n"
+
+                    this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, b.horariomc as horario, (15-a.qtdpesmc)||'/15' as pessoas, c.nomcat as categoria\n"
                             + "from agendamentomc a, horariomc b, categoria c \n"
                             + "where a.codhormc = b.codhormc and a.codcat = c.codcat\n"
                             + "and a.dia >='" + data + "'\n"
@@ -106,20 +77,22 @@ public class AgendaTreinos extends javax.swing.JFrame {
                 } else {
 
                     if (jComboBox3.getSelectedItem().equals("Todos")) {
-                        if (contaColunas == 0) {
-                            addTblCol(jTable1, "Categoria");
+                        if (jTable1.getColumnCount() == 3) {
+                            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                            model.fireTableStructureChanged();
                         }
-                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, b.horariomf as horario, (a.qtdpesmf-15)||'/15' as pessoas, c.nomcat as categoria \n"
+                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, b.horariomf as horario, (15-a.qtdpesmf)||'/15' as pessoas, c.nomcat as categoria \n"
                                 + "from agendamentomf a, horariomf b, categoria c\n"
                                 + "where a.codhormf = b.codhormf and a.codcat = c.codcat\n"
                                 + "and a.dia >='" + data + "'\n"
                                 + "and a.dia <='" + datab + "' order by dia, horario;");
                     } else {
-                        if (contaColunas == 1) {
-                            removeColuna(jTable1, 3);
-                            
+
+                        if (jTable1.getColumnCount() == 4) {
+                            jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
                         }
-                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, b.horariomf as horario, (a.qtdpesmf-15)||'/15' as pessoas, c.nomcat as categoria \n"
+
+                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, b.horariomf as horario, (15-a.qtdpesmf)||'/15' as pessoas, c.nomcat as categoria \n"
                                 + "from agendamentomf a, horariomf b, categoria c\n"
                                 + "where a.codhormf = b.codhormf and a.codcat = c.codcat\n"
                                 + "and a.dia >='" + data + "'\n"
@@ -129,7 +102,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
 
                 }
             }
-            System.out.println(contaColunas);
+
             System.out.println(jTable1.getColumnCount());
             return true;
         } catch (ParseException ex) {
@@ -230,7 +203,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Dia", "Horário", "Pessoas"
+                "Dia", "Horário", "Pessoas", "Categoria"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -378,24 +351,22 @@ public class AgendaTreinos extends javax.swing.JFrame {
     }//GEN-LAST:event_sairMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+        if (jTable1.getColumnCount() == 4) {
+            jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
+        }
 
     }//GEN-LAST:event_formWindowOpened
 
     private void jComboBoxSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSalaActionPerformed
 
         if (jComboBoxSala.getSelectedItem().equals("Musculação")) {
-
+            jComboBox3.removeAllItems();
             jComboBox3.addItem("Musculação");
-            jComboBox3.removeItem("Conv. Bem estar");
-            jComboBox3.removeItem("Funcional");
-            jComboBox3.removeItem("Pilates");
-            jComboBox3.removeItem("Yoga");
-            jComboBox3.removeItem("Todos");
+
             jComboBox3.updateUI();
 
         } else if (jComboBoxSala.getSelectedItem().equals("Multifuncional")) {
-
+            jComboBox3.removeAllItems();
             jComboBox3.addItem("Conv. Bem estar");
             jComboBox3.addItem("Funcional");
             jComboBox3.addItem("Pilates");
@@ -403,7 +374,6 @@ public class AgendaTreinos extends javax.swing.JFrame {
             jComboBox3.addItem("Todos");
             jComboBox3.setSelectedItem("Todos");
 
-            jComboBox3.removeItem("Musculação");
             jComboBox3.updateUI();
 
         }
