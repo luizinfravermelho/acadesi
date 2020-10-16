@@ -51,7 +51,37 @@ public class AgendaTreinos extends javax.swing.JFrame {
         }
     }  //********** FIM DO MÉTODO PARA PUXAR DADOS DO BANCO **********//
 
-     public boolean data(String data, String datab) {
+    public void PopularJTableDialog(String sql) {
+
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+        try {
+            Connection con = DriverManager.getConnection(url, user, senha);
+            PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
+            banco.execute(); // cria o vetor
+
+            ResultSet resultado = banco.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            model.setNumRows(0);
+
+            while (resultado.next()) {
+                model.addRow(new Object[]{
+                    //retorna os dados da tabela do BD, cada campo e um coluna.
+                    resultado.getString("nomcli"),
+                    resultado.getString("cpf"),
+                    resultado.getString("celular"),});
+            }
+            banco.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.out.println("o erro foi " + ex);
+        }
+    }  //********** FIM DO MÉTODO PARA PUXAR DADOS DO BANCO **********//
+
+    public boolean data(String data, String datab) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             sdf.setLenient(false);
@@ -125,7 +155,17 @@ public class AgendaTreinos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox();
+        jDialog1 = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        JDqtdpes = new javax.swing.JLabel();
+        JDcat = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        JDdia = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        JDhor = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -144,7 +184,126 @@ public class AgendaTreinos extends javax.swing.JFrame {
         data2 = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jDialog1.setBackground(new java.awt.Color(255, 255, 255));
+        jDialog1.setMaximumSize(new java.awt.Dimension(485, 600));
+        jDialog1.setMinimumSize(new java.awt.Dimension(485, 600));
+        jDialog1.setPreferredSize(new java.awt.Dimension(485, 600));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setMinimumSize(new java.awt.Dimension(474, 600));
+        jPanel2.setPreferredSize(new java.awt.Dimension(474, 600));
+
+        JDqtdpes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JDqtdpes.setForeground(new java.awt.Color(50, 194, 128));
+        JDqtdpes.setText("Label");
+
+        JDcat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JDcat.setForeground(new java.awt.Color(50, 194, 128));
+        JDcat.setText("Label");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "CPF", "Telefone"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.setGridColor(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setViewportView(jTable2);
+
+        JDdia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JDdia.setForeground(new java.awt.Color(50, 194, 128));
+        JDdia.setText("Label");
+
+        JDhor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JDhor.setForeground(new java.awt.Color(50, 194, 128));
+        JDhor.setText("Label");
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setText("Adicionar aluno");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setText("Remover aluno");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(JDcat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JDdia))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(JDhor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JDqtdpes))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(174, 174, 174)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 5, Short.MAX_VALUE)))
+                .addGap(0, 18, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JDcat)
+                    .addComponent(JDdia))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JDhor)
+                    .addComponent(JDqtdpes))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -387,9 +546,54 @@ public class AgendaTreinos extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         if (evt.getClickCount() == 2) {
-            JOptionPane.showMessageDialog(null, "Deu clique duplo? Quer verificar esse horario?");
+            //JOptionPane.showMessageDialog(null, "Deu clique duplo? Quer verificar esse horario?");
+
+            int selectedRow = jTable1.getSelectedRow();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            JDcat.setText(jComboBox3.getSelectedItem().toString());
+            JDhor.setText(model.getValueAt(selectedRow, 1).toString());
+            JDdia.setText(model.getValueAt(selectedRow, 0).toString());
+            JDqtdpes.setText(model.getValueAt(selectedRow, 2).toString());
+
+            if (jComboBox3.getSelectedItem().equals("Musculação")) {
+                this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
+                        + "from cliente a, agendacliente b, agendamentomc c, horariomc d\n"
+                        + "where a.codcli = b.codcli\n"
+                        + "and b.codagemc = c.codagemc\n"
+                        + "and c.codhormc = d.codhormc\n"
+                        + "and b.dia = '" + JDdia.getText() + "'\n"
+                        + "and d.horariomc = '" + JDhor.getText() + "'\n"
+                        + "and c.codcat=1");
+            } else {
+                if (jComboBox3.getSelectedItem().equals("Todos")) {
+                    JDcat.setText(model.getValueAt(selectedRow, 3).toString());
+                }
+
+                    this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
+                            + "from cliente a, agendacliente b, agendamentomf c, horariomf d\n"
+                            + "where a.codcli = b.codcli\n"
+                            + "and b.codagemf = c.codagemf\n"
+                            + "and c.codhormf = d.codhormf\n"
+                            + "and b.dia = '" + JDdia.getText() + "'\n"
+                            + "and d.horariomf = '" + JDhor.getText() + "'\n"
+                            + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
+
+                
+            }
+            jDialog1.setVisible(true);
+            jDialog1.setLocationRelativeTo(null);
+
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
 
@@ -420,12 +624,18 @@ public class AgendaTreinos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JDcat;
+    private javax.swing.JLabel JDdia;
+    private javax.swing.JLabel JDhor;
+    private javax.swing.JLabel JDqtdpes;
     public static javax.swing.JFormattedTextField data1;
     private javax.swing.JFormattedTextField data2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     public static javax.swing.JComboBox<String> jComboBox3;
     public static javax.swing.JComboBox<String> jComboBoxSala;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCategoria;
@@ -433,10 +643,14 @@ public class AgendaTreinos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelCategoria2;
     private javax.swing.JLabel jLabelCategoria3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JLabel sair;
     // End of variables declaration//GEN-END:variables
 }
