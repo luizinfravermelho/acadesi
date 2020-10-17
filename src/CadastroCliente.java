@@ -9,9 +9,8 @@
  */
 public class CadastroCliente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CadastroCliente
-     */
+    public static String b;
+    
     public CadastroCliente() {
         initComponents();
     }
@@ -444,11 +443,12 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16)
-                            .addComponent(jLabel10)
-                            .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel10)
+                                .addComponent(categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
@@ -491,13 +491,19 @@ public class CadastroCliente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (tipo.getSelectedItem().equals("Dependente")) {
             nomeempresa.setText("null");
+            conexao.InsertCliente();
         } else {
-            String a = nomeempresa.getText();
-            String b = ("(select nomemp from empresa where nomemp like '"+a+"')");
-          //  nomeempresa.setText("(select codemp from empresa where nomemp like '"+a+"')"); 
-            System.out.println(nomeempresa);
+            String a = (String) empresa.getSelectedItem();
+             b = ("(select codemp from empresa where nomemp like '"+a+"')");
+         
+            System.out.println(empresa);
+            conexao.InsertCliente();
         }
-        conexao.InsertCliente();
+        if (tipo.getSelectedItem().equals("Titular") && empresa.getSelectedItem().equals("Empresa nao cadastrada")) {
+            System.out.println(nomeempresa);
+                conexao.InsertClienteTitular();
+                }
+        
         
         nome.setText("");
         dia.setSelectedItem(null);
