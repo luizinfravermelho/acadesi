@@ -330,10 +330,10 @@ public class conexao {
             String tipo = (String) CadastroCliente.tipo.getSelectedItem();
             String categoria = (String) CadastroCliente.categoria.getSelectedItem();
             String classificacao = (String) CadastroCliente.classificacao.getSelectedItem();
-            String nomeempresa = CadastroCliente.b.getText();
+            String nomeempresa = CadastroCliente.b;
 
             String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),"+nomeempresa+",'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
-
+            System.out.println(Insert);
             stmt.executeUpdate(Insert);
             JOptionPane.showMessageDialog(null, "Dados inseridos!");
 
@@ -383,10 +383,13 @@ public class conexao {
             String nomeempresa = CadastroCliente.nomeempresa.getText();
             String telefoneempresa = CadastroCliente.telefoneempresa.getText();
 
-            String Insert2 = "insert into empresa values ((select coalesce (max(codemp),0)+1 from empresa), '" + nomeempresa + "', '" + telefoneempresa + "'";
+            String Insert2 = "insert into empresa values ((select coalesce (max(codemp),0)+1 from empresa), '" + nomeempresa + "', '" + telefoneempresa + "');";
+            System.out.println(Insert2);
+             stmt.executeUpdate(Insert2);
+             
             String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like " + nomeempresa + "),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
 
-            stmt.executeUpdate(Insert2);
+            
             stmt.executeUpdate(Insert);
             JOptionPane.showMessageDialog(null, "Dados inseridos!");
 
