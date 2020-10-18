@@ -184,102 +184,88 @@ public class CadastroTreinos extends javax.swing.JFrame {
             if (horarios.size() > 0) {
                 Hor1.setVisible(true);
                 Hor1.setText(horarios.get(0));
-            }
-            else{
+            } else {
                 Hor1.setVisible(false);
             }
             if (horarios.size() > 1) {
                 Hor2.setVisible(true);
                 Hor2.setText(horarios.get(1));
-            }
-            else{
+            } else {
                 Hor2.setVisible(false);
             }
             if (horarios.size() > 2) {
                 Hor3.setVisible(true);
                 Hor3.setText(horarios.get(2));
-            }
-            else{
+            } else {
                 Hor3.setVisible(false);
             }
             if (horarios.size() > 3) {
                 Hor4.setVisible(true);
                 Hor4.setText(horarios.get(3));
-            }
-            else{
+            } else {
                 Hor4.setVisible(false);
             }
             if (horarios.size() > 4) {
                 Hor5.setVisible(true);
                 Hor5.setText(horarios.get(4));
-            }
-            else{
+            } else {
                 Hor5.setVisible(false);
             }
             if (horarios.size() > 5) {
                 Hor6.setVisible(true);
                 Hor6.setText(horarios.get(5));
-            }
-            else{
+            } else {
                 Hor6.setVisible(false);
             }
             if (horarios.size() > 6) {
                 Hor7.setVisible(true);
                 Hor7.setText(horarios.get(6));
-            }
-            else{
+            } else {
                 Hor7.setVisible(false);
             }
             if (horarios.size() > 7) {
                 Hor8.setVisible(true);
                 Hor8.setText(horarios.get(7));
-            }
-            else{
+            } else {
                 Hor8.setVisible(false);
             }
             if (horarios.size() > 8) {
                 Hor9.setVisible(true);
                 Hor9.setText(horarios.get(8));
-            }
-            else{
+            } else {
                 Hor9.setVisible(false);
             }
             if (horarios.size() > 9) {
                 Hor10.setVisible(true);
                 Hor10.setText(horarios.get(9));
-            }
-            else{
+            } else {
                 Hor10.setVisible(false);
             }
             if (horarios.size() > 10) {
                 Hor11.setVisible(true);
                 Hor11.setText(horarios.get(10));
-            }
-            else{
+            } else {
                 Hor11.setVisible(false);
             }
             if (horarios.size() > 11) {
                 Hor12.setVisible(true);
                 Hor12.setText(horarios.get(11));
-            }
-            else{
+            } else {
                 Hor12.setVisible(false);
             }
             if (horarios.size() > 12) {
                 Hor13.setVisible(true);
                 Hor13.setText(horarios.get(12));
-            }
-            else{
+            } else {
                 Hor13.setVisible(false);
             }
             if (horarios.size() > 13) {
                 Hor14.setVisible(true);
                 Hor14.setText(horarios.get(13));
-            }
-            else{
+            } else {
                 Hor14.setVisible(false);
             }
-            
+
             banco.close();
             con.close();
         } catch (SQLException ex) {
@@ -774,150 +760,136 @@ public class CadastroTreinos extends javax.swing.JFrame {
         this.LimpaHoras();
         if (jComboBox3.getSelectedItem().equals("Musculação")) {
             this.AddCheckBox("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc;");
-            
+
         } else {
             this.AddCheckBox("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf;");
         }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
-            this.LimpaHoras();
-            if (jComboBox3.getSelectedItem().equals("Musculação")) {
-                // this.HorariosIguais("select a.horariomc from horariomc a, agendamentomc b, categoria c where a.codhormc = b.codhormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia >= CURRENT_DATE and (select extract(dow from b.dia))=" + dow);
-                this.HorariosIguais("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc a, agendamentomc b, categoria c where (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))) = b.hormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia = '" + dia.getDate() + "'");
 
-            } else {
-                this.HorariosIguais("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.hormf and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia ='" + dia.getDate() + "'");
-                this.HorariosDiferentes("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.hormf and b.codcat = c.codcat and c.codcat!=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia='" + dia.getDate() + "'");
+        this.LimpaHoras();
+        if (jComboBox3.getSelectedItem().equals("Musculação")) {
+            // this.HorariosIguais("select a.horariomc from horariomc a, agendamentomc b, categoria c where a.codhormc = b.codhormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia >= CURRENT_DATE and (select extract(dow from b.dia))=" + dow);
+            this.HorariosIguais("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc a, agendamentomc b, categoria c where (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))) = b.hormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia = '" + dia.getDate() + "'");
 
-            }
-        
+        } else {
+            this.HorariosIguais("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.hormf and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia ='" + dia.getDate() + "'");
+            this.HorariosDiferentes("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.hormf and b.codcat = c.codcat and c.codcat!=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia='" + dia.getDate() + "'");
+
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void Hor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor1ActionPerformed
-        if(Hor1.isSelected()==true){
-           conexao.CadastroTreinosInsert(Hor1.getText());
-        }
-        else{
-            
+        if (Hor1.isSelected() == true) {
+            conexao.CadastroTreinosInsert(Hor1.getText());
+        } else {
+
         }
     }//GEN-LAST:event_Hor1ActionPerformed
 
     private void Hor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor2ActionPerformed
-        if(Hor2.isSelected()==true){
+        if (Hor2.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor2.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor2ActionPerformed
 
     private void Hor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor3ActionPerformed
-        if(Hor3.isSelected()==true){
+        if (Hor3.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor3.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor3ActionPerformed
 
     private void Hor4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor4ActionPerformed
-        if(Hor4.isSelected()==true){
+        if (Hor4.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor4.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor4ActionPerformed
 
     private void Hor5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor5ActionPerformed
-        if(Hor5.isSelected()==true){
+        if (Hor5.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor5.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor5ActionPerformed
 
     private void Hor6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor6ActionPerformed
-        if(Hor6.isSelected()==true){
+        if (Hor6.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor6.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor6ActionPerformed
 
     private void Hor7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor7ActionPerformed
-        if(Hor7.isSelected()==true){
+        if (Hor7.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor7.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor7ActionPerformed
 
     private void Hor8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor8ActionPerformed
-       if(Hor8.isSelected()==true){
+        if (Hor8.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor8.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor8ActionPerformed
 
     private void Hor9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor9ActionPerformed
-        if(Hor9.isSelected()==true){
+        if (Hor9.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor9.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor9ActionPerformed
 
     private void Hor10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor10ActionPerformed
-        if(Hor10.isSelected()==true){
+        if (Hor10.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor10.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor10ActionPerformed
 
     private void Hor11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor11ActionPerformed
-        if(Hor11.isSelected()==true){
+        if (Hor11.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor11.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor11ActionPerformed
 
     private void Hor12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor12ActionPerformed
-        if(Hor12.isSelected()==true){
+        if (Hor12.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor12.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor12ActionPerformed
 
     private void Hor13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor13ActionPerformed
-        if(Hor13.isSelected()==true){
+        if (Hor13.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor13.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor13ActionPerformed
 
     private void Hor14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor14ActionPerformed
-        if(Hor14.isSelected()==true){
+        if (Hor14.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor14.getText());
-        }
-        else{
-            
+        } else {
+
         }
     }//GEN-LAST:event_Hor14ActionPerformed
 
@@ -930,25 +902,22 @@ public class CadastroTreinos extends javax.swing.JFrame {
     }//GEN-LAST:event_diaMouseExited
 
     private void diaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_diaPropertyChange
-        if(evt != null){
-            if (dia.getDate() != null){
-                
-            
-            this.LimpaHoras();
-            if (jComboBox3.getSelectedItem() != null){
-                
-            
-            if (jComboBox3.getSelectedItem().equals("Musculação")) {
-                // this.HorariosIguais("select a.horariomc from horariomc a, agendamentomc b, categoria c where a.codhormc = b.codhormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia >= CURRENT_DATE and (select extract(dow from b.dia))=" + dow);
-                this.HorariosIguais("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc a, agendamentomc b, categoria c where (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))) = b.hormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia = '" + dia.getDate() + "'");
+        if (evt != null) {
+            if (dia.getDate() != null) {
 
-            } else {
-                this.HorariosIguais("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.hormf and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia ='" + dia.getDate() + "'");
-                this.HorariosDiferentes("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.hormf and b.codcat = c.codcat and c.codcat!=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia='" + dia.getDate() + "'");
+                this.LimpaHoras();
+                if (jComboBox3.getSelectedItem() != null) {
 
+                    if (jComboBox3.getSelectedItem().equals("Musculação")) {
+                        this.HorariosIguais("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc a, agendamentomc b, categoria c where (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))) = b.hormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia = '" + dia.getDate() + "'");
+
+                    } else {
+                        this.HorariosIguais("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.hormf and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia ='" + dia.getDate() + "'");
+                        this.HorariosDiferentes("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.hormf and b.codcat = c.codcat and c.codcat!=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia='" + dia.getDate() + "'");
+
+                    }
+                }
             }
-        }
-        }
         }
     }//GEN-LAST:event_diaPropertyChange
 
