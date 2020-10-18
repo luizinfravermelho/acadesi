@@ -428,6 +428,13 @@ public class conexao {
            String categoria = (String) CadastroTreinos.jComboBox3.getSelectedItem();
            Date dia = CadastroTreinos.dia.getDate();
            
+           if(dia == null){
+               JOptionPane.showMessageDialog(null, "Selecione um dia!");
+               
+           }
+           else{
+               
+           
            if(categoria == "Musculação"){
                String Insert = "insert into agendamentomc values ((select coalesce (max(codagemc),0)+1 from agendamentomc), \n"
                        +"'"+Hor+"',1,1,'"+dia+"',15);";
@@ -438,7 +445,7 @@ public class conexao {
                        +"'"+Hor+"',(select codcat from categoria where nomcat ilike '"+categoria+"'),1,'"+dia+"',15);";
                stmt.executeUpdate(Insert);
            }
-
+           }
 
             //JOptionPane.showMessageDialog(null, "Dados inseridos!");
 
