@@ -99,7 +99,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                         jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
                     }
 
-                    this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, b.horariomc as horario, (15-a.qtdpesmc)||'/15' as pessoas, c.nomcat as categoria\n"
+                    this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario, (15-a.qtdpesmc)||'/15' as pessoas, c.nomcat as categoria\n"
                             + "from agendamentomc a, horariomc b, categoria c \n"
                             + "where a.codhormc = b.codhormc and a.codcat = c.codcat\n"
                             + "and a.dia >='" + data + "'\n"
@@ -111,7 +111,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                             model.fireTableStructureChanged();
                         }
-                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, b.horariomf as horario, (15-a.qtdpesmf)||'/15' as pessoas, c.nomcat as categoria \n"
+                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario, (15-a.qtdpesmf)||'/15' as pessoas, c.nomcat as categoria \n"
                                 + "from agendamentomf a, horariomf b, categoria c\n"
                                 + "where a.codhormf = b.codhormf and a.codcat = c.codcat\n"
                                 + "and a.dia >='" + data + "'\n"
@@ -122,7 +122,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                             jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
                         }
 
-                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, b.horariomf as horario, (15-a.qtdpesmf)||'/15' as pessoas, c.nomcat as categoria \n"
+                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario, (15-a.qtdpesmf)||'/15' as pessoas, c.nomcat as categoria \n"
                                 + "from agendamentomf a, horariomf b, categoria c\n"
                                 + "where a.codhormf = b.codhormf and a.codcat = c.codcat\n"
                                 + "and a.dia >='" + data + "'\n"
@@ -563,7 +563,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                         + "and b.codagemc = c.codagemc\n"
                         + "and c.codhormc = d.codhormc\n"
                         + "and b.dia = '" + JDdia.getText() + "'\n"
-                        + "and d.horariomc = '" + JDhor.getText() + "'\n"
+                        + "and d.horariomcini = '" + JDhor.getText() + "'\n"
                         + "and c.codcat=1");
             } else {
                 if (jComboBox3.getSelectedItem().equals("Todos")) {
@@ -576,7 +576,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                             + "and b.codagemf = c.codagemf\n"
                             + "and c.codhormf = d.codhormf\n"
                             + "and b.dia = '" + JDdia.getText() + "'\n"
-                            + "and d.horariomf = '" + JDhor.getText() + "'\n"
+                            + "and d.horariomfini = '" + JDhor.getText() + "'\n"
                             + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
 
                 
