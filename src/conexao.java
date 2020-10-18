@@ -330,11 +330,11 @@ public class conexao {
             String tipo = (String) CadastroCliente.tipo.getSelectedItem();
             String categoria = (String) CadastroCliente.categoria.getSelectedItem();
             String classificacao = (String) CadastroCliente.classificacao.getSelectedItem();
-            String nomeempresa = CadastroCliente.b.getText();
+         //   String nomeempresa = CadastroCliente.b.getText();
 
-            String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),"+nomeempresa+",'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
+          //  String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),"+nomeempresa+",'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
 
-            stmt.executeUpdate(Insert);
+          //  stmt.executeUpdate(Insert);
             JOptionPane.showMessageDialog(null, "Dados inseridos!");
 
             con.close();
@@ -422,6 +422,39 @@ public class conexao {
             con.close();
         } catch (SQLException ex) {
             System.out.println("o erro foi " + ex);
+        }
+    }
+    
+    public static void CadastroTreinosInsert() {
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+
+        try {
+            Class.forName(driver);
+            System.out.println("Driver carregado");
+            Connection con = null;
+            con = DriverManager.getConnection(url, user, senha);
+            System.out.println("Conexão realizada com sucesso.");
+
+            Statement stmt = con.createStatement();
+
+           
+
+            //String Insert2 = "insert into empresa values ((select coalesce (max(codemp),0)+1 from empresa), '" + nomeempresa + "', '" + telefoneempresa + "'";
+           // String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like " + nomeempresa + "),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
+
+          //  stmt.executeUpdate(Insert2);
+           // stmt.executeUpdate(Insert);
+            JOptionPane.showMessageDialog(null, "Dados inseridos!");
+
+            con.close();
+
+        } catch (ClassNotFoundException ex) {
+            System.err.print(ex.getMessage());
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
         }
     }
 }

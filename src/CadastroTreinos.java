@@ -761,11 +761,11 @@ public class CadastroTreinos extends javax.swing.JFrame {
             this.LimpaHoras();
             if (jComboBox3.getSelectedItem().equals("Musculação")) {
                 // this.HorariosIguais("select a.horariomc from horariomc a, agendamentomc b, categoria c where a.codhormc = b.codhormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia >= CURRENT_DATE and (select extract(dow from b.dia))=" + dow);
-                this.HorariosIguais("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc a, agendamentomc b, categoria c where a.codhormc = b.codhormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia = '" + dia.getDate() + "'");
+                this.HorariosIguais("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc a, agendamentomc b, categoria c where (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))) = b.hormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia = '" + dia.getDate() + "'");
 
             } else {
-                this.HorariosIguais("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where a.codhormf = b.codhormf and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia ='" + dia.getDate() + "'");
-                this.HorariosDiferentes("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where a.codhormf = b.codhormf and b.codcat = c.codcat and c.codcat!=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia='" + dia.getDate() + "'");
+                this.HorariosIguais("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.codhormf and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia ='" + dia.getDate() + "'");
+                this.HorariosDiferentes("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.codhormf and b.codcat = c.codcat and c.codcat!=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia='" + dia.getDate() + "'");
 
             }
         
