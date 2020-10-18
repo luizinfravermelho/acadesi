@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import javax.swing.JOptionPane;
 //bom dia
 //boa noite, Pachequitos
@@ -407,7 +408,7 @@ public class conexao {
         }
     }
     
-    public static void CadastroTreinosInsert() {
+    public static void CadastroTreinosInsert(String Hor) {
         String driver = "org.postgresql.Driver";
         String user = "postgres";
         String senha = "senai";
@@ -422,14 +423,22 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
+           String categoria = (String) CadastroTreinos.jComboBox3.getSelectedItem();
+           Date dia = CadastroTreinos.dia.getDate();
            
+           if(categoria == "Musculação"){
+               String Insert = "insert into agendamentomc values ((select coalesce (max(codagemc),0)+1 from agendamentomc), \n"
+                       +"'"+Hor+"',1,1,'"+dia+"',15);";
+               stmt.executeUpdate(Insert);
+           }
+           else{
+               String Insert = "insert into agendamentomf values ((select coalesce (max(codagemf),0)+1 from agendamentomf), \n"
+                       +"'"+Hor+"',(select codcat from categoria where nomcat ilike '"+categoria+"'),1,'"+dia+"',15);";
+               stmt.executeUpdate(Insert);
+           }
 
-            //String Insert2 = "insert into empresa values ((select coalesce (max(codemp),0)+1 from empresa), '" + nomeempresa + "', '" + telefoneempresa + "'";
-           // String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like " + nomeempresa + "),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
 
-          //  stmt.executeUpdate(Insert2);
-           // stmt.executeUpdate(Insert);
-            JOptionPane.showMessageDialog(null, "Dados inseridos!");
+            //JOptionPane.showMessageDialog(null, "Dados inseridos!");
 
             con.close();
 
