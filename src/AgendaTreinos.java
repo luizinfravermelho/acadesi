@@ -101,7 +101,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
 
                     this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario, (15-a.qtdpesmc)||'/15' as pessoas, c.nomcat as categoria\n"
                             + "from agendamentomc a, horariomc b, categoria c \n"
-                            + "where a.codhormc = b.codhormc and a.codcat = c.codcat\n"
+                            + "where a.hormc = (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))) and a.codcat = c.codcat\n"
                             + "and a.dia >='" + data + "'\n"
                             + "and a.dia <='" + datab + "' order by dia, horario;");
                 } else {
@@ -113,7 +113,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                         }
                         this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario, (15-a.qtdpesmf)||'/15' as pessoas, c.nomcat as categoria \n"
                                 + "from agendamentomf a, horariomf b, categoria c\n"
-                                + "where a.codhormf = b.codhormf and a.codcat = c.codcat\n"
+                                + "where a.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) and a.codcat = c.codcat\n"
                                 + "and a.dia >='" + data + "'\n"
                                 + "and a.dia <='" + datab + "' order by dia, horario;");
                     } else {
@@ -124,7 +124,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
 
                         this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario, (15-a.qtdpesmf)||'/15' as pessoas, c.nomcat as categoria \n"
                                 + "from agendamentomf a, horariomf b, categoria c\n"
-                                + "where a.codhormf = b.codhormf and a.codcat = c.codcat\n"
+                                + "where a.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) and a.codcat = c.codcat\n"
                                 + "and a.dia >='" + data + "'\n"
                                 + "and a.dia <='" + datab + "' and c.nomcat ilike '" + jComboBox3.getSelectedItem() + "' order by dia, horario;");
 
@@ -561,7 +561,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                         + "from cliente a, agendacliente b, agendamentomc c, horariomc d\n"
                         + "where a.codcli = b.codcli\n"
                         + "and b.codagemc = c.codagemc\n"
-                        + "and c.codhormc = d.codhormc\n"
+                        + "and c.hormc = (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi')))\n"
                         + "and b.dia = '" + JDdia.getText() + "'\n"
                         + "and d.horariomcini = '" + JDhor.getText() + "'\n"
                         + "and c.codcat=1");
@@ -574,7 +574,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                             + "from cliente a, agendacliente b, agendamentomf c, horariomf d\n"
                             + "where a.codcli = b.codcli\n"
                             + "and b.codagemf = c.codagemf\n"
-                            + "and c.codhormf = d.codhormf\n"
+                            + "and c.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi')))\n"
                             + "and b.dia = '" + JDdia.getText() + "'\n"
                             + "and d.horariomfini = '" + JDhor.getText() + "'\n"
                             + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
