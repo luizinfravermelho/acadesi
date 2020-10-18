@@ -325,16 +325,16 @@ public class conexao {
             String mes = (String) CadastroCliente.mes.getSelectedItem();
             String ano = (String) CadastroCliente.ano.getSelectedItem();
             String genero = (String) CadastroCliente.genero.getSelectedItem();
-            String estado = (String) CadastroCliente.estado.getSelectedItem();
+            String empresa = (String) CadastroCliente.empresa.getSelectedItem();
             String cidade = (String) CadastroCliente.cidade.getSelectedItem();
             String tipo = (String) CadastroCliente.tipo.getSelectedItem();
             String categoria = (String) CadastroCliente.categoria.getSelectedItem();
             String classificacao = (String) CadastroCliente.classificacao.getSelectedItem();
-         //   String nomeempresa = CadastroCliente.b.getText();
 
-          //  String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),"+nomeempresa+",'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
 
-          //  stmt.executeUpdate(Insert);
+            String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like '" + empresa + "'),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
+
+            stmt.executeUpdate(Insert);
             JOptionPane.showMessageDialog(null, "Dados inseridos!");
 
             con.close();
@@ -346,7 +346,7 @@ public class conexao {
         }
     }
 
-    public static void InsertClienteTitular() {
+    public static void InsertEmpresaNova() {
         String driver = "org.postgresql.Driver";
         String user = "postgres";
         String senha = "senai";
@@ -361,33 +361,15 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-            String nome = CadastroCliente.nome.getText();
-            String cpf = CadastroCliente.cpf.getText();
-            String email = CadastroCliente.email.getText();
-            String cep = CadastroCliente.cep.getText();
-            String rua = CadastroCliente.rua.getText();
-            String bairro = CadastroCliente.bairro.getText();
-            String numero = CadastroCliente.numero.getText();
-            String telefone = CadastroCliente.telefone.getText();
-            String complemento = CadastroCliente.complemento.getText();
-            String bla = (String) CadastroCliente.senha.getText();
-            String dia = (String) CadastroCliente.dia.getSelectedItem();
-            String mes = (String) CadastroCliente.mes.getSelectedItem();
-            String ano = (String) CadastroCliente.ano.getSelectedItem();
-            String genero = (String) CadastroCliente.genero.getSelectedItem();
-            String estado = (String) CadastroCliente.estado.getSelectedItem();
-            String cidade = (String) CadastroCliente.cidade.getSelectedItem();
-            String tipo = (String) CadastroCliente.tipo.getSelectedItem();
-            String categoria = (String) CadastroCliente.categoria.getSelectedItem();
-            String classificacao = (String) CadastroCliente.classificacao.getSelectedItem();
-            String nomeempresa = CadastroCliente.nomeempresa.getText();
-            String telefoneempresa = CadastroCliente.telefoneempresa.getText();
+            String cnpj = CadastroCliente.cnpjemp.getText();
+            String nome = CadastroCliente.empresaemp.getText();
+            String telefone = CadastroCliente.telemp.getText();
+          
 
-            String Insert2 = "insert into empresa values ((select coalesce (max(codemp),0)+1 from empresa), '" + nomeempresa + "', '" + telefoneempresa + "'";
-            String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like " + nomeempresa + "),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
+            String Insert2 = "insert into empresa values ((select coalesce (max(codemp),0)+1 from empresa), '" + nome + "', '" + telefone + "', '" + cnpj + "')";
 
             stmt.executeUpdate(Insert2);
-            stmt.executeUpdate(Insert);
+   
             JOptionPane.showMessageDialog(null, "Dados inseridos!");
 
             con.close();
