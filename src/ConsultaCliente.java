@@ -76,9 +76,13 @@ public class ConsultaCliente extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        clientede = new javax.swing.JLabel();
+        empresa = new javax.swing.JLabel();
         tipo = new javax.swing.JLabel();
         classi = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        CEP = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jRadioButton2 = new javax.swing.JRadioButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel6 = new javax.swing.JLabel();
@@ -97,150 +101,218 @@ public class ConsultaCliente extends javax.swing.JFrame {
         conv = new javax.swing.JRadioButton();
         jLabel15 = new javax.swing.JLabel();
 
-        jDialog1.setMinimumSize(new java.awt.Dimension(500, 500));
+        jDialog1.setMaximumSize(new java.awt.Dimension(857, 536));
+        jDialog1.setMinimumSize(new java.awt.Dimension(857, 536));
         jDialog1.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 jDialog1WindowOpened(evt);
             }
         });
 
-        jPanel2.setMinimumSize(new java.awt.Dimension(400, 400));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setMaximumSize(new java.awt.Dimension(857, 536));
+        jPanel2.setMinimumSize(new java.awt.Dimension(857, 536));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(50, 194, 128));
         jLabel2.setText("Estado:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(50, 194, 128));
         jLabel3.setText("CPF:");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(50, 194, 128));
         jLabel4.setText("Nome:");
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(50, 194, 128));
         jLabel5.setText("Cidade:");
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(50, 194, 128));
         jLabel7.setText("Endereço:");
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(50, 194, 128));
         jLabel8.setText("Data de Nascimento:");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(50, 194, 128));
         jLabel9.setText("Email:");
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(50, 194, 128));
         jLabel10.setText("Telefone:");
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(50, 194, 128));
         jLabel12.setText("Categoria");
 
-        estado.setText("jLabel13");
+        estado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        estado.setText("estado");
 
-        cpf.setText("jLabel14");
+        cpf.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cpf.setText("cpf");
 
-        cliente.setText("jLabel15");
+        cliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cliente.setText("nome");
 
-        cidade.setText("jLabel16");
+        cidade.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        cidade.setText("cidade");
 
-        endereco.setText("jLabel17");
+        endereco.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        endereco.setText("endreco");
 
-        datnas.setText("jLabel18");
+        datnas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        datnas.setText("datnas");
 
-        email.setText("jLabel19");
+        email.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        email.setText("email");
 
-        telefone.setText("jLabel20");
+        telefone.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        telefone.setText("tel");
 
-        categoria.setText("jLabel22");
+        categoria.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        categoria.setText("cat");
 
-        jLabel11.setText("Cliente de:");
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(50, 194, 128));
+        jLabel11.setText("Empresa:");
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(50, 194, 128));
         jLabel13.setText("Tipo:");
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(50, 194, 128));
         jLabel14.setText("Classificação:");
 
-        clientede.setText("jLabel15");
+        empresa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        empresa.setText("emp");
 
-        tipo.setText("jLabel16");
+        tipo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        tipo.setText("tipo");
 
-        classi.setText("jLabel17");
+        classi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        classi.setText("class");
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(50, 194, 128));
+        jLabel16.setText("CEP:");
+
+        CEP.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CEP.setText("cep");
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sesi_Logo.png"))); // NOI18N
+        jLabel17.setText("jLabel17");
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(50, 194, 128));
+        jLabel18.setText("Informações do Cliente");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel14))
-                .addGap(80, 80, 80)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(classi)
-                    .addComponent(tipo)
-                    .addComponent(clientede)
-                    .addComponent(categoria)
-                    .addComponent(telefone)
-                    .addComponent(email)
-                    .addComponent(datnas)
-                    .addComponent(endereco)
-                    .addComponent(cidade)
-                    .addComponent(cliente)
-                    .addComponent(cpf)
-                    .addComponent(estado))
-                .addContainerGap(135, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(endereco)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cidade)
+                                    .addComponent(datnas)
+                                    .addComponent(estado)
+                                    .addComponent(cpf)
+                                    .addComponent(cliente)
+                                    .addComponent(CEP))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel14))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(classi)
+                                    .addComponent(telefone)
+                                    .addComponent(email)
+                                    .addComponent(tipo)
+                                    .addComponent(empresa)
+                                    .addComponent(categoria)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(160, 160, 160)
+                        .addComponent(jLabel18)
+                        .addGap(0, 212, Short.MAX_VALUE)))
+                .addGap(103, 103, 103))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(estado))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cpf))
-                .addGap(28, 28, 28)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel18))
+                .addGap(59, 59, 59)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cliente))
-                .addGap(29, 29, 29)
+                    .addComponent(cliente)
+                    .addComponent(jLabel10)
+                    .addComponent(telefone))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cpf)
+                    .addComponent(jLabel9)
+                    .addComponent(email))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(estado)
+                    .addComponent(tipo)
+                    .addComponent(jLabel13))
+                .addGap(47, 47, 47)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(cidade))
-                .addGap(27, 27, 27)
+                    .addComponent(cidade)
+                    .addComponent(jLabel11)
+                    .addComponent(empresa))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(categoria)
+                    .addComponent(jLabel8)
+                    .addComponent(datnas))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel16)
+                        .addComponent(CEP))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14)
+                        .addComponent(classi)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(endereco))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(datnas))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(email))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(telefone))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(categoria))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(clientede))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(tipo))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(classi))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -251,7 +323,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
         );
         jDialog1Layout.setVerticalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jRadioButton2.setText("jRadioButton2");
@@ -480,7 +552,8 @@ public class ConsultaCliente extends javax.swing.JFrame {
        
         cod = model.getValueAt(selectedRow, 0).toString();
         
-        jDialog1.setVisible(true);  
+        jDialog1.setVisible(true); 
+        jDialog1.setLocationRelativeTo(null);
         conexao.PesquisaCliente();
         System.out.println(cod);
     }//GEN-LAST:event_tabelaMouseClicked
@@ -525,17 +598,18 @@ public class ConsultaCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JLabel CEP;
     private javax.swing.ButtonGroup buttonGroup1;
     public static javax.swing.JLabel categoria;
     public static javax.swing.JLabel cidade;
     public static javax.swing.JLabel classi;
     public static javax.swing.JLabel cliente;
-    public static javax.swing.JLabel clientede;
     public static javax.swing.JLabel codigo;
     private javax.swing.JRadioButton conv;
     public static javax.swing.JLabel cpf;
     public static javax.swing.JLabel datnas;
     public static javax.swing.JLabel email;
+    public static javax.swing.JLabel empresa;
     public static javax.swing.JLabel endereco;
     public static javax.swing.JLabel estado;
     private javax.swing.JRadioButton func;
@@ -547,6 +621,9 @@ public class ConsultaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
