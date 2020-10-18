@@ -168,7 +168,7 @@ public class conexao {
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
         String cod = (String) ConsultaCliente.cod;
-        String sql = "select a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.datnas, a.email, a.celular, d.nomcat, a.clientede, a.tipo, a.classificacao from cliente a, cidade b, estado c, categoria d where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codcli = (select codcli from cliente where cpf like '" + cod + "');";
+        String sql = "select a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.datnas, a.email, a.celular, d.nomcat, e.nomemp, a.tipo, a.classificacao, a.cep from cliente a, cidade b, estado c, categoria d, empresa e where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codemp = e.codemp and a.codcli = (select codcli from cliente where cpf like '" + cod + "');";
 
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
@@ -198,10 +198,12 @@ public class conexao {
                 ConsultaCliente.categoria.updateUI();
                 ConsultaCliente.tipo.setText(resultado.getString(11));
                 ConsultaCliente.tipo.updateUI();
-                ConsultaCliente.clientede.setText(resultado.getString(10));
-                ConsultaCliente.clientede.updateUI();
+                ConsultaCliente.empresa.setText(resultado.getString(10));
+                ConsultaCliente.empresa.updateUI();
                 ConsultaCliente.classi.setText(resultado.getString(12));
                 ConsultaCliente.classi.updateUI();
+                ConsultaCliente.CEP.setText(resultado.getString(12));
+                ConsultaCliente.CEP.updateUI();
             }
             banco.close();
 
