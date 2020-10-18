@@ -427,35 +427,15 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor1.setBackground(new java.awt.Color(255, 255, 255));
         Hor1.setText("a");
-        Hor1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Hor1ActionPerformed(evt);
-            }
-        });
 
         Hor2.setBackground(new java.awt.Color(255, 255, 255));
         Hor2.setText("a");
-        Hor2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Hor2ActionPerformed(evt);
-            }
-        });
 
         Hor3.setBackground(new java.awt.Color(255, 255, 255));
         Hor3.setText("a");
-        Hor3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Hor3ActionPerformed(evt);
-            }
-        });
 
         Hor4.setBackground(new java.awt.Color(255, 255, 255));
         Hor4.setText("a");
-        Hor4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Hor4ActionPerformed(evt);
-            }
-        });
 
         Hor5.setBackground(new java.awt.Color(255, 255, 255));
         Hor5.setText("a");
@@ -507,45 +487,20 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor11.setBackground(new java.awt.Color(255, 255, 255));
         Hor11.setText("a");
-        Hor11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Hor11ActionPerformed(evt);
-            }
-        });
 
         Hor10.setBackground(new java.awt.Color(255, 255, 255));
         Hor10.setText("a");
-        Hor10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Hor10ActionPerformed(evt);
-            }
-        });
 
         Hor9.setBackground(new java.awt.Color(255, 255, 255));
         Hor9.setText("a");
-        Hor9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Hor9ActionPerformed(evt);
-            }
-        });
 
         Hor8.setBackground(new java.awt.Color(255, 255, 255));
         Hor8.setText("a");
-        Hor8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Hor8ActionPerformed(evt);
-            }
-        });
 
         dia.setBackground(new java.awt.Color(255, 255, 255));
         dia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         dia.setMinimumSize(new java.awt.Dimension(120, 27));
         dia.setPreferredSize(new java.awt.Dimension(120, 27));
-        dia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                diaMouseReleased(evt);
-            }
-        });
 
         jButton2.setText("Buscar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -772,6 +727,35 @@ public class CadastroTreinos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
+    private void Hor5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Hor5ActionPerformed
+
+    private void Hor6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Hor6ActionPerformed
+
+    private void Hor7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Hor7ActionPerformed
+
+    private void Hor14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor14ActionPerformed
+        if(Hor14.isSelected()==true){
+            System.out.println("Insere");
+        }
+        else{
+            System.out.println("Apaga");
+        }
+    }//GEN-LAST:event_Hor14ActionPerformed
+
+    private void Hor13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Hor13ActionPerformed
+
+    private void Hor12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Hor12ActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        
             this.LimpaHoras();
@@ -786,136 +770,6 @@ public class CadastroTreinos extends javax.swing.JFrame {
             }
         
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void Hor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor1ActionPerformed
-        if(Hor1.isSelected()==true){
-           conexao.CadastroTreinosInsert(Hor1.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor1ActionPerformed
-
-    private void Hor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor2ActionPerformed
-        if(Hor2.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor2.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor2ActionPerformed
-
-    private void Hor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor3ActionPerformed
-        if(Hor3.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor3.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor3ActionPerformed
-
-    private void Hor4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor4ActionPerformed
-        if(Hor4.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor4.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor4ActionPerformed
-
-    private void Hor5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor5ActionPerformed
-        if(Hor5.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor5.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor5ActionPerformed
-
-    private void Hor6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor6ActionPerformed
-        if(Hor6.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor6.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor6ActionPerformed
-
-    private void Hor7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor7ActionPerformed
-        if(Hor7.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor7.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor7ActionPerformed
-
-    private void Hor8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor8ActionPerformed
-       if(Hor8.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor8.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor8ActionPerformed
-
-    private void Hor9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor9ActionPerformed
-        if(Hor9.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor9.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor9ActionPerformed
-
-    private void Hor10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor10ActionPerformed
-        if(Hor10.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor10.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor10ActionPerformed
-
-    private void Hor11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor11ActionPerformed
-        if(Hor11.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor11.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor11ActionPerformed
-
-    private void Hor12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor12ActionPerformed
-        if(Hor12.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor12.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor12ActionPerformed
-
-    private void Hor13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor13ActionPerformed
-        if(Hor13.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor13.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor13ActionPerformed
-
-    private void Hor14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor14ActionPerformed
-        if(Hor14.isSelected()==true){
-            conexao.CadastroTreinosInsert(Hor14.getText());
-        }
-        else{
-            
-        }
-    }//GEN-LAST:event_Hor14ActionPerformed
-
-    private void diaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diaMouseReleased
-        System.out.println("jhasgdhjagsdjasgjdg");
-    }//GEN-LAST:event_diaMouseReleased
 
     public static void main(String args[]) {
 
@@ -960,7 +814,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
     private javax.swing.JCheckBox Hor7;
     private javax.swing.JCheckBox Hor8;
     private javax.swing.JCheckBox Hor9;
-    public static com.toedter.calendar.JDateChooser dia;
+    private com.toedter.calendar.JDateChooser dia;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     public static javax.swing.JComboBox<String> jComboBox2;
