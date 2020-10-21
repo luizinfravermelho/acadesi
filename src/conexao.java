@@ -334,7 +334,6 @@ public class conexao {
             String categoria = (String) CadastroCliente.categoria.getSelectedItem();
             String classificacao = (String) CadastroCliente.classificacao.getSelectedItem();
 
-
             String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like '" + empresa + "'),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
 
             stmt.executeUpdate(Insert);
@@ -367,12 +366,11 @@ public class conexao {
             String cnpj = CadastroCliente.cnpjemp.getText();
             String nome = CadastroCliente.empresaemp.getText();
             String telefone = CadastroCliente.telemp.getText();
-          
 
             String Insert2 = "insert into empresa values ((select coalesce (max(codemp),0)+1 from empresa), '" + nome + "', '" + telefone + "', '" + cnpj + "')";
 
             stmt.executeUpdate(Insert2);
-   
+
             JOptionPane.showMessageDialog(null, "Dados inseridos!");
 
             con.close();
@@ -409,7 +407,7 @@ public class conexao {
             System.out.println("o erro foi " + ex);
         }
     }
-    
+
     public static void CadastroTreinosInsert(String Hor) {
         String driver = "org.postgresql.Driver";
         String user = "postgres";
@@ -425,29 +423,123 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-           String categoria = (String) CadastroTreinos.jComboBox3.getSelectedItem();
-           Date dia = CadastroTreinos.dia.getDate();
-           
-           if(dia == null){
-               JOptionPane.showMessageDialog(null, "Selecione um dia!");
-               
-           }
-           else{
-               
-           
-           if(categoria == "Musculação"){
-               String Insert = "insert into agendamentomc values ((select coalesce (max(codagemc),0)+1 from agendamentomc), \n"
-                       +"'"+Hor+"',1,1,'"+dia+"',15);";
-               stmt.executeUpdate(Insert);
-           }
-           else{
-               String Insert = "insert into agendamentomf values ((select coalesce (max(codagemf),0)+1 from agendamentomf), \n"
-                       +"'"+Hor+"',(select codcat from categoria where nomcat ilike '"+categoria+"'),1,'"+dia+"',15);";
-               stmt.executeUpdate(Insert);
-           }
-           }
+            String categoria = (String) CadastroTreinos.jComboBox3.getSelectedItem();
+            Date dia = CadastroTreinos.dia.getDate();
+
+            if (dia == null) {
+                JOptionPane.showMessageDialog(null, "Selecione um dia!");
+
+            } else {
+
+                if (categoria == "Musculação") {
+                    String Insert = "insert into agendamentomc values ((select coalesce (max(codagemc),0)+1 from agendamentomc), \n"
+                            + "'" + Hor + "',1,1,'" + dia + "',15);";
+                    stmt.executeUpdate(Insert);
+                } else {
+                    String Insert = "insert into agendamentomf values ((select coalesce (max(codagemf),0)+1 from agendamentomf), \n"
+                            + "'" + Hor + "',(select codcat from categoria where nomcat ilike '" + categoria + "'),1,'" + dia + "',15);";
+                    stmt.executeUpdate(Insert);
+                }
+            }
 
             //JOptionPane.showMessageDialog(null, "Dados inseridos!");
+            con.close();
+
+        } catch (ClassNotFoundException ex) {
+            System.err.print(ex.getMessage());
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+        }
+    }
+
+    public static void CadastroTreinosDelete(String Hor) {
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+
+        try {
+            Class.forName(driver);
+            System.out.println("Driver carregado");
+            Connection con = null;
+            con = DriverManager.getConnection(url, user, senha);
+            System.out.println("Conexão realizada com sucesso.");
+
+            Statement stmt = con.createStatement();
+
+            String categoria = (String) CadastroTreinos.jComboBox3.getSelectedItem();
+            Date dia = CadastroTreinos.dia.getDate();
+
+            if (dia == null) {
+                JOptionPane.showMessageDialog(null, "Selecione um dia!");
+
+            } else {
+
+                if (categoria == "Musculação") {
+                    String Delete = "delete from agendamentomc where hormc= '" + Hor + "' and dia ='" + dia + "'";
+                    stmt.executeUpdate(Delete);
+                } else {
+                    String Delete = "delete from agendamentomf where hormf ='" + Hor + "' and dia='" + dia + "'";
+                    stmt.executeUpdate(Delete);
+                }
+            }
+
+            //JOptionPane.showMessageDialog(null, "Dados inseridos!");
+            con.close();
+
+        } catch (ClassNotFoundException ex) {
+            System.err.print(ex.getMessage());
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+        }
+    }
+
+    public static void CadastroHorariosIDA(String HorIni, String HorFim, Integer op) {
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+
+        try {
+            Class.forName(driver);
+            System.out.println("Driver carregado");
+            Connection con = null;
+            con = DriverManager.getConnection(url, user, senha);
+            System.out.println("Conexão realizada com sucesso.");
+
+            Statement stmt = con.createStatement();
+
+            String categoria = (String) CadastroTreinos.jComboBoxDialogHorario.getSelectedItem();
+
+            if (op == 1) {
+                if (categoria == "Musculação") {
+                    String Insert = "insert into horariomc values((select coalesce (max(codhormc),0)+1 from horariomc),'" + HorIni + "','" + HorFim + "')";
+                    stmt.executeUpdate(Insert);
+
+                } else {
+                    String Insert = "insert into horariomf values((select coalesce (max(codhormf),0)+1 from horariomf),'" + HorIni + "','" + HorFim + "')";
+                    stmt.executeUpdate(Insert);
+
+                }
+
+            } else if (op == 2) {
+                if (categoria == "Musculação") {
+                    String Delete = "delete from horariomc where horariomcini = '" + HorIni + "' and horariomcfim ='" + HorFim + "'";
+                    stmt.executeUpdate(Delete);
+                } else {
+                    String Delete = "delete from horariomf where horariomfini = '" + HorIni + "' and horariomffim ='" + HorFim + "'";
+                    stmt.executeUpdate(Delete);
+                }
+            } else if (op == 3) {
+                if (categoria == "Musculação") {
+                    String Update = "update horariomc set horariomcini = '" + HorIni + "', horariomcfim ='" + HorFim + "' where horariomcini = '" + CadastroTreinos.HorIniUpd + "' and horariomcfim ='" + CadastroTreinos.HorFimUpd + "'";
+                    System.out.println(Update);
+                    stmt.executeUpdate(Update);
+                } else {
+                    String Update = "update horariomf set horariomfini = '" + HorIni + "', horariomffim ='" + HorFim + "' where horariomfini = '" + CadastroTreinos.HorIniUpd + "' and horariomffim ='" + CadastroTreinos.HorFimUpd + "'";
+                    stmt.executeUpdate(Update);
+                }
+            }
 
             con.close();
 
@@ -457,4 +549,53 @@ public class conexao {
             System.err.print(e.getMessage());
         }
     }
+
+    public static void AgendaAlunosIDA(String cpf, String dia, String hor, Integer op) {
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+
+        try {
+            Class.forName(driver);
+            System.out.println("Driver carregado");
+            Connection con = null;
+            con = DriverManager.getConnection(url, user, senha);
+            System.out.println("Conexão realizada com sucesso.");
+
+            Statement stmt = con.createStatement();
+
+            String categoria = AgendaTreinos.JDcat.getText();
+
+            if (op == 1) {
+                if (categoria == "Musculação") {
+                    String Insert = "insert into agendacliente values((select codcli from cliente where cpf like '" + cpf + "'), \n"
+                            + "'" + dia + "',(select codagemc from agendamentomc where dia = '" + dia + "' and hormc like '" + hor + "'),null);";
+                    stmt.executeUpdate(Insert);
+
+                } else {
+                    String Insert = "insert into agendacliente values((select codcli from cliente where cpf like '" + cpf + "'), \n"
+                            + "'" + dia + "',null,(select codagemf from agendamentomf where dia = '" + dia + "' and hormf like '" + hor + "'));";
+                    stmt.executeUpdate(Insert);
+
+                }
+
+            } else if (op == 2) {
+
+                String Delete = "delete from agendacliente where codcli= (select codcli from cliente where cpf like '" + cpf + "') \n"
+                        + "and dia='" + dia+ "';" ;
+                System.out.println(Delete);
+                stmt.executeUpdate(Delete);
+            }
+
+            con.close();
+
+        } catch (ClassNotFoundException ex) {
+            System.err.print(ex.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Já existe um cadastro nesse dia para o aluno!");
+            System.err.print(e.getMessage());
+        }
+    }
+
 }

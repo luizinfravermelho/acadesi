@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -18,7 +17,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CadastroTreinos extends javax.swing.JFrame {
 
-    public String horarios;
+    
+    public static String HorIniUpd;
+    public static String HorFimUpd;
 
     public void HorariosIguais(String sql) { //Busca os horários existentes da mesma categoria
 
@@ -76,13 +77,12 @@ public class CadastroTreinos extends javax.swing.JFrame {
                 }
 
             }
-            System.out.println(sql);
             banco.close();
             con.close();
         } catch (SQLException ex) {
             System.out.println("o erro foi " + ex);
         }
-    }  //********** FIM DO MÉTODO PARA PUXAR DADOS DO BANCO **********//
+    } //Busca os horários existentes da mesma categoria
 
     public void HorariosDiferentes(String sql) { //Busca os horários existentes da outras categorias
 
@@ -160,9 +160,9 @@ public class CadastroTreinos extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("o erro foi " + ex);
         }
-    }  //********** FIM DO MÉTODO PARA PUXAR DADOS DO BANCO **********//
+    }  //Busca os horários existentes da outras categorias
 
-    public void AddCheckBox(String sql) { //Busca os horários existentes da mesma categoria
+    public void AddCheckBox(String sql) { //Confere se os horarios existem e adiciona ele às CheckBox
 
         String user = "postgres";
         String senha = "senai";
@@ -271,7 +271,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("o erro foi " + ex);
         }
-    }  //********** FIM DO MÉTODO PARA PUXAR DADOS DO BANCO **********// 
+    }  //Confere se os horarios existem e adiciona ele às CheckBox
 
     public void LimpaHoras() {
 
@@ -305,7 +305,36 @@ public class CadastroTreinos extends javax.swing.JFrame {
         Hor13.setSelected(false);
         Hor14.setSelected(false);
 
-    }
+    } // Limpa as ComboBox
+
+    public void PopularJTableDialogHorario(String sql) { // Tabela para alteração dos intervalos de treino
+
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+        try {
+            Connection con = DriverManager.getConnection(url, user, senha);
+            PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
+            banco.execute(); // cria o vetor
+
+            ResultSet resultado = banco.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
+            model.setNumRows(0);
+
+            while (resultado.next()) {
+                model.addRow(new Object[]{
+                    //retorna os dados da tabela do BD, cada campo e um coluna.
+                    resultado.getString("horini"),
+                    resultado.getString("horfim"),});
+            }
+            banco.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.out.println("o erro foi " + ex);
+        }
+    }  // Tabela para alteração dos intervalos de treino
 
     public CadastroTreinos() {
         initComponents();
@@ -315,6 +344,31 @@ public class CadastroTreinos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        JDqtdpes = new javax.swing.JLabel();
+        JDcat = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        JDdia = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        JDhor = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jDialog2 = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jSeparator4 = new javax.swing.JSeparator();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jLabelCategoria4 = new javax.swing.JLabel();
+        jComboBoxDialogHorario = new javax.swing.JComboBox<String>();
+        jLabel3 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        horiniJD = new javax.swing.JFormattedTextField();
+        horfimJD = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -343,7 +397,294 @@ public class CadastroTreinos extends javax.swing.JFrame {
         Hor9 = new javax.swing.JCheckBox();
         Hor8 = new javax.swing.JCheckBox();
         dia = new com.toedter.calendar.JDateChooser();
-        jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+
+        jDialog1.setBackground(new java.awt.Color(255, 255, 255));
+        jDialog1.setMinimumSize(new java.awt.Dimension(485, 600));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setMinimumSize(new java.awt.Dimension(474, 600));
+
+        JDqtdpes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JDqtdpes.setForeground(new java.awt.Color(50, 194, 128));
+        JDqtdpes.setText("Label");
+
+        JDcat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JDcat.setForeground(new java.awt.Color(50, 194, 128));
+        JDcat.setText("Label");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "CPF", "Telefone"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.setGridColor(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setViewportView(jTable2);
+
+        JDdia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JDdia.setForeground(new java.awt.Color(50, 194, 128));
+        JDdia.setText("Label");
+
+        JDhor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JDhor.setForeground(new java.awt.Color(50, 194, 128));
+        JDhor.setText("Label");
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setText("Adicionar aluno");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton4.setText("Remover aluno");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(JDcat)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JDdia))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(JDhor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(JDqtdpes))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(174, 174, 174)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 5, Short.MAX_VALUE)))
+                .addGap(0, 18, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JDcat)
+                    .addComponent(JDdia))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JDhor)
+                    .addComponent(JDqtdpes))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jDialog2.setBackground(new java.awt.Color(255, 255, 255));
+        jDialog2.setMinimumSize(new java.awt.Dimension(485, 600));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setMinimumSize(new java.awt.Dimension(474, 600));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Horário Inicial", "Horário Final"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable3.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable3);
+
+        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton6.setText("Adicionar horário");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton7.setText("Remover horário");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabelCategoria4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabelCategoria4.setForeground(new java.awt.Color(50, 194, 128));
+        jLabelCategoria4.setText("Sala:");
+
+        jComboBoxDialogHorario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jComboBoxDialogHorario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Multifuncional" }));
+        jComboBoxDialogHorario.setSelectedItem(null);
+        jComboBoxDialogHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxDialogHorarioActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel3.setText("Horário Inicial");
+
+        jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton8.setText("Alterar horário");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        try {
+            horiniJD.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            horfimJD.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel5.setText("Horário Final");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabelCategoria4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBoxDialogHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGap(16, 16, 16)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(horiniJD)
+                                        .addComponent(horfimJD, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(jLabel3))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(jLabel5)))
+                        .addContainerGap(20, Short.MAX_VALUE))))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCategoria4)
+                    .addComponent(jComboBoxDialogHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton6)
+                        .addGap(28, 28, 28)
+                        .addComponent(jButton7)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton8)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(horiniJD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addComponent(horfimJD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(76, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog2Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -527,24 +868,16 @@ public class CadastroTreinos extends javax.swing.JFrame {
         dia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         dia.setMinimumSize(new java.awt.Dimension(120, 27));
         dia.setPreferredSize(new java.awt.Dimension(120, 27));
-        dia.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                diaMouseExited(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                diaMouseReleased(evt);
-            }
-        });
         dia.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 diaPropertyChange(evt);
             }
         });
 
-        jButton2.setText("Buscar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.setText("Gerenciar Horários");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -555,6 +888,11 @@ public class CadastroTreinos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -570,8 +908,6 @@ public class CadastroTreinos extends javax.swing.JFrame {
                                         .addComponent(jLabelCategoria2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabelCategoria)
@@ -586,15 +922,15 @@ public class CadastroTreinos extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelCategoria1)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
-                                .addContainerGap(75, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap())))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton1))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)))
+                                .addContainerGap(75, Short.MAX_VALUE))))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -642,15 +978,17 @@ public class CadastroTreinos extends javax.swing.JFrame {
                         .addComponent(jLabelCategoria1)
                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCategoria2)))
-                    .addComponent(jButton2))
-                .addGap(13, 13, 13)
+                            .addComponent(jLabelCategoria2))
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton5)
+                        .addGap(18, 18, 18)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelCategoria3)
@@ -684,7 +1022,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
                         .addComponent(Hor13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Hor14)))
-                .addContainerGap(412, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -702,7 +1040,6 @@ public class CadastroTreinos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sairMouseClicked
-
         dispose(); //Fecha a janela
         new Login().setVisible(true); //Abre a tela de Login
     }//GEN-LAST:event_sairMouseClicked
@@ -729,7 +1066,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
 
         if (jComboBox2.getSelectedItem().equals("Musculação")) {
-
+            jButton1.setVisible(false);
             jComboBox3.addItem("Musculação");
             this.LimpaHoras();
             jComboBox3.removeItem("Conv. Bem estar");
@@ -739,7 +1076,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
             jComboBox3.updateUI();
 
         } else if (jComboBox2.getSelectedItem().equals("Multifuncional")) {
-
+            jButton1.setVisible(true);
             jComboBox3.addItem("Conv. Bem estar");
             jComboBox3.addItem("Funcional");
             jComboBox3.addItem("Pilates");
@@ -759,33 +1096,20 @@ public class CadastroTreinos extends javax.swing.JFrame {
         dia.setDate(null);
         this.LimpaHoras();
         if (jComboBox3.getSelectedItem().equals("Musculação")) {
-            this.AddCheckBox("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc;");
+            this.AddCheckBox("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc order by horariomcini;");
 
         } else {
-            this.AddCheckBox("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf;");
+            this.AddCheckBox("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf order by horariomfini;");
         }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        this.LimpaHoras();
-        if (jComboBox3.getSelectedItem().equals("Musculação")) {
-            // this.HorariosIguais("select a.horariomc from horariomc a, agendamentomc b, categoria c where a.codhormc = b.codhormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia >= CURRENT_DATE and (select extract(dow from b.dia))=" + dow);
-            this.HorariosIguais("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc a, agendamentomc b, categoria c where (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))) = b.hormc and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike 'Musc%')  and b.dia = '" + dia.getDate() + "'");
-
-        } else {
-            this.HorariosIguais("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.hormf and b.codcat = c.codcat and c.codcat=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia ='" + dia.getDate() + "'");
-            this.HorariosDiferentes("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf a, agendamentomf b, categoria c where (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) = b.hormf and b.codcat = c.codcat and c.codcat!=(select codcat from categoria where nomcat ilike '" + jComboBox3.getSelectedItem() + "')  and b.dia='" + dia.getDate() + "'");
-
-        }
-
-    }//GEN-LAST:event_jButton2ActionPerformed
+    //AQUI COMEÇA AS AÇÕES DAS CHECKBOX
 
     private void Hor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Hor1ActionPerformed
         if (Hor1.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor1.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor1.getText());
         }
     }//GEN-LAST:event_Hor1ActionPerformed
 
@@ -793,7 +1117,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor2.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor2.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor2.getText());
         }
     }//GEN-LAST:event_Hor2ActionPerformed
 
@@ -801,7 +1125,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor3.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor3.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor3.getText());
         }
     }//GEN-LAST:event_Hor3ActionPerformed
 
@@ -809,7 +1133,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor4.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor4.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor4.getText());
         }
     }//GEN-LAST:event_Hor4ActionPerformed
 
@@ -817,7 +1141,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor5.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor5.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor5.getText());
         }
     }//GEN-LAST:event_Hor5ActionPerformed
 
@@ -825,7 +1149,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor6.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor6.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor6.getText());
         }
     }//GEN-LAST:event_Hor6ActionPerformed
 
@@ -833,7 +1157,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor7.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor7.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor7.getText());
         }
     }//GEN-LAST:event_Hor7ActionPerformed
 
@@ -841,7 +1165,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor8.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor8.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor8.getText());
         }
     }//GEN-LAST:event_Hor8ActionPerformed
 
@@ -849,7 +1173,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor9.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor9.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor9.getText());
         }
     }//GEN-LAST:event_Hor9ActionPerformed
 
@@ -857,7 +1181,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor10.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor10.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor10.getText());
         }
     }//GEN-LAST:event_Hor10ActionPerformed
 
@@ -865,7 +1189,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor11.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor11.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor11.getText());
         }
     }//GEN-LAST:event_Hor11ActionPerformed
 
@@ -873,7 +1197,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor12.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor12.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor12.getText());
         }
     }//GEN-LAST:event_Hor12ActionPerformed
 
@@ -881,7 +1205,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor13.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor13.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor13.getText());
         }
     }//GEN-LAST:event_Hor13ActionPerformed
 
@@ -889,17 +1213,11 @@ public class CadastroTreinos extends javax.swing.JFrame {
         if (Hor14.isSelected() == true) {
             conexao.CadastroTreinosInsert(Hor14.getText());
         } else {
-
+            conexao.CadastroTreinosDelete(Hor14.getText());
         }
     }//GEN-LAST:event_Hor14ActionPerformed
 
-    private void diaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diaMouseReleased
-        System.out.println("jhasgdhjagsdjasgjdg");
-    }//GEN-LAST:event_diaMouseReleased
-
-    private void diaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diaMouseExited
-        System.out.println("jhasgdhjagsdjasgjdg");
-    }//GEN-LAST:event_diaMouseExited
+    //AQUI TERMINA AS AÇÕES DAS CHECKBOX
 
     private void diaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_diaPropertyChange
         if (evt != null) {
@@ -920,6 +1238,89 @@ public class CadastroTreinos extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_diaPropertyChange
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBoxDialogHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDialogHorarioActionPerformed
+        if (jComboBoxDialogHorario.getSelectedItem().equals("Musculação")) {
+            this.PopularJTableDialogHorario("select to_char(horariomcini, 'HH24:mi') as horini, to_char(horariomcfim, 'HH24:mi') as horfim from horariomc order by horariomcini;");
+        } else {
+            this.PopularJTableDialogHorario("select to_char(horariomfini, 'HH24:mi') as horini, to_char(horariomffim, 'HH24:mi') as horfim from horariomf order by horariomfini;");
+        }
+    }//GEN-LAST:event_jComboBoxDialogHorarioActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        conexao.CadastroHorariosIDA(horiniJD.getText(), horfimJD.getText(),2);
+        
+        if (jComboBoxDialogHorario.getSelectedItem().equals("Musculação")) {
+            this.PopularJTableDialogHorario("select to_char(horariomcini, 'HH24:mi') as horini, to_char(horariomcfim, 'HH24:mi') as horfim from horariomc order by horariomcini;");
+        } else {
+            this.PopularJTableDialogHorario("select to_char(horariomfini, 'HH24:mi') as horini, to_char(horariomffim, 'HH24:mi') as horfim from horariomf order by horariomfini;");
+        }
+        
+        if (jComboBox3.getSelectedItem().equals("Musculação")) {
+            this.AddCheckBox("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc order by horariomcini;");
+
+        } else {
+            this.AddCheckBox("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf order by horariomfini;");
+        }
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        conexao.CadastroHorariosIDA(horiniJD.getText(), horfimJD.getText(),1);
+        
+        if (jComboBoxDialogHorario.getSelectedItem().equals("Musculação")) {
+            this.PopularJTableDialogHorario("select to_char(horariomcini, 'HH24:mi') as horini, to_char(horariomcfim, 'HH24:mi') as horfim from horariomc order by horariomcini;");
+        } else {
+            this.PopularJTableDialogHorario("select to_char(horariomfini, 'HH24:mi') as horini, to_char(horariomffim, 'HH24:mi') as horfim from horariomf order by horariomfini;");
+        }
+        
+        if (jComboBox3.getSelectedItem().equals("Musculação")) {
+            this.AddCheckBox("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc order by horariomcini;");
+
+        } else {
+            this.AddCheckBox("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf order by horariomfini;");
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        conexao.CadastroHorariosIDA(horiniJD.getText(), horfimJD.getText(),3);
+        
+        if (jComboBoxDialogHorario.getSelectedItem().equals("Musculação")) {
+            this.PopularJTableDialogHorario("select to_char(horariomcini, 'HH24:mi') as horini, to_char(horariomcfim, 'HH24:mi') as horfim from horariomc order by horariomcini;");
+        } else {
+            this.PopularJTableDialogHorario("select to_char(horariomfini, 'HH24:mi') as horini, to_char(horariomffim, 'HH24:mi') as horfim from horariomf order by horariomfini;");
+        }
+        
+        if (jComboBox3.getSelectedItem().equals("Musculação")) {
+            this.AddCheckBox("select concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario from horariomc order by horariomcini;");
+
+        } else {
+            this.AddCheckBox("select concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario from horariomf order by horariomfini;");
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        jDialog2.setVisible(true);
+        jDialog2.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        int selectedRow = jTable3.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
+        //********** CÓDIGO PARA SUBSTITUIR OS CAMPOS DE TEXTO **********//
+        horiniJD.setText(model.getValueAt(selectedRow, 0).toString());
+        horfimJD.setText(model.getValueAt(selectedRow, 1).toString());
+        HorIniUpd = (model.getValueAt(selectedRow, 0).toString());
+        HorFimUpd = (model.getValueAt(selectedRow, 1).toString());
+    }//GEN-LAST:event_jTable3MouseClicked
 
     public static void main(String args[]) {
 
@@ -964,20 +1365,45 @@ public class CadastroTreinos extends javax.swing.JFrame {
     private javax.swing.JCheckBox Hor7;
     private javax.swing.JCheckBox Hor8;
     private javax.swing.JCheckBox Hor9;
+    private javax.swing.JLabel JDcat;
+    private javax.swing.JLabel JDdia;
+    private javax.swing.JLabel JDhor;
+    private javax.swing.JLabel JDqtdpes;
     public static com.toedter.calendar.JDateChooser dia;
+    private javax.swing.JFormattedTextField horfimJD;
+    private javax.swing.JFormattedTextField horiniJD;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     public static javax.swing.JComboBox<String> jComboBox2;
     public static javax.swing.JComboBox<String> jComboBox3;
+    public static javax.swing.JComboBox<String> jComboBoxDialogHorario;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelCategoria1;
     private javax.swing.JLabel jLabelCategoria2;
     private javax.swing.JLabel jLabelCategoria3;
+    private javax.swing.JLabel jLabelCategoria4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JLabel sair;
     // End of variables declaration//GEN-END:variables
 }

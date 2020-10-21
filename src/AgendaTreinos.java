@@ -74,6 +74,36 @@ public class AgendaTreinos extends javax.swing.JFrame {
                     resultado.getString("cpf"),
                     resultado.getString("celular"),});
             }
+            
+            banco.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.out.println("o erro foi " + ex);
+        }
+    }  //********** FIM DO MÉTODO PARA PUXAR DADOS DO BANCO **********//
+
+    public void PopularJTableAddAluno(String sql) {
+
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+        try {
+            Connection con = DriverManager.getConnection(url, user, senha);
+            PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
+            banco.execute(); // cria o vetor
+
+            ResultSet resultado = banco.executeQuery();
+
+            DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
+            model.setNumRows(0);
+
+            while (resultado.next()) {
+                model.addRow(new Object[]{
+                    //retorna os dados da tabela do BD, cada campo e um coluna.
+                    resultado.getString("nomcli"),
+                    resultado.getString("cpf"),});
+            }
             banco.close();
             con.close();
         } catch (SQLException ex) {
@@ -146,7 +176,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
 
         }
     }
-
+    
     public AgendaTreinos() {
         initComponents();
     }
@@ -166,6 +196,12 @@ public class AgendaTreinos extends javax.swing.JFrame {
         JDhor = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jDialog2 = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        alunoNome = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -185,11 +221,10 @@ public class AgendaTreinos extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         jDialog1.setBackground(new java.awt.Color(255, 255, 255));
-        jDialog1.setMaximumSize(new java.awt.Dimension(485, 600));
         jDialog1.setMinimumSize(new java.awt.Dimension(485, 600));
-        jDialog1.setPreferredSize(new java.awt.Dimension(485, 600));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setMaximumSize(new java.awt.Dimension(474, 600));
         jPanel2.setMinimumSize(new java.awt.Dimension(474, 600));
         jPanel2.setPreferredSize(new java.awt.Dimension(474, 600));
 
@@ -219,6 +254,9 @@ public class AgendaTreinos extends javax.swing.JFrame {
         });
         jTable2.setGridColor(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(2).setHeaderValue("Telefone");
+        }
 
         JDdia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         JDdia.setForeground(new java.awt.Color(50, 194, 128));
@@ -302,6 +340,82 @@ public class AgendaTreinos extends javax.swing.JFrame {
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jDialog2.setBackground(new java.awt.Color(255, 255, 255));
+        jDialog2.setMaximumSize(new java.awt.Dimension(485, 400));
+        jDialog2.setMinimumSize(new java.awt.Dimension(485, 400));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setMaximumSize(new java.awt.Dimension(474, 400));
+        jPanel3.setMinimumSize(new java.awt.Dimension(474, 400));
+        jPanel3.setPreferredSize(new java.awt.Dimension(474, 400));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "CPF"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable3.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable3);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(50, 194, 128));
+        jLabel3.setText("Nome:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(alunoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 23, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(alunoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -521,7 +635,6 @@ public class AgendaTreinos extends javax.swing.JFrame {
         if (jComboBoxSala.getSelectedItem().equals("Musculação")) {
             jComboBox3.removeAllItems();
             jComboBox3.addItem("Musculação");
-
             jComboBox3.updateUI();
 
         } else if (jComboBoxSala.getSelectedItem().equals("Multifuncional")) {
@@ -532,12 +645,8 @@ public class AgendaTreinos extends javax.swing.JFrame {
             jComboBox3.addItem("Yoga");
             jComboBox3.addItem("Todos");
             jComboBox3.setSelectedItem("Todos");
-
             jComboBox3.updateUI();
-
         }
-
-
     }//GEN-LAST:event_jComboBoxSalaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -563,23 +672,22 @@ public class AgendaTreinos extends javax.swing.JFrame {
                         + "and b.codagemc = c.codagemc\n"
                         + "and c.hormc = (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi')))\n"
                         + "and b.dia = '" + JDdia.getText() + "'\n"
-                        + "and d.horariomcini = '" + JDhor.getText() + "'\n"
+                        + "and c.hormc = '" + JDhor.getText() + "'\n"
                         + "and c.codcat=1");
             } else {
                 if (jComboBox3.getSelectedItem().equals("Todos")) {
                     JDcat.setText(model.getValueAt(selectedRow, 3).toString());
                 }
 
-                    this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
-                            + "from cliente a, agendacliente b, agendamentomf c, horariomf d\n"
-                            + "where a.codcli = b.codcli\n"
-                            + "and b.codagemf = c.codagemf\n"
-                            + "and c.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi')))\n"
-                            + "and b.dia = '" + JDdia.getText() + "'\n"
-                            + "and d.horariomfini = '" + JDhor.getText() + "'\n"
-                            + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
+                this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
+                        + "from cliente a, agendacliente b, agendamentomf c, horariomf d\n"
+                        + "where a.codcli = b.codcli\n"
+                        + "and b.codagemf = c.codagemf\n"
+                        + "and c.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi')))\n"
+                        + "and b.dia = '" + JDdia.getText() + "'\n"
+                        + "and c.hormf = '" + JDhor.getText() + "'\n"
+                        + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
 
-                
             }
             jDialog1.setVisible(true);
             jDialog1.setLocationRelativeTo(null);
@@ -588,12 +696,93 @@ public class AgendaTreinos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        if(JDcat.getText().equals("Musculação")){
+            PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=1 or codcat=6");
+        }
+        else{
+            PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=6 or codcact=(select codcat from categoria where nomcat like '"+JDcat.getText()+"');");
+        }
+        
+        jDialog2.setVisible(true);
+        jDialog2.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+            int selectedRow = jTable2.getSelectedRow();
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+            String cpf = (model.getValueAt(selectedRow, 1).toString());
+
+            conexao.AgendaAlunosIDA(cpf, JDdia.getText(), JDhor.getText(), 2);
+            
+            
+
+            if (jComboBox3.getSelectedItem().equals("Musculação")) {
+                this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
+                        + "from cliente a, agendacliente b, agendamentomc c, horariomc d\n"
+                        + "where a.codcli = b.codcli\n"
+                        + "and b.codagemc = c.codagemc\n"
+                        + "and c.hormc = (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi')))\n"
+                        + "and b.dia = '" + JDdia.getText() + "'\n"
+                        + "and c.hormc = '" + JDhor.getText() + "'\n"
+                        + "and c.codcat=1");
+            } else {
+                if (jComboBox3.getSelectedItem().equals("Todos")) {
+                    JDcat.setText(model.getValueAt(selectedRow, 3).toString());
+                }
+
+                this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
+                        + "from cliente a, agendacliente b, agendamentomf c, horariomf d\n"
+                        + "where a.codcli = b.codcli\n"
+                        + "and b.codagemf = c.codagemf\n"
+                        + "and c.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi')))\n"
+                        + "and b.dia = '" + JDdia.getText() + "'\n"
+                        + "and c.hormf = '" + JDhor.getText() + "'\n"
+                        + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
+
+            }
+        
+            
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        if (evt.getClickCount() == 2) {
+           
+            int selectedRow = jTable3.getSelectedRow();
+            DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
+            String cpf = (model.getValueAt(selectedRow, 1).toString());
+
+            conexao.AgendaAlunosIDA(cpf, JDdia.getText(), JDhor.getText(), 1);
+
+            if (jComboBox3.getSelectedItem().equals("Musculação")) {
+                this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
+                        + "from cliente a, agendacliente b, agendamentomc c, horariomc d\n"
+                        + "where a.codcli = b.codcli\n"
+                        + "and b.codagemc = c.codagemc\n"
+                        + "and c.hormc = (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi')))\n"
+                        + "and b.dia = '" + JDdia.getText() + "'\n"
+                        + "and d.horariomcini = '" + JDhor.getText() + "'\n"
+                        + "and c.codcat=1");
+            } else {
+                if (jComboBox3.getSelectedItem().equals("Todos")) {
+                    JDcat.setText(model.getValueAt(selectedRow, 3).toString());
+                }
+
+                this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
+                        + "from cliente a, agendacliente b, agendamentomf c, horariomf d\n"
+                        + "where a.codcli = b.codcli\n"
+                        + "and b.codagemf = c.codagemf\n"
+                        + "and c.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi')))\n"
+                        + "and b.dia = '" + JDdia.getText() + "'\n"
+                        + "and d.horariomfini = '" + JDhor.getText() + "'\n"
+                        + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
+
+            }
+            
+            
+            this.data(data1.getText(), data2.getText());      
+            jDialog2.dispose();
+        }
+    }//GEN-LAST:event_jTable3MouseClicked
 
     public static void main(String args[]) {
 
@@ -624,10 +813,11 @@ public class AgendaTreinos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel JDcat;
+    public static javax.swing.JLabel JDcat;
     private javax.swing.JLabel JDdia;
     private javax.swing.JLabel JDhor;
     private javax.swing.JLabel JDqtdpes;
+    public static javax.swing.JTextField alunoNome;
     public static javax.swing.JFormattedTextField data1;
     private javax.swing.JFormattedTextField data2;
     private javax.swing.JButton jButton1;
@@ -636,21 +826,26 @@ public class AgendaTreinos extends javax.swing.JFrame {
     public static javax.swing.JComboBox<String> jComboBox3;
     public static javax.swing.JComboBox<String> jComboBoxSala;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCategoria;
     private javax.swing.JLabel jLabelCategoria1;
     private javax.swing.JLabel jLabelCategoria2;
     private javax.swing.JLabel jLabelCategoria3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     private javax.swing.JLabel sair;
     // End of variables declaration//GEN-END:variables
 }
