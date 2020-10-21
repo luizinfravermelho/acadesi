@@ -44,6 +44,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                     resultado.getString("pessoas"),
                     resultado.getString("categoria"),});
             }
+            
             banco.close();
             con.close();
         } catch (SQLException ex) {
@@ -74,7 +75,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                     resultado.getString("cpf"),
                     resultado.getString("celular"),});
             }
-            
+            JDqtdpes.setText(model.getRowCount()+"/15");
             banco.close();
             con.close();
         } catch (SQLException ex) {
@@ -91,6 +92,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
             PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
+            
             banco.execute(); // cria o vetor
 
             ResultSet resultado = banco.executeQuery();
@@ -104,6 +106,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                     resultado.getString("nomcli"),
                     resultado.getString("cpf"),});
             }
+            
             banco.close();
             con.close();
         } catch (SQLException ex) {
@@ -163,7 +166,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                 }
             }
 
-            System.out.println(jTable1.getColumnCount());
+            //System.out.println(jTable1.getColumnCount());
             return true;
         } catch (ParseException ex) {
             //se algum passo dentro do "try" der errado quer dizer que sua data é falsa, então,
@@ -253,6 +256,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
             }
         });
         jTable2.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable2.setRowHeight(22);
         jScrollPane2.setViewportView(jTable2);
         if (jTable2.getColumnModel().getColumnCount() > 0) {
             jTable2.getColumnModel().getColumn(2).setHeaderValue("Telefone");
@@ -369,6 +373,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
             }
         });
         jTable3.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable3.setRowHeight(22);
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable3MouseClicked(evt);
@@ -487,7 +492,8 @@ public class AgendaTreinos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setGridColor(new java.awt.Color(153, 255, 204));
+        jTable1.setRowHeight(22);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -700,7 +706,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
             PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=1 or codcat=6");
         }
         else{
-            PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=6 or codcact=(select codcat from categoria where nomcat like '"+JDcat.getText()+"');");
+            PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=6 or codcat=(select codcat from categoria where nomcat like '"+JDcat.getText()+"');");
         }
         
         jDialog2.setVisible(true);
@@ -713,8 +719,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
             String cpf = (model.getValueAt(selectedRow, 1).toString());
 
             conexao.AgendaAlunosIDA(cpf, JDdia.getText(), JDhor.getText(), 2);
-            
-            
+                      
 
             if (jComboBox3.getSelectedItem().equals("Musculação")) {
                 this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
@@ -726,9 +731,6 @@ public class AgendaTreinos extends javax.swing.JFrame {
                         + "and c.hormc = '" + JDhor.getText() + "'\n"
                         + "and c.codcat=1");
             } else {
-                if (jComboBox3.getSelectedItem().equals("Todos")) {
-                    JDcat.setText(model.getValueAt(selectedRow, 3).toString());
-                }
 
                 this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
                         + "from cliente a, agendacliente b, agendamentomf c, horariomf d\n"
@@ -741,7 +743,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
 
             }
         
-            
+           this.data(data1.getText(), data2.getText());  
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
@@ -760,12 +762,9 @@ public class AgendaTreinos extends javax.swing.JFrame {
                         + "and b.codagemc = c.codagemc\n"
                         + "and c.hormc = (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi')))\n"
                         + "and b.dia = '" + JDdia.getText() + "'\n"
-                        + "and d.horariomcini = '" + JDhor.getText() + "'\n"
+                        + "and c.hormc = '" + JDhor.getText() + "'\n"
                         + "and c.codcat=1");
             } else {
-                if (jComboBox3.getSelectedItem().equals("Todos")) {
-                    JDcat.setText(model.getValueAt(selectedRow, 3).toString());
-                }
 
                 this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
                         + "from cliente a, agendacliente b, agendamentomf c, horariomf d\n"
@@ -773,7 +772,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                         + "and b.codagemf = c.codagemf\n"
                         + "and c.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi')))\n"
                         + "and b.dia = '" + JDdia.getText() + "'\n"
-                        + "and d.horariomfini = '" + JDhor.getText() + "'\n"
+                        + "and c.hormf = '" + JDhor.getText() + "'\n"
                         + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
 
             }

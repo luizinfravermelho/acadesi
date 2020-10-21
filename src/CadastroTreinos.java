@@ -430,6 +430,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
             }
         });
         jTable2.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable2.setRowHeight(22);
         jScrollPane2.setViewportView(jTable2);
 
         JDdia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -540,6 +541,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
             }
         });
         jTable3.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable3.setRowHeight(24);
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable3MouseClicked(evt);

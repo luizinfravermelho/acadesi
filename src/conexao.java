@@ -584,7 +584,7 @@ public class conexao {
 
                 String Delete = "delete from agendacliente where codcli= (select codcli from cliente where cpf like '" + cpf + "') \n"
                         + "and dia='" + dia+ "';" ;
-                System.out.println(Delete);
+                
                 stmt.executeUpdate(Delete);
             }
 
