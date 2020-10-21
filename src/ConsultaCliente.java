@@ -101,7 +101,6 @@ public class ConsultaCliente extends javax.swing.JFrame {
         conv = new javax.swing.JRadioButton();
         jLabel15 = new javax.swing.JLabel();
 
-        jDialog1.setMaximumSize(new java.awt.Dimension(857, 536));
         jDialog1.setMinimumSize(new java.awt.Dimension(857, 536));
         jDialog1.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -347,6 +346,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
                 "CPF", "Cliente", "Telefone", "Categoria"
             }
         ));
+        tabela.setRowHeight(22);
         tabela.setSelectionBackground(new java.awt.Color(50, 194, 128));
         tabela.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
