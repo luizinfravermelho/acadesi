@@ -547,7 +547,8 @@ public class ConsultaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jDialog1WindowOpened
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
-        int selectedRow = tabela.getSelectedRow();
+        if(evt.getClickCount()==2){
+            int selectedRow = tabela.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
        
         cod = model.getValueAt(selectedRow, 0).toString();
@@ -556,6 +557,8 @@ public class ConsultaCliente extends javax.swing.JFrame {
         jDialog1.setLocationRelativeTo(null);
         conexao.PesquisaCliente();
         System.out.println(cod);
+        }
+        
     }//GEN-LAST:event_tabelaMouseClicked
 
     private void tabelaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseEntered
