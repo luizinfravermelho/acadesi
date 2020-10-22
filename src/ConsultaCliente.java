@@ -345,7 +345,15 @@ public class ConsultaCliente extends javax.swing.JFrame {
             new String [] {
                 "CPF", "Cliente", "Telefone", "Categoria"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabela.setRowHeight(22);
         tabela.setSelectionBackground(new java.awt.Color(50, 194, 128));
         tabela.addMouseListener(new java.awt.event.MouseAdapter() {
