@@ -721,6 +721,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         jLabelCategoria.setForeground(new java.awt.Color(50, 194, 128));
         jLabelCategoria.setText("Sala:");
 
+        jComboBox2.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Musculação", "Multifuncional" }));
         jComboBox2.setSelectedItem(null);
@@ -735,6 +736,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         jLabelCategoria1.setForeground(new java.awt.Color(50, 194, 128));
         jLabelCategoria1.setText("Categoria:");
 
+        jComboBox3.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jComboBox3.setSelectedItem(null);
         jComboBox3.setNextFocusableComponent(dia);
