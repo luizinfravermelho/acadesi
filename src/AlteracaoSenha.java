@@ -63,6 +63,8 @@ public class AlteracaoSenha extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(50, 194, 128));
         jLabel4.setText("Nova Senha:");
 
+        senha.setNextFocusableComponent(jButton1);
+
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(50, 194, 128));
         jButton1.setText("Alterar");
@@ -83,6 +85,7 @@ public class AlteracaoSenha extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cpf.setNextFocusableComponent(senha);
         cpf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cpfKeyPressed(evt);

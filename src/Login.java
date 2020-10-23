@@ -32,6 +32,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setNextFocusableComponent(log);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sesi_Logo.png"))); // NOI18N
 
@@ -50,6 +51,7 @@ public class Login extends javax.swing.JFrame {
         log.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         log.setText("Matrícula ou CPF");
         log.setToolTipText("");
+        log.setNextFocusableComponent(sen);
         log.setSelectionColor(new java.awt.Color(50, 194, 128));
         log.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -58,6 +60,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         sen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        sen.setNextFocusableComponent(jButton1);
         sen.setSelectionColor(new java.awt.Color(50, 194, 128));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
@@ -65,6 +68,7 @@ public class Login extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(50, 194, 128));
         jButton1.setText("Entrar");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setNextFocusableComponent(log);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

@@ -337,6 +337,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setNextFocusableComponent(func);
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -362,6 +363,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
         procura.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         procura.setForeground(new java.awt.Color(50, 194, 128));
         procura.setText("Procurar");
+        procura.setNextFocusableComponent(func);
         procura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 procuraActionPerformed(evt);
@@ -377,24 +379,28 @@ public class ConsultaCliente extends javax.swing.JFrame {
         musc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         musc.setForeground(new java.awt.Color(50, 194, 128));
         musc.setText("Musculação");
+        musc.setNextFocusableComponent(conv);
 
         pila.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(pila);
         pila.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         pila.setForeground(new java.awt.Color(50, 194, 128));
         pila.setText("Pilates");
+        pila.setNextFocusableComponent(yoga);
 
         livre.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(livre);
         livre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         livre.setForeground(new java.awt.Color(50, 194, 128));
         livre.setText("Livre");
+        livre.setNextFocusableComponent(todos);
 
         todos.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(todos);
         todos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         todos.setForeground(new java.awt.Color(50, 194, 128));
         todos.setText("Todos");
+        todos.setNextFocusableComponent(procura);
 
         codigo.setFont(new java.awt.Font("Tahoma", 0, 3)); // NOI18N
         codigo.setForeground(new java.awt.Color(240, 240, 240));
@@ -405,18 +411,21 @@ public class ConsultaCliente extends javax.swing.JFrame {
         yoga.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         yoga.setForeground(new java.awt.Color(50, 194, 128));
         yoga.setText("Yoga");
+        yoga.setNextFocusableComponent(livre);
 
         func.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(func);
         func.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         func.setForeground(new java.awt.Color(50, 194, 128));
         func.setText("Funcional");
+        func.setNextFocusableComponent(musc);
 
         conv.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(conv);
         conv.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         conv.setForeground(new java.awt.Color(50, 194, 128));
         conv.setText("Conv. Bem Estar");
+        conv.setNextFocusableComponent(pila);
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sesi_Logo.png"))); // NOI18N
         jLabel15.setText("jLabel15");
@@ -477,7 +486,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel15)
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 42, Short.MAX_VALUE)

@@ -225,14 +225,19 @@ public class CadastroCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         cpf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cpf.setNextFocusableComponent(email);
 
         cidade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cidade.setNextFocusableComponent(cep);
 
         nome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        nome.setNextFocusableComponent(dia);
 
         rua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rua.setNextFocusableComponent(bairro);
 
         email.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        email.setNextFocusableComponent(estado);
 
         try {
             telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
@@ -240,8 +245,10 @@ public class CadastroCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         telefone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        telefone.setNextFocusableComponent(rua);
 
         categoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        categoria.setNextFocusableComponent(classificacao);
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(50, 194, 128));
@@ -250,6 +257,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(50, 194, 128));
         jButton1.setText("CADASTRAR");
+        jButton1.setNextFocusableComponent(senha);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -275,8 +283,10 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         genero.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         genero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Feminino", "Masculino" }));
+        genero.setNextFocusableComponent(cpf);
 
         bairro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bairro.setNextFocusableComponent(numero);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(50, 194, 128));
@@ -287,12 +297,14 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel14.setText("Nº:");
 
         numero.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        numero.setNextFocusableComponent(complemento);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(50, 194, 128));
         jLabel15.setText("Complemento:");
 
         complemento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        complemento.setNextFocusableComponent(tipo);
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(50, 194, 128));
@@ -304,6 +316,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         cep.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cep.setNextFocusableComponent(telefone);
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(50, 194, 128));
@@ -311,6 +324,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         tipo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Titular", "Dependente" }));
+        tipo.setNextFocusableComponent(empresa);
         tipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipoActionPerformed(evt);
@@ -323,6 +337,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         classificacao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         classificacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Colaborador FIESC", "Comunidade", "Convenio", "Industria", "Industria associada" }));
+        classificacao.setNextFocusableComponent(senha);
 
         jButton2.setBackground(new java.awt.Color(50, 194, 128));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -330,17 +345,22 @@ public class CadastroCliente extends javax.swing.JFrame {
         jButton2.setText("+");
 
         senha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        senha.setNextFocusableComponent(jButton1);
 
         dia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        dia.setNextFocusableComponent(mes);
 
         mes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        mes.setNextFocusableComponent(ano);
 
         ano.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ano.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", " " }));
+        ano.setNextFocusableComponent(genero);
 
         empresa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        empresa.setNextFocusableComponent(categoria);
 
         label3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         label3.setForeground(new java.awt.Color(50, 194, 128));

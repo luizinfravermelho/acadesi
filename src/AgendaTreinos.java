@@ -211,9 +211,9 @@ public class AgendaTreinos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabelCategoria = new javax.swing.JLabel();
-        jComboBoxSala = new javax.swing.JComboBox<String>();
+        jComboBoxSala = new javax.swing.JComboBox<>();
         jLabelCategoria1 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<String>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jLabelCategoria2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -360,7 +360,6 @@ public class AgendaTreinos extends javax.swing.JFrame {
         );
 
         jDialog2.setBackground(new java.awt.Color(255, 255, 255));
-        jDialog2.setMaximumSize(new java.awt.Dimension(485, 400));
         jDialog2.setMinimumSize(new java.awt.Dimension(485, 400));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -458,10 +457,12 @@ public class AgendaTreinos extends javax.swing.JFrame {
         jLabelCategoria.setForeground(new java.awt.Color(50, 194, 128));
         jLabelCategoria.setText("Sala:");
 
+        jComboBoxSala.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxSala.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBoxSala.setForeground(new java.awt.Color(0, 102, 0));
-        jComboBoxSala.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Multifuncional" }));
+        jComboBoxSala.setForeground(new java.awt.Color(0, 118, 0));
+        jComboBoxSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Musculação", "Multifuncional" }));
         jComboBoxSala.setSelectedItem(null);
+        jComboBoxSala.setNextFocusableComponent(jComboBox3);
         jComboBoxSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSalaActionPerformed(evt);
@@ -472,8 +473,11 @@ public class AgendaTreinos extends javax.swing.JFrame {
         jLabelCategoria1.setForeground(new java.awt.Color(50, 194, 128));
         jLabelCategoria1.setText("Categoria:");
 
+        jComboBox3.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jComboBox3.setForeground(new java.awt.Color(0, 118, 0));
         jComboBox3.setSelectedItem(null);
+        jComboBox3.setNextFocusableComponent(data1);
 
         jLabelCategoria2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelCategoria2.setForeground(new java.awt.Color(50, 194, 128));
@@ -511,6 +515,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         data1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        data1.setNextFocusableComponent(data2);
 
         jLabelCategoria3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabelCategoria3.setForeground(new java.awt.Color(50, 194, 128));
@@ -522,9 +527,11 @@ public class AgendaTreinos extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         data2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        data2.setNextFocusableComponent(jButton1);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.setNextFocusableComponent(jComboBoxSala);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

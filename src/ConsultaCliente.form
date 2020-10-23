@@ -528,6 +528,9 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
+        <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="func"/>
+        </Property>
       </Properties>
 
       <Layout>
@@ -602,7 +605,7 @@
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="unrelated" pref="11" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
@@ -699,6 +702,9 @@
               <Color blue="80" green="c2" red="32" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Procurar"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="func"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="procuraActionPerformed"/>
@@ -730,6 +736,9 @@
               <Color blue="80" green="c2" red="32" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Muscula&#xe7;&#xe3;o"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="conv"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="pila">
@@ -747,6 +756,9 @@
               <Color blue="80" green="c2" red="32" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Pilates"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="yoga"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="livre">
@@ -764,6 +776,9 @@
               <Color blue="80" green="c2" red="32" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Livre"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="todos"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="todos">
@@ -781,6 +796,9 @@
               <Color blue="80" green="c2" red="32" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Todos"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="procura"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="codigo">
@@ -812,6 +830,9 @@
               <Color blue="80" green="c2" red="32" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Yoga"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="livre"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="func">
@@ -829,6 +850,9 @@
               <Color blue="80" green="c2" red="32" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Funcional"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="musc"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="conv">
@@ -846,6 +870,9 @@
               <Color blue="80" green="c2" red="32" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Conv. Bem Estar"/>
+            <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+              <ComponentRef name="pila"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">

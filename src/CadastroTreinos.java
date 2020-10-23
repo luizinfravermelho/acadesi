@@ -363,7 +363,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabelCategoria4 = new javax.swing.JLabel();
-        jComboBoxDialogHorario = new javax.swing.JComboBox<String>();
+        jComboBoxDialogHorario = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         horiniJD = new javax.swing.JFormattedTextField();
@@ -374,9 +374,9 @@ public class CadastroTreinos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         sair = new javax.swing.JLabel();
         jLabelCategoria = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jLabelCategoria1 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<String>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jLabelCategoria2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -570,7 +570,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         jLabelCategoria4.setText("Sala:");
 
         jComboBoxDialogHorario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBoxDialogHorario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Multifuncional" }));
+        jComboBoxDialogHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Musculação", "Multifuncional" }));
         jComboBoxDialogHorario.setSelectedItem(null);
         jComboBoxDialogHorario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -722,8 +722,9 @@ public class CadastroTreinos extends javax.swing.JFrame {
         jLabelCategoria.setText("Sala:");
 
         jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Multifuncional" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Musculação", "Multifuncional" }));
         jComboBox2.setSelectedItem(null);
+        jComboBox2.setNextFocusableComponent(jComboBox3);
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -736,6 +737,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jComboBox3.setSelectedItem(null);
+        jComboBox3.setNextFocusableComponent(dia);
         jComboBox3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBox3ItemStateChanged(evt);
@@ -757,6 +759,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor1.setBackground(new java.awt.Color(255, 255, 255));
         Hor1.setText("a");
+        Hor1.setNextFocusableComponent(Hor2);
         Hor1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor1ActionPerformed(evt);
@@ -765,6 +768,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor2.setBackground(new java.awt.Color(255, 255, 255));
         Hor2.setText("a");
+        Hor2.setNextFocusableComponent(Hor3);
         Hor2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor2ActionPerformed(evt);
@@ -773,6 +777,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor3.setBackground(new java.awt.Color(255, 255, 255));
         Hor3.setText("a");
+        Hor3.setNextFocusableComponent(Hor4);
         Hor3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor3ActionPerformed(evt);
@@ -781,6 +786,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor4.setBackground(new java.awt.Color(255, 255, 255));
         Hor4.setText("a");
+        Hor4.setNextFocusableComponent(Hor5);
         Hor4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor4ActionPerformed(evt);
@@ -789,6 +795,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor5.setBackground(new java.awt.Color(255, 255, 255));
         Hor5.setText("a");
+        Hor5.setNextFocusableComponent(Hor6);
         Hor5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor5ActionPerformed(evt);
@@ -797,6 +804,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor6.setBackground(new java.awt.Color(255, 255, 255));
         Hor6.setText("a");
+        Hor6.setNextFocusableComponent(Hor7);
         Hor6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor6ActionPerformed(evt);
@@ -805,6 +813,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor7.setBackground(new java.awt.Color(255, 255, 255));
         Hor7.setText("a");
+        Hor7.setNextFocusableComponent(Hor8);
         Hor7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor7ActionPerformed(evt);
@@ -813,6 +822,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor14.setBackground(new java.awt.Color(255, 255, 255));
         Hor14.setText("a");
+        Hor14.setNextFocusableComponent(Hor1);
         Hor14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor14ActionPerformed(evt);
@@ -821,6 +831,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor13.setBackground(new java.awt.Color(255, 255, 255));
         Hor13.setText("a");
+        Hor13.setNextFocusableComponent(Hor14);
         Hor13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor13ActionPerformed(evt);
@@ -829,6 +840,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor12.setBackground(new java.awt.Color(255, 255, 255));
         Hor12.setText("a");
+        Hor12.setNextFocusableComponent(Hor13);
         Hor12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor12ActionPerformed(evt);
@@ -837,6 +849,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor11.setBackground(new java.awt.Color(255, 255, 255));
         Hor11.setText("a");
+        Hor11.setNextFocusableComponent(Hor12);
         Hor11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor11ActionPerformed(evt);
@@ -845,6 +858,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor10.setBackground(new java.awt.Color(255, 255, 255));
         Hor10.setText("a");
+        Hor10.setNextFocusableComponent(Hor11);
         Hor10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor10ActionPerformed(evt);
@@ -853,6 +867,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor9.setBackground(new java.awt.Color(255, 255, 255));
         Hor9.setText("a");
+        Hor9.setNextFocusableComponent(Hor10);
         Hor9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor9ActionPerformed(evt);
@@ -861,6 +876,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
 
         Hor8.setBackground(new java.awt.Color(255, 255, 255));
         Hor8.setText("a");
+        Hor8.setNextFocusableComponent(Hor9);
         Hor8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Hor8ActionPerformed(evt);
@@ -870,6 +886,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         dia.setBackground(new java.awt.Color(255, 255, 255));
         dia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         dia.setMinimumSize(new java.awt.Dimension(120, 27));
+        dia.setNextFocusableComponent(jButton5);
         dia.setPreferredSize(new java.awt.Dimension(120, 27));
         dia.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -878,6 +895,7 @@ public class CadastroTreinos extends javax.swing.JFrame {
         });
 
         jButton5.setText("Gerenciar Horários");
+        jButton5.setNextFocusableComponent(Hor1);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);

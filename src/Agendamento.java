@@ -69,7 +69,7 @@ public class Agendamento extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         USU = new javax.swing.JLabel();
         sair = new javax.swing.JLabel();
@@ -77,7 +77,7 @@ public class Agendamento extends javax.swing.JFrame {
         categoria = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabelCategoria = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(50, 194, 128));
@@ -245,6 +245,7 @@ public class Agendamento extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jComboBox1.setSelectedItem(null);
+        jComboBox1.setNextFocusableComponent(jButton3);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -293,8 +294,9 @@ public class Agendamento extends javax.swing.JFrame {
         jLabelCategoria.setText("Categoria:");
 
         jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Pilates" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Musculação", "Pilates" }));
         jComboBox2.setSelectedItem("Musculação");
+        jComboBox2.setNextFocusableComponent(jComboBox1);
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
