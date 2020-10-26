@@ -1,4 +1,5 @@
 
+
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
@@ -162,7 +163,7 @@ public class Login extends javax.swing.JFrame {
 
             dispose(); //Fecha o JFrame
             new Inicial().setVisible(true); //Abre a tela de agendamento
-            Agendamento.USU.setText(this.log.getText()); //Pega a matrícula do usuário e coloca no agendamento
+           // Agendamento.USU.setText(this.log.getText()); //Pega a matrícula do usuário e coloca no agendamento
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed

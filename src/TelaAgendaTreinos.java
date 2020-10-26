@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -25,16 +26,12 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null); //retirar o painel superior janela.setBorder(null);//retirar bordas
-        //  
-
-     //   for (Component c : this.getComponents()) {
-        //      if (c instanceof BasicInternalFrameTitlePane) {
-        //         for (MouseMotionListener m : c.getMouseMotionListeners()) {
-        //            c.removeMouseMotionListener(m);
-        //        }
-        //        break;
-        //     }
-        //  }
+       
+         //Define a cor verde para os padrões
+        UIManager.put("nimbusSelectionBackground", new Color(9, 82, 82));//define a cor dos menus da CB
+        UIManager.put("nimbusFocus", new Color(9, 82, 82)); //Define a cor das seleções
+        UIManager.put("nimbusSelection", new Color(9, 82, 82)); //Define a cor das seleções
+        UIManager.put("nimbusInfoBlue", new Color(9, 82, 82)); //Define a cor das seleções
     }
 
     public void PopularJTable(String sql) {
@@ -201,11 +198,7 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
         initComponents();
         pegarResolucao();
         
-        //Define a cor verde para os padrões
-        UIManager.put("nimbusSelectionBackground", new Color(9, 82, 82));//define a cor dos menus da CB
-        UIManager.put("nimbusFocus", new Color(9, 82, 82)); //Define a cor das seleções
-        UIManager.put("nimbusSelection", new Color(9, 82, 82)); //Define a cor das seleções
-        UIManager.put("nimbusInfoBlue", new Color(9, 82, 82)); //Define a cor das seleções
+       
 
         //Remove a coluna extra
         if (jTable1.getColumnCount() == 4) {
@@ -221,13 +214,13 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AgendaTreinos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAgendaTreinos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AgendaTreinos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAgendaTreinos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AgendaTreinos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAgendaTreinos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AgendaTreinos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAgendaTreinos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
 

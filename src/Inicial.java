@@ -185,7 +185,16 @@ public class Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuAgeTreinoActionPerformed
 
     private void jMenuCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadCliActionPerformed
+        jDesktopPane1.removeAll();
+        NewJInternalFrame obj = new NewJInternalFrame();
+        jDesktopPane1.add(obj);
+        obj.setVisible(true);
+        obj.moveToFront();
 
+        try {
+            obj.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+        }
     }//GEN-LAST:event_jMenuCadCliActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
