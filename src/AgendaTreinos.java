@@ -1,4 +1,12 @@
 import java.awt.Color;
+import static java.awt.Color.GREEN;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import static java.awt.SystemColor.control;
+import static java.awt.SystemColor.menu;
+import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -6,8 +14,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import javax.swing.ImageIcon;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.ListCellRenderer;
+import javax.swing.Painter;
+import static javax.swing.SwingConstants.TOP;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +42,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Luiz Felipe
  */
 public class AgendaTreinos extends javax.swing.JFrame {
+    
+   
 
     public void PopularJTable(String sql) {
 
@@ -46,7 +69,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                     resultado.getString("pessoas"),
                     resultado.getString("categoria"),});
             }
-            
+
             banco.close();
             con.close();
         } catch (SQLException ex) {
@@ -77,7 +100,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                     resultado.getString("cpf"),
                     resultado.getString("celular"),});
             }
-            JDqtdpes.setText(model.getRowCount()+"/15");
+            JDqtdpes.setText(model.getRowCount() + "/15");
             banco.close();
             con.close();
         } catch (SQLException ex) {
@@ -94,7 +117,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
             PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
-            
+
             banco.execute(); // cria o vetor
 
             ResultSet resultado = banco.executeQuery();
@@ -108,7 +131,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                     resultado.getString("nomcli"),
                     resultado.getString("cpf"),});
             }
-            
+
             banco.close();
             con.close();
         } catch (SQLException ex) {
@@ -181,9 +204,9 @@ public class AgendaTreinos extends javax.swing.JFrame {
 
         }
     }
-    
+
     public AgendaTreinos() {
-        initComponents();
+        initComponents();       
     }
 
     @SuppressWarnings("unchecked")
@@ -211,9 +234,9 @@ public class AgendaTreinos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabelCategoria = new javax.swing.JLabel();
-        jComboBoxSala = new javax.swing.JComboBox<>();
+        jComboBoxSala = new javax.swing.JComboBox<String>();
         jLabelCategoria1 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<String>();
         jSeparator1 = new javax.swing.JSeparator();
         jLabelCategoria2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -447,22 +470,25 @@ public class AgendaTreinos extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sesi_Logo.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_sesi_topo2.png"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 118, 0));
+        jLabel1.setForeground(new java.awt.Color(9, 82, 82));
         jLabel1.setText("Treinos");
 
         jLabelCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabelCategoria.setForeground(new java.awt.Color(50, 194, 128));
+        jLabelCategoria.setForeground(new java.awt.Color(9, 82, 82));
         jLabelCategoria.setText("Sala:");
 
-        jComboBoxSala.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxSala.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBoxSala.setForeground(new java.awt.Color(0, 118, 0));
-        jComboBoxSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Musculação", "Multifuncional" }));
-        jComboBoxSala.setSelectedItem(null);
+        jComboBoxSala.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Multifuncional" }));
+        jComboBoxSala.setToolTipText("TEste");
         jComboBoxSala.setNextFocusableComponent(jComboBox3);
+        jComboBoxSala.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxSalaItemStateChanged(evt);
+            }
+        });
         jComboBoxSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSalaActionPerformed(evt);
@@ -470,17 +496,15 @@ public class AgendaTreinos extends javax.swing.JFrame {
         });
 
         jLabelCategoria1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabelCategoria1.setForeground(new java.awt.Color(50, 194, 128));
+        jLabelCategoria1.setForeground(new java.awt.Color(9, 82, 82));
         jLabelCategoria1.setText("Categoria:");
 
-        jComboBox3.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox3.setForeground(new java.awt.Color(0, 118, 0));
-        jComboBox3.setSelectedItem(null);
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação" }));
         jComboBox3.setNextFocusableComponent(data1);
 
-        jLabelCategoria2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelCategoria2.setForeground(new java.awt.Color(50, 194, 128));
+        jLabelCategoria2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelCategoria2.setForeground(new java.awt.Color(9, 82, 82));
         jLabelCategoria2.setText("De:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -499,9 +523,10 @@ public class AgendaTreinos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setGridColor(new java.awt.Color(153, 255, 204));
+        jTable1.setGridColor(new java.awt.Color(0, 102, 102));
         jTable1.setRowHeight(22);
-        jTable1.setSelectionBackground(new java.awt.Color(0, 102, 51));
+        jTable1.setSelectionBackground(new java.awt.Color(0, 102, 102));
+        jTable1.setShowHorizontalLines(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -509,6 +534,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        data1.setForeground(new java.awt.Color(9, 82, 82));
         try {
             data1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -517,10 +543,11 @@ public class AgendaTreinos extends javax.swing.JFrame {
         data1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         data1.setNextFocusableComponent(data2);
 
-        jLabelCategoria3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelCategoria3.setForeground(new java.awt.Color(50, 194, 128));
+        jLabelCategoria3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabelCategoria3.setForeground(new java.awt.Color(9, 82, 82));
         jLabelCategoria3.setText("Até:");
 
+        data2.setForeground(new java.awt.Color(9, 82, 82));
         try {
             data2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
@@ -529,7 +556,9 @@ public class AgendaTreinos extends javax.swing.JFrame {
         data2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         data2.setNextFocusableComponent(jButton1);
 
+        jButton1.setBackground(new java.awt.Color(9, 82, 82));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Buscar");
         jButton1.setNextFocusableComponent(jComboBoxSala);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -552,16 +581,8 @@ public class AgendaTreinos extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabelCategoria)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBoxSala, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(jLabelCategoria1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
                                 .addComponent(jLabel1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelCategoria2)
@@ -572,8 +593,16 @@ public class AgendaTreinos extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(data2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 238, Short.MAX_VALUE)))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelCategoria)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxSala, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabelCategoria1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 252, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -591,7 +620,7 @@ public class AgendaTreinos extends javax.swing.JFrame {
                     .addComponent(jLabelCategoria)
                     .addComponent(jLabelCategoria1)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -604,14 +633,18 @@ public class AgendaTreinos extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jMenuBar2.setBackground(new java.awt.Color(0, 204, 204));
-        jMenuBar2.setForeground(new java.awt.Color(0, 204, 204));
+        jMenuBar2.setBackground(new java.awt.Color(0, 102, 102));
+        jMenuBar2.setForeground(new java.awt.Color(0, 102, 102));
+        jMenuBar2.setEnabled(false);
+        jMenuBar2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
-        jMenu3.setBackground(new java.awt.Color(0, 204, 204));
+        jMenu3.setBackground(new java.awt.Color(0, 102, 102));
+        jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Treinos");
+        jMenu3.setOpaque(true);
 
         jMenuItem1.setBackground(new java.awt.Color(0, 204, 204));
         jMenuItem1.setText("Cadastrar/Alterar Treino");
@@ -633,8 +666,10 @@ public class AgendaTreinos extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu3);
 
-        jMenu4.setBackground(new java.awt.Color(0, 204, 204));
+        jMenu4.setBackground(new java.awt.Color(0, 102, 102));
+        jMenu4.setForeground(new java.awt.Color(255, 255, 255));
         jMenu4.setText("Clientes");
+        jMenu4.setOpaque(true);
 
         jMenuItem3.setText("jMenuItem3");
         jMenu4.add(jMenuItem3);
@@ -647,7 +682,10 @@ public class AgendaTreinos extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu4);
 
+        jMenu5.setBackground(new java.awt.Color(0, 102, 102));
+        jMenu5.setForeground(new java.awt.Color(255, 255, 255));
         jMenu5.setText("Sair");
+        jMenu5.setOpaque(true);
 
         jMenuItem6.setText("jMenuItem6");
         jMenu5.add(jMenuItem6);
@@ -671,13 +709,25 @@ public class AgendaTreinos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+        UIManager.put("nimbusSelectionBackground", new Color(9, 82, 82));//define a cor dos menus da CB
+        UIManager.put("nimbusFocus", new Color(9, 82, 82)); //Define a cor das seleções
+        UIManager.put("nimbusSelection", new Color(9, 82, 82)); //Define a cor das seleções
+        UIManager.put("nimbusInfoBlue", new Color(9, 82, 82)); //Define a cor das seleções
+        jMenuBar2.setBorder(BorderFactory.createLineBorder(new Color(9, 82, 82)));
+        jMenuBar2.setEnabled(false);
+        jMenuBar2.setOpaque(true);
+      
+
         if (jTable1.getColumnCount() == 4) {
             jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
+
         }
 
     }//GEN-LAST:event_formWindowOpened
 
     private void jComboBoxSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSalaActionPerformed
+
         if (jComboBoxSala.getSelectedItem().equals("Musculação")) {
             jComboBox3.removeAllItems();
             jComboBox3.addItem("Musculação");
@@ -742,53 +792,51 @@ public class AgendaTreinos extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(JDcat.getText().equals("Musculação")){
+        if (JDcat.getText().equals("Musculação")) {
             PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=1 or codcat=6");
+        } else {
+            PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=6 or codcat=(select codcat from categoria where nomcat like '" + JDcat.getText() + "');");
         }
-        else{
-            PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=6 or codcat=(select codcat from categoria where nomcat like '"+JDcat.getText()+"');");
-        }
-        
+
         jDialog2.setVisible(true);
         jDialog2.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-            int selectedRow = jTable2.getSelectedRow();
-            DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-            String cpf = (model.getValueAt(selectedRow, 1).toString());
+        int selectedRow = jTable2.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        String cpf = (model.getValueAt(selectedRow, 1).toString());
 
-            conexao.AgendaAlunosIDA(cpf, JDdia.getText(), JDhor.getText(), 2);
-                      
+        conexao.AgendaAlunosIDA(cpf, JDdia.getText(), JDhor.getText(), 2);
 
-            if (jComboBox3.getSelectedItem().equals("Musculação")) {
-                this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
-                        + "from cliente a, agendacliente b, agendamentomc c, horariomc d\n"
-                        + "where a.codcli = b.codcli\n"
-                        + "and b.codagemc = c.codagemc\n"
-                        + "and c.hormc = (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi')))\n"
-                        + "and b.dia = '" + JDdia.getText() + "'\n"
-                        + "and c.hormc = '" + JDhor.getText() + "'\n"
-                        + "and c.codcat=1");
-            } else {
+        if (jComboBox3.getSelectedItem().equals("Musculação")) {
+            this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
+                    + "from cliente a, agendacliente b, agendamentomc c, horariomc d\n"
+                    + "where a.codcli = b.codcli\n"
+                    + "and b.codagemc = c.codagemc\n"
+                    + "and c.hormc = (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi')))\n"
+                    + "and b.dia = '" + JDdia.getText() + "'\n"
+                    + "and c.hormc = '" + JDhor.getText() + "'\n"
+                    + "and c.codcat=1");
+        } else {
 
-                this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
-                        + "from cliente a, agendacliente b, agendamentomf c, horariomf d\n"
-                        + "where a.codcli = b.codcli\n"
-                        + "and b.codagemf = c.codagemf\n"
-                        + "and c.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi')))\n"
-                        + "and b.dia = '" + JDdia.getText() + "'\n"
-                        + "and c.hormf = '" + JDhor.getText() + "'\n"
-                        + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
+            this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"
+                    + "from cliente a, agendacliente b, agendamentomf c, horariomf d\n"
+                    + "where a.codcli = b.codcli\n"
+                    + "and b.codagemf = c.codagemf\n"
+                    + "and c.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi')))\n"
+                    + "and b.dia = '" + JDdia.getText() + "'\n"
+                    + "and c.hormf = '" + JDhor.getText() + "'\n"
+                    + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
 
-            }
-        
-           this.data(data1.getText(), data2.getText());  
+        }
+
+        this.data(data1.getText(), data2.getText());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
         if (evt.getClickCount() == 2) {
-           
+
             int selectedRow = jTable3.getSelectedRow();
             DefaultTableModel model = (DefaultTableModel) jTable3.getModel();
             String cpf = (model.getValueAt(selectedRow, 1).toString());
@@ -816,23 +864,27 @@ public class AgendaTreinos extends javax.swing.JFrame {
                         + "and c.codcat=(select codcat from categoria where nomcat ilike '" + JDcat.getText() + "');");
 
             }
-            
-            
-            this.data(data1.getText(), data2.getText());      
+
+            this.data(data1.getText(), data2.getText());
             jDialog2.dispose();
         }
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
-        new    CadastroTreinos().setVisible(true);
-        dispose();
+            
+        new CadastroTreinos().setVisible(true);
+         
+        this.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        new AgendaTreinos().setVisible(true);
-        dispose();
+       // new AgendaTreinos().setVisible(true);
+       // dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jComboBoxSalaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxSalaItemStateChanged
+
+    }//GEN-LAST:event_jComboBoxSalaItemStateChanged
 
     public static void main(String args[]) {
 

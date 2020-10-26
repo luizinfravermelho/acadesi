@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 public class conexao {
 
+    
     public static void insertAgendamento() {
 
         String driver = "org.postgresql.Driver";
@@ -467,8 +468,8 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-            String categoria = (String) CadastroTreinos.jComboBox3.getSelectedItem();
-            Date dia = CadastroTreinos.dia.getDate();
+            String categoria = (String) TelaCadastroTreinos.jComboBox3.getSelectedItem();
+            Date dia = TelaCadastroTreinos.dia.getDate();
 
             if (dia == null) {
                 JOptionPane.showMessageDialog(null, "Selecione um dia!");
@@ -509,7 +510,7 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-            String categoria = (String) CadastroTreinos.jComboBoxDialogHorario.getSelectedItem();
+            String categoria = (String) TelaCadastroTreinos.jComboBoxDialogHorario.getSelectedItem();
 
             if (op == 1) {
                 if (categoria == "Musculação") {
@@ -565,19 +566,20 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-            String categoria = AgendaTreinos.JDcat.getText();
+            String categoria = TelaAgendaTreinos.JDcat.getText();
 
             if (op == 1) {
                 if (categoria == "Musculação") {
                     String Insert = "insert into agendacliente values((select codcli from cliente where cpf like '" + cpf + "'), \n"
                             + "'" + dia + "',(select codagemc from agendamentomc where dia = '" + dia + "' and hormc like '" + hor + "'),null);";
+                    System.out.println(Insert);
                     stmt.executeUpdate(Insert);
-
+                    
                 } else {
                     String Insert = "insert into agendacliente values((select codcli from cliente where cpf like '" + cpf + "'), \n"
                             + "'" + dia + "',null,(select codagemf from agendamentomf where dia = '" + dia + "' and hormf like '" + hor + "'));";
                     stmt.executeUpdate(Insert);
-
+                    System.out.println(Insert);
                 }
 
             } else if (op == 2) {
@@ -597,5 +599,6 @@ public class conexao {
             System.err.print(e.getMessage());
         }
     }
+    
 
 }
