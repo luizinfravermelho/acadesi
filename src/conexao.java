@@ -71,7 +71,7 @@ public class conexao {
         String user = "postgres";
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
-        String cod = (String) ConsultaCliente.cod;
+        String cod = (String) TelaConsultaCliente.cod;
         String sql = "select a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.datnas, a.email, a.celular, d.nomcat, e.nomemp, a.tipo, a.classificacao, a.cep from cliente a, cidade b, estado c, categoria d, empresa e where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codemp = e.codemp and a.codcli = (select codcli from cliente where cpf like '" + cod + "');";
 
         try {
@@ -82,32 +82,32 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                ConsultaCliente.estado.setText(resultado.getString(4));
-                ConsultaCliente.estado.updateUI();
-                ConsultaCliente.cpf.setText(resultado.getString(2));
-                ConsultaCliente.cpf.updateUI();
-                ConsultaCliente.cliente.setText(resultado.getString(1));
-                ConsultaCliente.cliente.updateUI();
-                ConsultaCliente.cidade.setText(resultado.getString(3));
-                ConsultaCliente.cidade.updateUI();
-                ConsultaCliente.endereco.setText(resultado.getString(5));
-                ConsultaCliente.endereco.updateUI();
-                ConsultaCliente.datnas.setText(resultado.getString(6));
-                ConsultaCliente.datnas.updateUI();
-                ConsultaCliente.email.setText(resultado.getString(7));
-                ConsultaCliente.email.updateUI();
-                ConsultaCliente.telefone.setText(resultado.getString(8));
-                ConsultaCliente.telefone.updateUI();
-                ConsultaCliente.categoria.setText(resultado.getString(9));
-                ConsultaCliente.categoria.updateUI();
-                ConsultaCliente.tipo.setText(resultado.getString(11));
-                ConsultaCliente.tipo.updateUI();
-                ConsultaCliente.empresa.setText(resultado.getString(10));
-                ConsultaCliente.empresa.updateUI();
-                ConsultaCliente.classi.setText(resultado.getString(12));
-                ConsultaCliente.classi.updateUI();
-                ConsultaCliente.CEP.setText(resultado.getString(12));
-                ConsultaCliente.CEP.updateUI();
+                TelaConsultaCliente.estado.setText(resultado.getString(4));
+                TelaConsultaCliente.estado.updateUI();
+                TelaConsultaCliente.cpf.setText(resultado.getString(2));
+                TelaConsultaCliente.cpf.updateUI();
+                TelaConsultaCliente.cliente.setText(resultado.getString(1));
+                TelaConsultaCliente.cliente.updateUI();
+                TelaConsultaCliente.cidade.setText(resultado.getString(3));
+                TelaConsultaCliente.cidade.updateUI();
+                TelaConsultaCliente.endereco.setText(resultado.getString(5));
+                TelaConsultaCliente.endereco.updateUI();
+                TelaConsultaCliente.datnas.setText(resultado.getString(6));
+                TelaConsultaCliente.datnas.updateUI();
+                TelaConsultaCliente.email.setText(resultado.getString(7));
+                TelaConsultaCliente.email.updateUI();
+                TelaConsultaCliente.telefone.setText(resultado.getString(8));
+                TelaConsultaCliente.telefone.updateUI();
+                TelaConsultaCliente.categoria.setText(resultado.getString(9));
+                TelaConsultaCliente.categoria.updateUI();
+                TelaConsultaCliente.tipo.setText(resultado.getString(11));
+                TelaConsultaCliente.tipo.updateUI();
+                TelaConsultaCliente.empresa.setText(resultado.getString(10));
+                TelaConsultaCliente.empresa.updateUI();
+                TelaConsultaCliente.classi.setText(resultado.getString(12));
+                TelaConsultaCliente.classi.updateUI();
+                TelaConsultaCliente.CEP.setText(resultado.getString(12));
+                TelaConsultaCliente.CEP.updateUI();
             }
             banco.close();
 
