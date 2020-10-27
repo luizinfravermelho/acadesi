@@ -18,7 +18,7 @@ public class conexao {
         String user = "postgres";
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
-        String a = (String) CadastroCliente.estado.getSelectedItem();
+        String a = (String) TelaCadastroCliente.estado.getSelectedItem();
         String sql = "select nomcid from cidade where codest = (select codest from estado where nomest like '" + a + "') order by nomcid";
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
@@ -28,8 +28,8 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                CadastroCliente.cidade.addItem(resultado.getString(1));
-                CadastroCliente.cidade.updateUI();
+                TelaCadastroCliente.cidade.addItem(resultado.getString(1));
+                TelaCadastroCliente.cidade.updateUI();
 
             }
             banco.close();
@@ -54,8 +54,8 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                CadastroCliente.categoria.addItem(resultado.getString(1));
-                CadastroCliente.categoria.updateUI();
+                TelaCadastroCliente.categoria.addItem(resultado.getString(1));
+                TelaCadastroCliente.categoria.updateUI();
 
             }
             banco.close();
@@ -192,8 +192,8 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                CadastroCliente.estado.addItem(resultado.getString(1));
-                CadastroCliente.estado.updateUI();
+                TelaCadastroCliente.estado.addItem(resultado.getString(1));
+                TelaCadastroCliente.estado.updateUI();
 
             }
             banco.close();
@@ -218,25 +218,25 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-            String nome = CadastroCliente.nome.getText();
-            String cpf = CadastroCliente.cpf.getText();
-            String email = CadastroCliente.email.getText();
-            String cep = CadastroCliente.cep.getText();
-            String rua = CadastroCliente.rua.getText();
-            String bairro = CadastroCliente.bairro.getText();
-            String numero = CadastroCliente.numero.getText();
-            String telefone = CadastroCliente.telefone.getText();
-            String complemento = CadastroCliente.complemento.getText();
-            String bla = (String) CadastroCliente.senha.getText();
-            String dia = (String) CadastroCliente.dia.getSelectedItem();
-            String mes = (String) CadastroCliente.mes.getSelectedItem();
-            String ano = (String) CadastroCliente.ano.getSelectedItem();
-            String genero = (String) CadastroCliente.genero.getSelectedItem();
-            String empresa = (String) CadastroCliente.empresa.getSelectedItem();
-            String cidade = (String) CadastroCliente.cidade.getSelectedItem();
-            String tipo = (String) CadastroCliente.tipo.getSelectedItem();
-            String categoria = (String) CadastroCliente.categoria.getSelectedItem();
-            String classificacao = (String) CadastroCliente.classificacao.getSelectedItem();
+            String nome = TelaCadastroCliente.nome.getText();
+            String cpf = TelaCadastroCliente.cpf.getText();
+            String email = TelaCadastroCliente.email.getText();
+            String cep = TelaCadastroCliente.cep.getText();
+            String rua = TelaCadastroCliente.rua.getText();
+            String bairro = TelaCadastroCliente.bairro.getText();
+            String numero = TelaCadastroCliente.numero.getText();
+            String telefone = TelaCadastroCliente.telefone.getText();
+            String complemento = TelaCadastroCliente.complemento.getText();
+            String bla = (String) TelaCadastroCliente.senha.getText();
+            String dia = (String) TelaCadastroCliente.dia.getSelectedItem();
+            String mes = (String) TelaCadastroCliente.mes.getSelectedItem();
+            String ano = (String) TelaCadastroCliente.ano.getSelectedItem();
+            String genero = (String) TelaCadastroCliente.genero.getSelectedItem();
+            String empresa = (String) TelaCadastroCliente.empresa.getSelectedItem();
+            String cidade = (String) TelaCadastroCliente.cidade.getSelectedItem();
+            String tipo = (String) TelaCadastroCliente.tipo.getSelectedItem();
+            String categoria = (String) TelaCadastroCliente.categoria.getSelectedItem();
+            String classificacao = (String) TelaCadastroCliente.classificacao.getSelectedItem();
 
             String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like '" + empresa + "'),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
 
@@ -267,9 +267,9 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-            String cnpj = CadastroCliente.cnpjemp.getText();
-            String nome = CadastroCliente.empresaemp.getText();
-            String telefone = CadastroCliente.telemp.getText();
+            String cnpj = TelaCadastroCliente.cnpjemp.getText();
+            String nome = TelaCadastroCliente.empresaemp.getText();
+            String telefone = TelaCadastroCliente.telemp.getText();
 
             String Insert2 = "insert into empresa values ((select coalesce (max(codemp),0)+1 from empresa), '" + nome + "', '" + telefone + "', '" + cnpj + "')";
 
@@ -301,8 +301,8 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                CadastroCliente.empresa.addItem(resultado.getString(1));
-                CadastroCliente.empresa.updateUI();
+                TelaCadastroCliente.empresa.addItem(resultado.getString(1));
+                TelaCadastroCliente.empresa.updateUI();
 
             }
             banco.close();
