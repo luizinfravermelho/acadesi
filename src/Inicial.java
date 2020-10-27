@@ -206,7 +206,16 @@ public class Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void jMenuAltCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAltCliActionPerformed
+        jDesktopPane1.removeAll();
+        TelaConsultaCliente obj = new TelaConsultaCliente();
+        jDesktopPane1.add(obj);
+        obj.setVisible(true);
+        obj.moveToFront();
 
+        try {
+            obj.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+        }
     }//GEN-LAST:event_jMenuAltCliActionPerformed
 
     private void formWindowStateChanged(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowStateChanged
