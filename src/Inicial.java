@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -89,7 +90,6 @@ public class Inicial extends javax.swing.JFrame {
         jMenu3.setBackground(new java.awt.Color(0, 102, 102));
         jMenu3.setForeground(new java.awt.Color(255, 255, 255));
         jMenu3.setText("Treinos");
-        jMenu3.setOpaque(true);
 
         jMenuCadTreino.setBackground(new java.awt.Color(0, 204, 204));
         jMenuCadTreino.setText("Cadastrar/Alterar Treino");
@@ -114,7 +114,6 @@ public class Inicial extends javax.swing.JFrame {
         jMenu4.setBackground(new java.awt.Color(0, 102, 102));
         jMenu4.setForeground(new java.awt.Color(255, 255, 255));
         jMenu4.setText("Clientes");
-        jMenu4.setOpaque(true);
 
         jMenuCadCli.setText("Cadastrar Cliente");
         jMenuCadCli.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +139,6 @@ public class Inicial extends javax.swing.JFrame {
         jMenu5.setBackground(new java.awt.Color(0, 102, 102));
         jMenu5.setForeground(new java.awt.Color(255, 255, 255));
         jMenu5.setText("Sair");
-        jMenu5.setOpaque(true);
 
         jMenuSair.setText("Sair");
         jMenuSair.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +184,7 @@ public class Inicial extends javax.swing.JFrame {
 
     private void jMenuCadCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadCliActionPerformed
         jDesktopPane1.removeAll();
-        NewJInternalFrame obj = new NewJInternalFrame();
+        TelaCadastroCliente obj = new TelaCadastroCliente();
         jDesktopPane1.add(obj);
         obj.setVisible(true);
         obj.moveToFront();
