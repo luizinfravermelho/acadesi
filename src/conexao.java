@@ -45,7 +45,7 @@ public class conexao {
         String user = "postgres";
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
-        String sql = "select nomcat from categoria where codcat != 5 order by nomcat";
+        String sql = "select nomcat from categoria ";
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
             PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
@@ -72,7 +72,7 @@ public class conexao {
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
         String cod = (String) TelaConsultaCliente.cod;
-        String sql = "select a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.datnas, a.email, a.celular, d.nomcat, e.nomemp, a.tipo, a.classificacao, a.cep from cliente a, cidade b, estado c, categoria d, empresa e where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codemp = e.codemp and a.codcli = (select codcli from cliente where cpf like '" + cod + "');";
+        String sql = "select a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.datnas, a.email, a.celular, d.nomcat, e.nomemp, a.tipo, a.classificacao, a.cep, a.ana, a.obs from cliente a, cidade b, estado c, categoria d, empresa e where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codemp = e.codemp and a.codcli = (select codcli from cliente where cpf like '" + cod + "');";
 
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
@@ -106,8 +106,12 @@ public class conexao {
                 TelaConsultaCliente.empresa.updateUI();
                 TelaConsultaCliente.classi.setText(resultado.getString(12));
                 TelaConsultaCliente.classi.updateUI();
-                TelaConsultaCliente.CEP.setText(resultado.getString(12));
+                TelaConsultaCliente.CEP.setText(resultado.getString(13));
                 TelaConsultaCliente.CEP.updateUI();
+                 TelaConsultaCliente.anamnse.setText(resultado.getString(14));
+                TelaConsultaCliente.anamnse.updateUI();
+                 TelaConsultaCliente.obss.setText(resultado.getString(15));
+                TelaConsultaCliente.obss.updateUI();
             }
             banco.close();
 
@@ -175,7 +179,7 @@ public class conexao {
         } catch (SQLException e) {
             System.err.print(e.getMessage());
         }
-    }//OK
+    }
 
     public static void EstadoComboBoxCliente() {
 
@@ -237,8 +241,10 @@ public class conexao {
             String tipo = (String) TelaCadastroCliente.tipo.getSelectedItem();
             String categoria = (String) TelaCadastroCliente.categoria.getSelectedItem();
             String classificacao = (String) TelaCadastroCliente.classificacao.getSelectedItem();
+            String ana = TelaCadastroCliente.ana.getText();
+            String obs = TelaCadastroCliente.obs.getText();
 
-            String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like '" + empresa + "'),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "');";
+            String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like '" + empresa + "'),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "','"+ana+"','"+obs+"');";
 
             stmt.executeUpdate(Insert);
             JOptionPane.showMessageDialog(null, "Dados inseridos!");
@@ -474,13 +480,13 @@ public class conexao {
             if (op == 1) {
                 if (categoria == "Musculação") {
                     String Insert = "insert into agendacliente values((select codcli from cliente where cpf like '" + cpf + "'), \n"
-                            + "'" + dia + "',(select codagemc from agendamentomc where dia = '" + dia + "' and hormc like '" + hor + "'),null);";
+                            + "'" + dia + "',(select codagemc from agendamentomc where dia = '" + dia + "' and hormc like '" + hor + "'),null, 0);";
                     System.out.println(Insert);
                     stmt.executeUpdate(Insert);
                     
                 } else {
                     String Insert = "insert into agendacliente values((select codcli from cliente where cpf like '" + cpf + "'), \n"
-                            + "'" + dia + "',null,(select codagemf from agendamentomf where dia = '" + dia + "' and hormf like '" + hor + "'));";
+                            + "'" + dia + "',null,(select codagemf from agendamentomf where dia = '" + dia + "' and hormf like '" + hor + "',0));";
                     stmt.executeUpdate(Insert);
                     System.out.println(Insert);
                 }

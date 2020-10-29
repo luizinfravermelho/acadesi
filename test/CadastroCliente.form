@@ -127,9 +127,6 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel23">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Sesi_Logo.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="jLabel23"/>
               </Properties>
             </Component>
@@ -360,9 +357,10 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nome" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rua" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -495,7 +493,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="80" green="c2" red="32" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Nome:"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/logo_sesi_topo2.png"/>
+            </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -696,11 +696,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Sesi_Logo.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="estado">
           <Properties>

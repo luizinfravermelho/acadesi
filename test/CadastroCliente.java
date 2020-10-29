@@ -101,7 +101,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(50, 194, 128));
         jLabel21.setText("Telefone:");
 
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sesi_Logo.png"))); // NOI18N
         jLabel23.setText("jLabel23");
 
         try {
@@ -198,7 +197,7 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(50, 194, 128));
-        jLabel3.setText("Nome:");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_sesi_topo2.png"))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(50, 194, 128));
@@ -268,8 +267,6 @@ public class CadastroCliente extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Sesi_Logo.png"))); // NOI18N
 
         estado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         estado.addActionListener(new java.awt.event.ActionListener() {
@@ -492,9 +489,10 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel3)
+                .addGap(83, 83, 83)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(rua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
