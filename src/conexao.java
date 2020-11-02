@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -72,7 +71,7 @@ public class conexao {
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
         String cod = (String) TelaConsultaCliente.cod;
-        String sql = "select a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.datnas, a.email, a.celular, d.nomcat, e.nomemp, a.tipo, a.classificacao, a.cep, a.ana, a.obs from cliente a, cidade b, estado c, categoria d, empresa e where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codemp = e.codemp and a.codcli = (select codcli from cliente where cpf like '" + cod + "');";
+        String sql = "select a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.datnas, a.email, a.celular, d.nomcat, e.nomemp, a.tipo, a.classificacao, a.cep, a.ana, a.obs, a.genero from cliente a, cidade b, estado c, categoria d, empresa e where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codemp = e.codemp and a.codcli = (select codcli from cliente where cpf like '" + cod + "');";
 
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
@@ -82,36 +81,39 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                TelaConsultaCliente.estado.setText(resultado.getString(4));
-                TelaConsultaCliente.estado.updateUI();
-                TelaConsultaCliente.cpf.setText(resultado.getString(2));
-                TelaConsultaCliente.cpf.updateUI();
-                TelaConsultaCliente.cliente.setText(resultado.getString(1));
-                TelaConsultaCliente.cliente.updateUI();
-                TelaConsultaCliente.cidade.setText(resultado.getString(3));
-                TelaConsultaCliente.cidade.updateUI();
-                TelaConsultaCliente.endereco.setText(resultado.getString(5));
-                TelaConsultaCliente.endereco.updateUI();
-                TelaConsultaCliente.datnas.setText(resultado.getString(6));
-                TelaConsultaCliente.datnas.updateUI();
-                TelaConsultaCliente.email.setText(resultado.getString(7));
-                TelaConsultaCliente.email.updateUI();
-                TelaConsultaCliente.telefone.setText(resultado.getString(8));
-                TelaConsultaCliente.telefone.updateUI();
-                TelaConsultaCliente.categoria.setText(resultado.getString(9));
-                TelaConsultaCliente.categoria.updateUI();
-                TelaConsultaCliente.tipo.setText(resultado.getString(11));
-                TelaConsultaCliente.tipo.updateUI();
-                TelaConsultaCliente.empresa.setText(resultado.getString(10));
-                TelaConsultaCliente.empresa.updateUI();
-                TelaConsultaCliente.classi.setText(resultado.getString(12));
-                TelaConsultaCliente.classi.updateUI();
-                TelaConsultaCliente.CEP.setText(resultado.getString(13));
-                TelaConsultaCliente.CEP.updateUI();
-                 TelaConsultaCliente.anamnse.setText(resultado.getString(14));
-                TelaConsultaCliente.anamnse.updateUI();
-                 TelaConsultaCliente.obss.setText(resultado.getString(15));
-                TelaConsultaCliente.obss.updateUI();
+                AlteracaoCliente.estado.setSelectedItem(resultado.getString(4));
+                AlteracaoCliente.estado.updateUI();
+                AlteracaoCliente.cpf.setText(resultado.getString(2));
+                AlteracaoCliente.cpf.updateUI();
+                AlteracaoCliente.nome.setText(resultado.getString(1));
+                AlteracaoCliente.nome.updateUI();
+                AlteracaoCliente.cidade.setSelectedItem(resultado.getString(3));
+                AlteracaoCliente.cidade.updateUI();
+                AlteracaoCliente.end.setText(resultado.getString(5));
+                AlteracaoCliente.end.updateUI();
+                AlteracaoCliente.datnas.setText(resultado.getString(6));
+                AlteracaoCliente.datnas.updateUI();
+                AlteracaoCliente.email.setText(resultado.getString(7));
+                AlteracaoCliente.email.updateUI();
+                AlteracaoCliente.tel.setText(resultado.getString(8));
+                AlteracaoCliente.tel.updateUI();
+                AlteracaoCliente.cate.setSelectedItem(resultado.getString(9));
+                AlteracaoCliente.cate.updateUI();
+                AlteracaoCliente.tipo.setSelectedItem(resultado.getString(11));
+                AlteracaoCliente.tipo.updateUI();
+                AlteracaoCliente.emp.setSelectedItem(resultado.getString(10));
+                AlteracaoCliente.emp.updateUI();
+                AlteracaoCliente.cla.setSelectedItem(resultado.getString(12));
+                AlteracaoCliente.cla.updateUI();
+                AlteracaoCliente.cep.setText(resultado.getString(13));
+                AlteracaoCliente.cep.updateUI();
+                AlteracaoCliente.ana.setText(resultado.getString(14));
+                AlteracaoCliente.ana.updateUI();
+                AlteracaoCliente.obs.setText(resultado.getString(15));
+                AlteracaoCliente.obs.updateUI();
+                AlteracaoCliente.gen.setSelectedItem(resultado.getString(16));
+                AlteracaoCliente.gen.updateUI();
+
             }
             banco.close();
 
@@ -127,7 +129,7 @@ public class conexao {
         String user = "postgres";
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
-        String a = (String) AlteracaoSenha.cpf.getText();
+        String a = (String) TelaAlteracaoSenha.cpf.getText();
         String sql = "select nomcli from cliente where cpf like '" + a + "';";
 
         try {
@@ -139,8 +141,8 @@ public class conexao {
 
             while (resultado.next()) {
 
-                AlteracaoSenha.nome.setText(resultado.getString(1));
-                AlteracaoSenha.nome.updateUI();
+                TelaAlteracaoSenha.nome.setText(resultado.getString(1));
+                TelaAlteracaoSenha.nome.updateUI();
 
             }
             banco.close();
@@ -165,8 +167,8 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-            String cpf = AlteracaoSenha.cpf.getText();
-            String sen = AlteracaoSenha.senha.getText();
+            String cpf = TelaAlteracaoSenha.cpf.getText();
+            String sen = TelaAlteracaoSenha.senha.getText();
 
             String Insert = "update cliente set senha =" + sen + " where codcli =( select codcli from cliente where cpf like '" + cpf + "');";
 
@@ -244,7 +246,7 @@ public class conexao {
             String ana = TelaCadastroCliente.ana.getText();
             String obs = TelaCadastroCliente.obs.getText();
 
-            String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like '" + empresa + "'),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "','"+ana+"','"+obs+"');";
+            String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like '" + empresa + "'),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "','" + ana + "','" + obs + "');";
 
             stmt.executeUpdate(Insert);
             JOptionPane.showMessageDialog(null, "Dados inseridos!");
@@ -483,7 +485,7 @@ public class conexao {
                             + "'" + dia + "',(select codagemc from agendamentomc where dia = '" + dia + "' and hormc like '" + hor + "'),null, 0);";
                     System.out.println(Insert);
                     stmt.executeUpdate(Insert);
-                    
+
                 } else {
                     String Insert = "insert into agendacliente values((select codcli from cliente where cpf like '" + cpf + "'), \n"
                             + "'" + dia + "',null,(select codagemf from agendamentomf where dia = '" + dia + "' and hormf like '" + hor + "',0));";
@@ -494,8 +496,8 @@ public class conexao {
             } else if (op == 2) {
 
                 String Delete = "delete from agendacliente where codcli= (select codcli from cliente where cpf like '" + cpf + "') \n"
-                        + "and dia='" + dia+ "';" ;
-                
+                        + "and dia='" + dia + "';";
+
                 stmt.executeUpdate(Delete);
             }
 
@@ -508,6 +510,187 @@ public class conexao {
             System.err.print(e.getMessage());
         }
     }
-    
 
+    public static void CidadeComboBoxConsultaCliente() {
+
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+        String a = (String) AlteracaoCliente.estado.getSelectedItem();
+        String sql = "select nomcid from cidade where codest = (select codest from estado where nomest like '" + a + "') order by nomcid";
+        try {
+            Connection con = DriverManager.getConnection(url, user, senha);
+            PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
+            banco.execute(); // cria o vetor
+
+            ResultSet resultado = banco.executeQuery();
+
+            while (resultado.next()) {
+                AlteracaoCliente.cidade.addItem(resultado.getString(1));
+                AlteracaoCliente.cidade.updateUI();
+
+            }
+            banco.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.out.println("o erro foi " + ex);
+        }
+    }
+
+    public static void CategoriaComboBoxConsultaCliente() {
+
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+        String sql = "select nomcat from categoria ";
+        try {
+            Connection con = DriverManager.getConnection(url, user, senha);
+            PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
+            banco.execute(); // cria o vetor
+
+            ResultSet resultado = banco.executeQuery();
+
+            while (resultado.next()) {
+                AlteracaoCliente.cate.addItem(resultado.getString(1));
+                AlteracaoCliente.cate.updateUI();
+
+            }
+            banco.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.out.println("o erro foi " + ex);
+        }
+    }
+
+    public static void EmpresaComboBoxConsultaCliente() {
+
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+        String sql = "select nomemp from empresa order by nomemp";
+        try {
+            Connection con = DriverManager.getConnection(url, user, senha);
+            PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
+            banco.execute(); // cria o vetor
+
+            ResultSet resultado = banco.executeQuery();
+
+            while (resultado.next()) {
+                AlteracaoCliente.emp.addItem(resultado.getString(1));
+                AlteracaoCliente.emp.updateUI();
+
+            }
+            banco.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.out.println("o erro foi " + ex);
+        }
+    }
+
+    public static void EstadoComboBoxConsultaCliente() {
+
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+        String sql = "select nomest from estado order by nomest";
+        try {
+            Connection con = DriverManager.getConnection(url, user, senha);
+            PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
+            banco.execute(); // cria o vetor
+
+            ResultSet resultado = banco.executeQuery();
+
+            while (resultado.next()) {
+                AlteracaoCliente.estado.addItem(resultado.getString(1));
+                AlteracaoCliente.estado.updateUI();
+
+            }
+            banco.close();
+            con.close();
+        } catch (SQLException ex) {
+            System.out.println("o erro foi " + ex);
+        }
+    }
+
+    public static void updateClientes() {
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+
+        try {
+            Class.forName(driver);
+            System.out.println("Driver carregado");
+            Connection con = null;
+            con = DriverManager.getConnection(url, user, senha);
+            System.out.println("Conexão realizada com sucesso.");
+
+            Statement stmt = con.createStatement();
+
+            String nome = AlteracaoCliente.nome.getText();
+            String cpf = AlteracaoCliente.cpf.getText();
+            String cep = AlteracaoCliente.cep.getText();
+            String datnas = AlteracaoCliente.datnas.getText();
+
+            String cidade = (String) AlteracaoCliente.cidade.getSelectedItem();
+            String tel = AlteracaoCliente.tel.getText();
+            String ana = AlteracaoCliente.ana.getText();
+            String end = AlteracaoCliente.end.getText();
+            String email = AlteracaoCliente.email.getText();
+            String tipo = (String) AlteracaoCliente.tipo.getSelectedItem();
+            String emp = (String) AlteracaoCliente.emp.getSelectedItem();
+            String cat = (String) AlteracaoCliente.cate.getSelectedItem();
+            String cla = (String) AlteracaoCliente.cla.getSelectedItem();
+            String obs = AlteracaoCliente.obs.getText();
+            String genero = (String) AlteracaoCliente.gen.getSelectedItem();
+
+            String Insert = "update cliente set nomcli = '" + nome + "', tipo = '" + tipo + "', email = '" + email + "', genero = '" + genero + "', classificacao = '" + cla + "', datnas = '" + datnas + "', celular = '" + tel + "', cep = '" + cep + "', endereco = '" + end + "', ana = '" + ana + "', obs = '" + obs + "', codcid = (select codcid from cidade where nomcid ilike '%" + cidade + "%'), codcat = (select codcat from categoria where nomcat ilike '%" + cat + "%'), codemp = (select codemp from empresa where nomemp ilike '" + emp + "') where codcli = (select codcli from cliente where cpf like '" + cpf + "');";
+            stmt.executeUpdate(Insert);
+
+            con.close();
+
+        } catch (ClassNotFoundException ex) {
+            System.err.print(ex.getMessage());
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+        }
+    }
+
+    public static void InsertEmpresaNovaConsulta() {
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+
+        try {
+            Class.forName(driver);
+            System.out.println("Driver carregado");
+            Connection con = null;
+            con = DriverManager.getConnection(url, user, senha);
+            System.out.println("Conexão realizada com sucesso.");
+
+            Statement stmt = con.createStatement();
+
+            String cnpj = AlteracaoCliente.cnpj.getText();
+            String nome = AlteracaoCliente.nomemp.getText();
+            String telefone = AlteracaoCliente.telemp.getText();
+
+            String Insert2 = "insert into empresa values ((select coalesce (max(codemp),0)+1 from empresa), '" + nome + "', '" + telefone + "', '" + cnpj + "')";
+
+            stmt.executeUpdate(Insert2);
+
+            JOptionPane.showMessageDialog(null, "Dados inseridos!");
+
+            con.close();
+
+        } catch (ClassNotFoundException ex) {
+            System.err.print(ex.getMessage());
+        } catch (SQLException e) {
+            System.err.print(e.getMessage());
+        }
+    }
 }

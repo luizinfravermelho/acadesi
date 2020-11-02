@@ -132,6 +132,11 @@ public class Inicial extends javax.swing.JFrame {
         jMenu4.add(jMenuAltCli);
 
         jMenuAltSen.setText("Alterar Senha");
+        jMenuAltSen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAltSenActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuAltSen);
 
         jMenuBar2.add(jMenu4);
@@ -228,6 +233,21 @@ public class Inicial extends javax.swing.JFrame {
         new Login().setVisible(true);
     }//GEN-LAST:event_jMenuSairActionPerformed
 
+    private void jMenuAltSenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAltSenActionPerformed
+      jDesktopPane1.removeAll();
+        TelaAlteracaoSenha obj = new TelaAlteracaoSenha();
+        jDesktopPane1.add(obj);
+        obj.setVisible(true);
+        obj.moveToFront();
+
+        try {
+            obj.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+        }
+        
+        
+    }//GEN-LAST:event_jMenuAltSenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -267,7 +287,7 @@ public class Inicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    public static javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
