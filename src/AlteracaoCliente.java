@@ -53,6 +53,7 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
         obs.setEnabled(false);
         botao.setVisible(false);
         end.setEnabled(false);
+        addemp.setEnabled(false);
 
     }
 
@@ -96,7 +97,6 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
         estado = new javax.swing.JComboBox();
         cidade = new javax.swing.JComboBox();
         cep = new javax.swing.JFormattedTextField();
-        ana = new javax.swing.JFormattedTextField();
         tel = new javax.swing.JFormattedTextField();
         email = new javax.swing.JTextField();
         tipo = new javax.swing.JComboBox();
@@ -110,6 +110,7 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
         end = new javax.swing.JTextField();
         gen = new javax.swing.JComboBox();
         addemp = new javax.swing.JButton();
+        ana = new javax.swing.JFormattedTextField();
 
         jDialog1.setMinimumSize(new java.awt.Dimension(400, 400));
 
@@ -308,12 +309,6 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
         }
 
         try {
-            ana.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
             tel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
@@ -333,7 +328,7 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
         });
 
         try {
-            datnas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+            datnas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -360,6 +355,12 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
         addemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addempActionPerformed(evt);
+            }
+        });
+
+        ana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anaActionPerformed(evt);
             }
         });
 
@@ -393,8 +394,8 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
                                 .addComponent(cep, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(end, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(gen, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ana, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)))
+                                .addComponent(ana, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(gen, javax.swing.GroupLayout.Alignment.LEADING, 0, 191, Short.MAX_VALUE)))
                         .addGap(202, 202, 202)
                         .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(oLayout.createSequentialGroup()
@@ -485,6 +486,9 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
                         .addComponent(cla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(oLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(oLayout.createSequentialGroup()
                         .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(oLayout.createSequentialGroup()
                                 .addGap(37, 37, 37)
@@ -497,11 +501,8 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
                         .addGap(34, 34, 34)
                         .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(ana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(oLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                            .addComponent(ana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(gen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -521,7 +522,7 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(o, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+                .addComponent(o, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -530,7 +531,7 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
 
     private void estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoActionPerformed
         // TODO add your handling code here:
-conexao.CidadeComboBoxConsultaCliente();
+        conexao.CidadeComboBoxConsultaCliente();
     }//GEN-LAST:event_estadoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -552,15 +553,14 @@ conexao.CidadeComboBoxConsultaCliente();
         obs.setEnabled(true);
         end.setEnabled(true);
         botao.setVisible(true);
-        
+        addemp.setEnabled(true);
+
         cidade.removeAllItems();
         cate.removeAllItems();
         emp.removeAllItems();
 
-       
         conexao.EmpresaComboBoxConsultaCliente();
         conexao.CategoriaComboBoxConsultaCliente();
-        
 
         conexao.PesquisaCliente();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -585,27 +585,29 @@ conexao.CidadeComboBoxConsultaCliente();
         cla.setEnabled(false);
         obs.setEnabled(false);
         gen.setEnabled(false);
-
+        addemp.setEnabled(false);
         botao.setVisible(false);
 
 
     }//GEN-LAST:event_botaoActionPerformed
 
     private void addempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addempActionPerformed
-       emp.removeAllItems();
-      jDialog1.setVisible(true);
-       jDialog1.setLocationRelativeTo(null);
+        emp.removeAllItems();
+        jDialog1.setVisible(true);
+        jDialog1.setLocationRelativeTo(null);
     }//GEN-LAST:event_addempActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      conexao.InsertEmpresaNovaConsulta();
-      conexao.EmpresaComboBoxConsultaCliente();
-      jDialog1.setVisible(false);
-      
-      
-      
-      
+        conexao.InsertEmpresaNovaConsulta();
+        conexao.EmpresaComboBoxConsultaCliente();
+        jDialog1.setVisible(false);
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void anaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -71,7 +71,7 @@ public class conexao {
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
         String cod = (String) TelaConsultaCliente.cod;
-        String sql = "select a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.datnas, a.email, a.celular, d.nomcat, e.nomemp, a.tipo, a.classificacao, a.cep, a.ana, a.obs, a.genero from cliente a, cidade b, estado c, categoria d, empresa e where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codemp = e.codemp and a.codcli = (select codcli from cliente where cpf like '" + cod + "');";
+        String sql = "select to_char (a.ana, 'DD/MM/YYYY') as ana, to_char (a.datnas, 'DD/MM/YYYY') as datnas,  a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.email, a.celular, d.nomcat, e.nomemp, a.tipo, a.classificacao, a.cep,  a.obs, a.genero from cliente a, cidade b, estado c, categoria d, empresa e where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codemp = e.codemp and a.codcli = (select codcli from cliente where cpf like '"+cod+"');";
 
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
@@ -81,34 +81,34 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                AlteracaoCliente.estado.setSelectedItem(resultado.getString(4));
+                AlteracaoCliente.estado.setSelectedItem(resultado.getString(6));
                 AlteracaoCliente.estado.updateUI();
-                AlteracaoCliente.cpf.setText(resultado.getString(2));
+                AlteracaoCliente.cpf.setText(resultado.getString(4));
                 AlteracaoCliente.cpf.updateUI();
-                AlteracaoCliente.nome.setText(resultado.getString(1));
+                AlteracaoCliente.nome.setText(resultado.getString(3));//ok
                 AlteracaoCliente.nome.updateUI();
-                AlteracaoCliente.cidade.setSelectedItem(resultado.getString(3));
+                AlteracaoCliente.cidade.setSelectedItem(resultado.getString(5));
                 AlteracaoCliente.cidade.updateUI();
-                AlteracaoCliente.end.setText(resultado.getString(5));
+                AlteracaoCliente.end.setText(resultado.getString(7));
                 AlteracaoCliente.end.updateUI();
-                AlteracaoCliente.datnas.setText(resultado.getString(6));
-                AlteracaoCliente.datnas.updateUI();
-                AlteracaoCliente.email.setText(resultado.getString(7));
+                AlteracaoCliente.datnas.setText(resultado.getString(2));//ok
+                AlteracaoCliente.datnas.updateUI();//ok
+                AlteracaoCliente.email.setText(resultado.getString(8));
                 AlteracaoCliente.email.updateUI();
-                AlteracaoCliente.tel.setText(resultado.getString(8));
+                AlteracaoCliente.tel.setText(resultado.getString(9));
                 AlteracaoCliente.tel.updateUI();
-                AlteracaoCliente.cate.setSelectedItem(resultado.getString(9));
+                AlteracaoCliente.cate.setSelectedItem(resultado.getString(10));
                 AlteracaoCliente.cate.updateUI();
-                AlteracaoCliente.tipo.setSelectedItem(resultado.getString(11));
+                AlteracaoCliente.tipo.setSelectedItem(resultado.getString(12));
                 AlteracaoCliente.tipo.updateUI();
-                AlteracaoCliente.emp.setSelectedItem(resultado.getString(10));
+                AlteracaoCliente.emp.setSelectedItem(resultado.getString(11));
                 AlteracaoCliente.emp.updateUI();
-                AlteracaoCliente.cla.setSelectedItem(resultado.getString(12));
+                AlteracaoCliente.cla.setSelectedItem(resultado.getString(13));
                 AlteracaoCliente.cla.updateUI();
-                AlteracaoCliente.cep.setText(resultado.getString(13));
+                AlteracaoCliente.cep.setText(resultado.getString(14));
                 AlteracaoCliente.cep.updateUI();
-                AlteracaoCliente.ana.setText(resultado.getString(14));
-                AlteracaoCliente.ana.updateUI();
+                AlteracaoCliente.ana.setText(resultado.getString(1));//ok
+                AlteracaoCliente.ana.updateUI();//ok
                 AlteracaoCliente.obs.setText(resultado.getString(15));
                 AlteracaoCliente.obs.updateUI();
                 AlteracaoCliente.gen.setSelectedItem(resultado.getString(16));
@@ -246,10 +246,12 @@ public class conexao {
             String ana = TelaCadastroCliente.ana.getText();
             String obs = TelaCadastroCliente.obs.getText();
 
-            String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like '" + empresa + "'),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + ", " + bairro + ", " + numero + ", " + complemento + "','" + ana + "','" + obs + "');";
+            String Insert = "insert into cliente values ((select coalesce (max(codcli),0)+1 from cliente),(select codcid from cidade where nomcid like'" + cidade + "'),(select codcat from categoria where nomcat like '" + categoria + "'),(select codemp from empresa where nomemp like '" + empresa + "'),'" + cpf + "','" + tipo + "','" + nome + "','" + dia + "/" + mes + "/" + ano + "','" + genero + "','" + classificacao + "','" + email + "','" + telefone + "'," + bla + ",'" + cep + "','" + rua + "," + bairro + "," + numero + "," + complemento + "','" + ana + "','" + obs + "');";
+            System.out.println(Insert);
 
             stmt.executeUpdate(Insert);
             JOptionPane.showMessageDialog(null, "Dados inseridos!");
+            
 
             con.close();
 

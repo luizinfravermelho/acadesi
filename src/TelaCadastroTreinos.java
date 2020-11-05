@@ -456,11 +456,11 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         jPanel2.setMinimumSize(new java.awt.Dimension(474, 600));
 
         JDqtdpes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        JDqtdpes.setForeground(new java.awt.Color(50, 194, 128));
+        JDqtdpes.setForeground(new java.awt.Color(9, 82, 82));
         JDqtdpes.setText("Label");
 
         JDcat.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        JDcat.setForeground(new java.awt.Color(50, 194, 128));
+        JDcat.setForeground(new java.awt.Color(9, 82, 82));
         JDcat.setText("Label");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -481,17 +481,19 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
         jTable2.setGridColor(new java.awt.Color(255, 255, 255));
         jTable2.setRowHeight(22);
+        jTable2.setSelectionBackground(new java.awt.Color(9, 82, 82));
         jScrollPane2.setViewportView(jTable2);
 
         JDdia.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        JDdia.setForeground(new java.awt.Color(50, 194, 128));
+        JDdia.setForeground(new java.awt.Color(9, 82, 82));
         JDdia.setText("Label");
 
         JDhor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        JDhor.setForeground(new java.awt.Color(50, 194, 128));
+        JDhor.setForeground(new java.awt.Color(9, 82, 82));
         JDhor.setText("Label");
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(9, 82, 82));
         jButton3.setText("Adicionar aluno");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -500,6 +502,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(9, 82, 82));
         jButton4.setText("Remover aluno");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -592,6 +595,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
         jTable3.setGridColor(new java.awt.Color(255, 255, 255));
         jTable3.setRowHeight(24);
+        jTable3.setSelectionBackground(new java.awt.Color(9, 82, 82));
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable3MouseClicked(evt);
@@ -600,6 +604,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(jTable3);
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(9, 82, 82));
         jButton6.setText("Adicionar horário");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -608,6 +613,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(9, 82, 82));
         jButton7.setText("Remover horário");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -616,7 +622,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         jLabelCategoria4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabelCategoria4.setForeground(new java.awt.Color(50, 194, 128));
+        jLabelCategoria4.setForeground(new java.awt.Color(9, 82, 82));
         jLabelCategoria4.setText("Sala:");
 
         jComboBoxDialogHorario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -629,10 +635,11 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel3.setForeground(new java.awt.Color(9, 82, 82));
         jLabel3.setText("Horário Inicial");
 
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(9, 82, 82));
         jButton8.setText("Alterar horário");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -653,7 +660,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         }
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel5.setForeground(new java.awt.Color(9, 82, 82));
         jLabel5.setText("Horário Final");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
