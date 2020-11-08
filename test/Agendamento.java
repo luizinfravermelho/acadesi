@@ -403,7 +403,7 @@ public class Agendamento extends javax.swing.JFrame {
 
         //conexao.categoriaCliente();
         this.setLocationRelativeTo(null); //Centraliza o JFrame
-        conexao.dataComboBoxAgendamento(); //Pega as datas da semana
+//        conexao.dataComboBoxAgendamento(); //Pega as datas da semana
         sair.setText("<HTML><U>Sair</U></HTML>"); //Sublinha a label de sair
 
     }//GEN-LAST:event_formWindowOpened
@@ -479,7 +479,7 @@ public class Agendamento extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        conexao.insertAgendamento(); //Insere o agendamento no BD
+//        conexao.insertAgendamento(); //Insere o agendamento no BD
         //cod.setText(""); //Limpa o campo código
         dia.setText(""); //Limpa o campo dia
         hor.setText(""); //Limpa o campo horário

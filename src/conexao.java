@@ -81,38 +81,38 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                AlteracaoCliente.estado.setSelectedItem(resultado.getString(6));
-                AlteracaoCliente.estado.updateUI();
-                AlteracaoCliente.cpf.setText(resultado.getString(4));
-                AlteracaoCliente.cpf.updateUI();
-                AlteracaoCliente.nome.setText(resultado.getString(3));//ok
-                AlteracaoCliente.nome.updateUI();
-                AlteracaoCliente.cidade.setSelectedItem(resultado.getString(5));
-                AlteracaoCliente.cidade.updateUI();
-                AlteracaoCliente.end.setText(resultado.getString(7));
-                AlteracaoCliente.end.updateUI();
-                AlteracaoCliente.datnas.setText(resultado.getString(2));//ok
-                AlteracaoCliente.datnas.updateUI();//ok
-                AlteracaoCliente.email.setText(resultado.getString(8));
-                AlteracaoCliente.email.updateUI();
-                AlteracaoCliente.tel.setText(resultado.getString(9));
-                AlteracaoCliente.tel.updateUI();
-                AlteracaoCliente.cate.setSelectedItem(resultado.getString(10));
-                AlteracaoCliente.cate.updateUI();
-                AlteracaoCliente.tipo.setSelectedItem(resultado.getString(12));
-                AlteracaoCliente.tipo.updateUI();
-                AlteracaoCliente.emp.setSelectedItem(resultado.getString(11));
-                AlteracaoCliente.emp.updateUI();
-                AlteracaoCliente.cla.setSelectedItem(resultado.getString(13));
-                AlteracaoCliente.cla.updateUI();
-                AlteracaoCliente.cep.setText(resultado.getString(14));
-                AlteracaoCliente.cep.updateUI();
-                AlteracaoCliente.ana.setText(resultado.getString(1));//ok
-                AlteracaoCliente.ana.updateUI();//ok
-                AlteracaoCliente.obs.setText(resultado.getString(15));
-                AlteracaoCliente.obs.updateUI();
-                AlteracaoCliente.gen.setSelectedItem(resultado.getString(16));
-                AlteracaoCliente.gen.updateUI();
+                TelaAlteracaoCliente.estado.setSelectedItem(resultado.getString(6));
+                TelaAlteracaoCliente.estado.updateUI();
+                TelaAlteracaoCliente.cpf.setText(resultado.getString(4));
+                TelaAlteracaoCliente.cpf.updateUI();
+                TelaAlteracaoCliente.nome.setText(resultado.getString(3));//ok
+                TelaAlteracaoCliente.nome.updateUI();
+                TelaAlteracaoCliente.cidade.setSelectedItem(resultado.getString(5));
+                TelaAlteracaoCliente.cidade.updateUI();
+                TelaAlteracaoCliente.end.setText(resultado.getString(7));
+                TelaAlteracaoCliente.end.updateUI();
+                TelaAlteracaoCliente.datnas.setText(resultado.getString(2));//ok
+                TelaAlteracaoCliente.datnas.updateUI();//ok
+                TelaAlteracaoCliente.email.setText(resultado.getString(8));
+                TelaAlteracaoCliente.email.updateUI();
+                TelaAlteracaoCliente.tel.setText(resultado.getString(9));
+                TelaAlteracaoCliente.tel.updateUI();
+                TelaAlteracaoCliente.cate.setSelectedItem(resultado.getString(10));
+                TelaAlteracaoCliente.cate.updateUI();
+                TelaAlteracaoCliente.tipo.setSelectedItem(resultado.getString(12));
+                TelaAlteracaoCliente.tipo.updateUI();
+                TelaAlteracaoCliente.emp.setSelectedItem(resultado.getString(11));
+                TelaAlteracaoCliente.emp.updateUI();
+                TelaAlteracaoCliente.cla.setSelectedItem(resultado.getString(13));
+                TelaAlteracaoCliente.cla.updateUI();
+                TelaAlteracaoCliente.cep.setText(resultado.getString(14));
+                TelaAlteracaoCliente.cep.updateUI();
+                TelaAlteracaoCliente.ana.setText(resultado.getString(1));//ok
+                TelaAlteracaoCliente.ana.updateUI();//ok
+                TelaAlteracaoCliente.obs.setText(resultado.getString(15));
+                TelaAlteracaoCliente.obs.updateUI();
+                TelaAlteracaoCliente.gen.setSelectedItem(resultado.getString(16));
+                TelaAlteracaoCliente.gen.updateUI();
 
             }
             banco.close();
@@ -347,11 +347,11 @@ public class conexao {
 
                 if (categoria == "Musculação") {
                     String Insert = "insert into agendamentomc values ((select coalesce (max(codagemc),0)+1 from agendamentomc), \n"
-                            + "'" + Hor + "',1,1,'" + dia + "',15);";
+                            + "'" + Hor + "',1,1,'" + dia + "',25);";
                     stmt.executeUpdate(Insert);
                 } else {
                     String Insert = "insert into agendamentomf values ((select coalesce (max(codagemf),0)+1 from agendamentomf), \n"
-                            + "'" + Hor + "',(select codcat from categoria where nomcat ilike '" + categoria + "'),1,'" + dia + "',15);";
+                            + "'" + Hor + "',(select codcat from categoria where nomcat ilike '" + categoria + "'),1,'" + dia + "',12);";
                     stmt.executeUpdate(Insert);
                 }
             }
@@ -386,6 +386,7 @@ public class conexao {
 
             if (dia == null) {
                 JOptionPane.showMessageDialog(null, "Selecione um dia!");
+                
 
             } else {
 
@@ -484,15 +485,16 @@ public class conexao {
             if (op == 1) {
                 if (categoria == "Musculação") {
                     String Insert = "insert into agendacliente values((select codcli from cliente where cpf like '" + cpf + "'), \n"
-                            + "'" + dia + "',(select codagemc from agendamentomc where dia = '" + dia + "' and hormc like '" + hor + "'),null, 0);";
+                            + "'" + dia + "',null,(select codagemc from agendamentomc where dia = '" + dia + "' and hormc like '" + hor + "'), 0);";
                     System.out.println(Insert);
                     stmt.executeUpdate(Insert);
 
                 } else {
                     String Insert = "insert into agendacliente values((select codcli from cliente where cpf like '" + cpf + "'), \n"
-                            + "'" + dia + "',null,(select codagemf from agendamentomf where dia = '" + dia + "' and hormf like '" + hor + "',0));";
-                    stmt.executeUpdate(Insert);
+                            + "'" + dia + "',(select codagemf from agendamentomf where dia = '" + dia + "' and hormf like '" + hor + "'),null,0);";
                     System.out.println(Insert);
+                    stmt.executeUpdate(Insert);
+                    
                 }
 
             } else if (op == 2) {
@@ -519,7 +521,7 @@ public class conexao {
         String user = "postgres";
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
-        String a = (String) AlteracaoCliente.estado.getSelectedItem();
+        String a = (String) TelaAlteracaoCliente.estado.getSelectedItem();
         String sql = "select nomcid from cidade where codest = (select codest from estado where nomest like '" + a + "') order by nomcid";
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
@@ -529,8 +531,8 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                AlteracaoCliente.cidade.addItem(resultado.getString(1));
-                AlteracaoCliente.cidade.updateUI();
+                TelaAlteracaoCliente.cidade.addItem(resultado.getString(1));
+                TelaAlteracaoCliente.cidade.updateUI();
 
             }
             banco.close();
@@ -555,8 +557,8 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                AlteracaoCliente.cate.addItem(resultado.getString(1));
-                AlteracaoCliente.cate.updateUI();
+                TelaAlteracaoCliente.cate.addItem(resultado.getString(1));
+                TelaAlteracaoCliente.cate.updateUI();
 
             }
             banco.close();
@@ -581,8 +583,8 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                AlteracaoCliente.emp.addItem(resultado.getString(1));
-                AlteracaoCliente.emp.updateUI();
+                TelaAlteracaoCliente.emp.addItem(resultado.getString(1));
+                TelaAlteracaoCliente.emp.updateUI();
 
             }
             banco.close();
@@ -607,8 +609,8 @@ public class conexao {
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-                AlteracaoCliente.estado.addItem(resultado.getString(1));
-                AlteracaoCliente.estado.updateUI();
+                TelaAlteracaoCliente.estado.addItem(resultado.getString(1));
+                TelaAlteracaoCliente.estado.updateUI();
 
             }
             banco.close();
@@ -633,22 +635,22 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-            String nome = AlteracaoCliente.nome.getText();
-            String cpf = AlteracaoCliente.cpf.getText();
-            String cep = AlteracaoCliente.cep.getText();
-            String datnas = AlteracaoCliente.datnas.getText();
+            String nome = TelaAlteracaoCliente.nome.getText();
+            String cpf = TelaAlteracaoCliente.cpf.getText();
+            String cep = TelaAlteracaoCliente.cep.getText();
+            String datnas = TelaAlteracaoCliente.datnas.getText();
 
-            String cidade = (String) AlteracaoCliente.cidade.getSelectedItem();
-            String tel = AlteracaoCliente.tel.getText();
-            String ana = AlteracaoCliente.ana.getText();
-            String end = AlteracaoCliente.end.getText();
-            String email = AlteracaoCliente.email.getText();
-            String tipo = (String) AlteracaoCliente.tipo.getSelectedItem();
-            String emp = (String) AlteracaoCliente.emp.getSelectedItem();
-            String cat = (String) AlteracaoCliente.cate.getSelectedItem();
-            String cla = (String) AlteracaoCliente.cla.getSelectedItem();
-            String obs = AlteracaoCliente.obs.getText();
-            String genero = (String) AlteracaoCliente.gen.getSelectedItem();
+            String cidade = (String) TelaAlteracaoCliente.cidade.getSelectedItem();
+            String tel = TelaAlteracaoCliente.tel.getText();
+            String ana = TelaAlteracaoCliente.ana.getText();
+            String end = TelaAlteracaoCliente.end.getText();
+            String email = TelaAlteracaoCliente.email.getText();
+            String tipo = (String) TelaAlteracaoCliente.tipo.getSelectedItem();
+            String emp = (String) TelaAlteracaoCliente.emp.getSelectedItem();
+            String cat = (String) TelaAlteracaoCliente.cate.getSelectedItem();
+            String cla = (String) TelaAlteracaoCliente.cla.getSelectedItem();
+            String obs = TelaAlteracaoCliente.obs.getText();
+            String genero = (String) TelaAlteracaoCliente.gen.getSelectedItem();
 
             String Insert = "update cliente set nomcli = '" + nome + "', tipo = '" + tipo + "', email = '" + email + "', genero = '" + genero + "', classificacao = '" + cla + "', datnas = '" + datnas + "', celular = '" + tel + "', cep = '" + cep + "', endereco = '" + end + "', ana = '" + ana + "', obs = '" + obs + "', codcid = (select codcid from cidade where nomcid ilike '%" + cidade + "%'), codcat = (select codcat from categoria where nomcat ilike '%" + cat + "%'), codemp = (select codemp from empresa where nomemp ilike '" + emp + "') where codcli = (select codcli from cliente where cpf like '" + cpf + "');";
             stmt.executeUpdate(Insert);
@@ -677,9 +679,9 @@ public class conexao {
 
             Statement stmt = con.createStatement();
 
-            String cnpj = AlteracaoCliente.cnpj.getText();
-            String nome = AlteracaoCliente.nomemp.getText();
-            String telefone = AlteracaoCliente.telemp.getText();
+            String cnpj = TelaAlteracaoCliente.cnpj.getText();
+            String nome = TelaAlteracaoCliente.nomemp.getText();
+            String telefone = TelaAlteracaoCliente.telemp.getText();
 
             String Insert2 = "insert into empresa values ((select coalesce (max(codemp),0)+1 from empresa), '" + nome + "', '" + telefone + "', '" + cnpj + "')";
 

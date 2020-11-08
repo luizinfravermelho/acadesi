@@ -1,10 +1,13 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
-public class AlteracaoCliente extends javax.swing.JInternalFrame {
+public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
 
     private void pegarResolucao() {
         //Faz a tela pegar o tamanho inteiro 
@@ -24,7 +27,49 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
         UIManager.put("nimbusInfoBlue", new Color(9, 82, 82)); //Define a cor das seleções
     }
 
-    public AlteracaoCliente() {
+    public boolean data(String dataa, String datab) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            sdf.setLenient(false);
+            sdf.parse(dataa);
+            sdf.parse(datab);
+
+            conexao.updateClientes();
+            conexao.PesquisaCliente();
+            nome.setEnabled(false);
+            cpf.setEnabled(false);
+            cep.setEnabled(false);
+            end.setEnabled(false);
+            datnas.setEnabled(false);
+            email.setEnabled(false);
+            estado.setEnabled(false);
+            cidade.setEnabled(false);
+            ana.setEnabled(false);
+            tel.setEnabled(false);
+            tipo.setEnabled(false);
+            cate.setEnabled(false);
+            emp.setEnabled(false);
+            cla.setEnabled(false);
+            obs.setEnabled(false);
+            gen.setEnabled(false);
+            addemp.setEnabled(false);
+            botao.setVisible(false);
+
+            //System.out.println(jTable1.getColumnCount());
+            return true;
+        } catch (ParseException ex) {
+            //se algum passo dentro do "try" der errado quer dizer que sua data é falsa, então,
+            //retorna falso
+         //   datnas.setText(null);
+          //  ana.setText(null);
+            JOptionPane.showMessageDialog(null, "Insira um valor de data válido");
+
+            return false;
+
+        }
+    }
+
+    public TelaAlteracaoCliente() {
         initComponents();
         pegarResolucao();
         cidade.removeAllItems();
@@ -318,8 +363,9 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
 
         cla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Colaborador FIESC", "Comunidade", "Convenio", "Industria", "Industria associada" }));
 
+        botao.setBackground(new java.awt.Color(9, 82, 82));
         botao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        botao.setForeground(new java.awt.Color(9, 82, 82));
+        botao.setForeground(new java.awt.Color(255, 255, 255));
         botao.setText("Salvar");
         botao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -333,8 +379,9 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        jButton2.setBackground(new java.awt.Color(9, 82, 82));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(9, 82, 82));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Editar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -358,11 +405,11 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
             }
         });
 
-        ana.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                anaActionPerformed(evt);
-            }
-        });
+        try {
+            ana.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout oLayout = new javax.swing.GroupLayout(o);
         o.setLayout(oLayout);
@@ -393,9 +440,8 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
                                 .addComponent(cidade, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cep, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(end, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(ana, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(gen, javax.swing.GroupLayout.Alignment.LEADING, 0, 191, Short.MAX_VALUE)))
+                            .addComponent(gen, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ana, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(202, 202, 202)
                         .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(oLayout.createSequentialGroup()
@@ -417,20 +463,21 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
                                     .addComponent(bla)
                                     .addComponent(jLabel14))
                                 .addGap(52, 52, 52)
-                                .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                                        .addComponent(cla, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(oLayout.createSequentialGroup()
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(botao, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane2)
-                                    .addComponent(cla, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(botao, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(18, 18, 18)
                         .addComponent(addemp))
                     .addGroup(oLayout.createSequentialGroup()
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(221, 221, 221)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel18)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(oLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator2)
@@ -487,7 +534,12 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
                 .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(oLayout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton2)
+                            .addComponent(botao))
+                        .addContainerGap(69, Short.MAX_VALUE))
                     .addGroup(oLayout.createSequentialGroup()
                         .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(oLayout.createSequentialGroup()
@@ -501,28 +553,27 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
                         .addGap(34, 34, 34)
                         .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(ana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(gen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                            .addComponent(ana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(oLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(gen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(o, javax.swing.GroupLayout.DEFAULT_SIZE, 1151, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(o, javax.swing.GroupLayout.DEFAULT_SIZE, 1151, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(o, javax.swing.GroupLayout.DEFAULT_SIZE, 685, Short.MAX_VALUE)
+                .addComponent(o, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -535,7 +586,7 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_estadoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+
         nome.setEnabled(true);
         cpf.setEnabled(true);
         cep.setEnabled(true);
@@ -566,27 +617,7 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void botaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoActionPerformed
-        // TODO add your handling code here:
-        conexao.updateClientes();
-        conexao.PesquisaCliente();
-        nome.setEnabled(false);
-        cpf.setEnabled(false);
-        cep.setEnabled(false);
-        end.setEnabled(false);
-        datnas.setEnabled(false);
-        email.setEnabled(false);
-        estado.setEnabled(false);
-        cidade.setEnabled(false);
-        ana.setEnabled(false);
-        tel.setEnabled(false);
-        tipo.setEnabled(false);
-        cate.setEnabled(false);
-        emp.setEnabled(false);
-        cla.setEnabled(false);
-        obs.setEnabled(false);
-        gen.setEnabled(false);
-        addemp.setEnabled(false);
-        botao.setVisible(false);
+        this.data(datnas.getText(), ana.getText());
 
 
     }//GEN-LAST:event_botaoActionPerformed
@@ -604,10 +635,6 @@ public class AlteracaoCliente extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void anaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_anaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

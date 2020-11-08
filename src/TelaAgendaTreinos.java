@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -26,8 +25,8 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
         setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         BasicInternalFrameUI bi = (BasicInternalFrameUI) this.getUI();
         bi.setNorthPane(null); //retirar o painel superior janela.setBorder(null);//retirar bordas
-       
-         //Define a cor verde para os padrões
+
+        //Define a cor verde para os padrões
         UIManager.put("nimbusSelectionBackground", new Color(9, 82, 82));//define a cor dos menus da CB
         UIManager.put("nimbusFocus", new Color(9, 82, 82)); //Define a cor das seleções
         UIManager.put("nimbusSelection", new Color(9, 82, 82)); //Define a cor das seleções
@@ -158,7 +157,7 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
                             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                             model.fireTableStructureChanged();
                         }
-                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario, (15-a.qtdpesmf)||'/15' as pessoas, c.nomcat as categoria \n"
+                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario, (25-a.qtdpesmf)||'/25' as pessoas, c.nomcat as categoria \n"
                                 + "from agendamentomf a, horariomf b, categoria c\n"
                                 + "where a.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) and a.codcat = c.codcat\n"
                                 + "and a.dia >='" + data + "'\n"
@@ -169,7 +168,7 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
                             jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
                         }
 
-                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario, (15-a.qtdpesmf)||'/15' as pessoas, c.nomcat as categoria \n"
+                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario, (12-a.qtdpesmf)||'/12' as pessoas, c.nomcat as categoria \n"
                                 + "from agendamentomf a, horariomf b, categoria c\n"
                                 + "where a.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) and a.codcat = c.codcat\n"
                                 + "and a.dia >='" + data + "'\n"
@@ -197,8 +196,6 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
     public TelaAgendaTreinos() {
         initComponents();
         pegarResolucao();
-        
-       
 
         //Remove a coluna extra
         if (jTable1.getColumnCount() == 4) {
@@ -650,7 +647,6 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
 
         } else if (jComboBoxSala.getSelectedItem().equals("Multifuncional")) {
             jComboBox3.removeAllItems();
-            jComboBox3.addItem("Conv. Bem estar");
             jComboBox3.addItem("Funcional");
             jComboBox3.addItem("Pilates");
             jComboBox3.addItem("Yoga");
@@ -707,10 +703,20 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (JDcat.getText().equals("Musculação")) {
-            PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=1 or codcat=6");
+            if(JDhor.getText().equals("06:30 - 07:15") || JDhor.getText().equals("07:30 - 08:15")){
+                PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=1 or codcat=2 or codcat=7");
+            }
+            else{
+                PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=1 or codcat=7");
+            }
         } else {
-            PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=6 or codcat=(select codcat from categoria where nomcat like '" + JDcat.getText() + "');");
-        }
+            if(JDcat.getText().equals("Pilates") || JDcat.getText().equals("Funcional")){
+                PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=7 or codcat=(select codcat from categoria where nomcat ilike 'Ginástica') or codcat=(select codcat from categoria where nomcat like '" + JDcat.getText() + "');");
+            }
+            else{
+                PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=7 or codcat=(select codcat from categoria where nomcat like '" + JDcat.getText() + "');");
+            }
+            }
 
         jDialog2.setVisible(true);
         jDialog2.setLocationRelativeTo(null);
@@ -756,6 +762,7 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
             String cpf = (model.getValueAt(selectedRow, 1).toString());
 
             conexao.AgendaAlunosIDA(cpf, JDdia.getText(), JDhor.getText(), 1);
+            System.out.println(JDcat.getText());
 
             if (jComboBox3.getSelectedItem().equals("Musculação")) {
                 this.PopularJTableDialog("select a.nomcli, a.cpf, a.celular \n"

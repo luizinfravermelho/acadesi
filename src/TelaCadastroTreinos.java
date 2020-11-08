@@ -356,6 +356,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         UIManager.put("nimbusSelection", new Color(9, 82, 82)); //Define a cor das seleções
         UIManager.put("nimbusInfoBlue", new Color(9, 82, 82)); //Define a cor das seleções
        
+        jButton1.setVisible(false);
         Hor1.setVisible(false);
         Hor2.setVisible(false);
         Hor3.setVisible(false);
@@ -603,8 +604,9 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(jTable3);
 
+        jButton6.setBackground(new java.awt.Color(9, 82, 82));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(9, 82, 82));
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Adicionar horário");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -612,8 +614,9 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton7.setBackground(new java.awt.Color(9, 82, 82));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton7.setForeground(new java.awt.Color(9, 82, 82));
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Remover horário");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -638,8 +641,9 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         jLabel3.setForeground(new java.awt.Color(9, 82, 82));
         jLabel3.setText("Horário Inicial");
 
+        jButton8.setBackground(new java.awt.Color(9, 82, 82));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton8.setForeground(new java.awt.Color(9, 82, 82));
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Alterar horário");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -859,6 +863,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         Hor14.setBackground(new java.awt.Color(255, 255, 255));
+        Hor14.setForeground(new java.awt.Color(9, 82, 82));
         Hor14.setText("a");
         Hor14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -867,6 +872,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         Hor13.setBackground(new java.awt.Color(255, 255, 255));
+        Hor13.setForeground(new java.awt.Color(9, 82, 82));
         Hor13.setText("a");
         Hor13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -875,6 +881,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         Hor12.setBackground(new java.awt.Color(255, 255, 255));
+        Hor12.setForeground(new java.awt.Color(9, 82, 82));
         Hor12.setText("a");
         Hor12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -883,6 +890,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         Hor11.setBackground(new java.awt.Color(255, 255, 255));
+        Hor11.setForeground(new java.awt.Color(9, 82, 82));
         Hor11.setText("a");
         Hor11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -891,6 +899,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         Hor10.setBackground(new java.awt.Color(255, 255, 255));
+        Hor10.setForeground(new java.awt.Color(9, 82, 82));
         Hor10.setText("a");
         Hor10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -899,6 +908,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         Hor9.setBackground(new java.awt.Color(255, 255, 255));
+        Hor9.setForeground(new java.awt.Color(9, 82, 82));
         Hor9.setText("a");
         Hor9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -907,6 +917,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
         });
 
         Hor8.setBackground(new java.awt.Color(255, 255, 255));
+        Hor8.setForeground(new java.awt.Color(9, 82, 82));
         Hor8.setText("a");
         Hor8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1080,7 +1091,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
             jButton1.setVisible(false);
             jComboBox3.addItem("Musculação");
             this.LimpaHoras();
-            jComboBox3.removeItem("Conv. Bem estar");
+           
             jComboBox3.removeItem("Funcional");
             jComboBox3.removeItem("Pilates");
             jComboBox3.removeItem("Yoga");
@@ -1088,7 +1099,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
 
         } else if (jComboBox2.getSelectedItem().equals("Multifuncional")) {
             jButton1.setVisible(true);
-            jComboBox3.addItem("Conv. Bem estar");
+           
             jComboBox3.addItem("Funcional");
             jComboBox3.addItem("Pilates");
             jComboBox3.addItem("Yoga");
