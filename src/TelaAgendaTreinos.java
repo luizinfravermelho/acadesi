@@ -703,7 +703,7 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (JDcat.getText().equals("Musculação")) {
-            if(JDhor.getText().equals("06:30 - 07:15") || JDhor.getText().equals("07:30 - 08:15")){
+            if(JDhor.getText().equals("06:30 - 07:15") || JDhor.getText().equals("07:30 - 08:15") || JDhor.getText().equals("08:30 - 09:15") || JDhor.getText().equals("09:30 - 10:15") || JDhor.getText().equals("11:30 - 12:15") || JDhor.getText().equals("12:30 - 13:15") || JDhor.getText().equals("13:30 - 14:15") || JDhor.getText().equals("14:30 - 15:15") || JDhor.getText().equals("16:00 - 16:45")){
                 PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=1 or codcat=2 or codcat=7");
             }
             else{
