@@ -51,11 +51,10 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
                     //retorna os dados da tabela do BD, cada campo e um coluna.
                     resultado.getString("nomcli"),
                     resultado.getString("cpf"),
-                    resultado.getString("datnas"),
                     resultado.getString("horario"),
-                    resultado.getString("sala"),
-                    resultado.getString("nomcat"),
-                    resultado.getString("dia")
+                    resultado.getString("dia"),
+                    resultado.getString("nomcat")
+                    
                 });
             }
             banco.close();
@@ -122,13 +121,13 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
         jLabelCategoria2.setText("Até:");
 
         try {
-            data1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+            data1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         try {
-            data2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
+            data2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -140,11 +139,11 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Cliente", "CPF", "Data de Nascimento", "Horario", "Sala", "Categoria", "Dia"
+                "Cliente", "CPF", "Horario", "Dia", "Treino"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -158,8 +157,6 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
             jTable2.getColumnModel().getColumn(2).setResizable(false);
             jTable2.getColumnModel().getColumn(3).setResizable(false);
             jTable2.getColumnModel().getColumn(4).setResizable(false);
-            jTable2.getColumnModel().getColumn(5).setResizable(false);
-            jTable2.getColumnModel().getColumn(6).setResizable(false);
         }
 
         jComboBox1.setEditable(true);
@@ -252,25 +249,29 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        conexao.Teste();
-        System.out.println(teste.getText());
+       // conexao.Teste();
+        //System.out.println(teste.getText());
 
-        if (teste.getText().equals("Funcional")||teste.getText().equals("Yoga")||teste.getText().equals("Pilates")||teste.getText().equals("Ginastica")||teste.getText().equals("Livre")) {
-            this.PopularJTable("select a.nomcli, a.cpf, to_char (a.datnas, 'DD/MM/YYYY') as datnas, b.hormf "
-                    + "as horario, 'Multifuncional' as sala, c.nomcat, to_char (b.dia, 'DD/MM/YYYY') as dia\n"
-                    + "from cliente a, agendamentomf b, categoria c, agendacliente d\n"
-                    + "where a.codcli=d.codcli and a.codcat= c.codcat and b.codagemf= d.codagemf\n"
-                    + "and a.codcli = (select codcli from cliente where nomcli ilike '%" + nome.getText() + "%') and b.dia >='" + data1.getText() + "' and b.dia <='" + data2.getText() + "';");
-            System.out.println("Tá e agora");
-            
-        }  if (teste.getText().equals("Musculacao") || teste.getText().equals("Musculacao Restrita")||teste.getText().equals("Livre")) {
-            System.out.println("Meu deus");
-            this.PopularJTable("select a.nomcli, a.cpf, to_char (a.datnas, 'DD/MM/YYYY') as datnas, b.hormc as horario,"
-                    + " 'Musculacao' as sala, c.nomcat, to_char (b.dia, 'DD/MM/YYYY') as dia\n"
-                    + "from cliente a, agendamentomc b, categoria c, agendacliente d\n"
-                    + "where a.codcli=d.codcli and a.codcat= c.codcat and b.codagemc= d.codagemc and a.codcli = (select codcli from"
-                    + " cliente where nomcli ilike '%" + nome.getText() + "%')and b.dia >='" + data1.getText() + "' and b.dia <='" + data2.getText() + "';");
-        } 
+        //if (teste.getText().equals("Funcional") || teste.getText().equals("Yoga") || teste.getText().equals("Pilates") || teste.getText().equals("Ginastica") || teste.getText().equals("Livre")) {
+            this.PopularJTable("(select a.nomcli,a.cpf, b.hormf as horario,  to_char (c.dia, 'DD/MM/YYYY') dia, d.nomcat\n"
+                    + "from cliente a, agendamentomf b, agendacliente c, categoria d\n"
+                    + "where a.codcli = c.codcli\n"
+                    + "and b.codagemf = c.codagemf\n"
+                    + "and b.codcat = d.codcat\n"
+                    + "and c.dia between '"+data1.getText()+"' and '"+data2.getText()+"'\n"
+                    + "and a.nomcli ilike '%"+nome.getText()+"%')\n"
+                    + "union all\n"
+                    + "(select a.nomcli,a.cpf, b.hormc as horario, to_char (c.dia, 'DD/MM/YYYY')dia, d.nomcat\n"
+                    + "from cliente a, agendamentomc b, agendacliente c, categoria d\n"
+                    + "where a.codcli = c.codcli\n"
+                    + "and b.codagemc = c.codagemc\n"
+                    + "and b.codcat = d.codcat\n"
+                    + "and c.dia between '"+data1.getText()+"' and '"+data2.getText()+"'\n"
+                    + "and a.nomcli ilike '%"+nome.getText()+"%')\n"
+                    + "order by dia\n"
+                    + ";");
+
+       
 
 
     }//GEN-LAST:event_jButton3ActionPerformed
