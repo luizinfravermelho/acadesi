@@ -51,6 +51,7 @@ public class Inicial extends javax.swing.JFrame {
         jMenuCadCli = new javax.swing.JMenuItem();
         jMenuAltCli = new javax.swing.JMenuItem();
         jMenuAltSen = new javax.swing.JMenuItem();
+        jMenuAgeSen = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuSair = new javax.swing.JMenuItem();
 
@@ -138,6 +139,14 @@ public class Inicial extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuAltSen);
+
+        jMenuAgeSen.setText("Agenda do Cliente");
+        jMenuAgeSen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAgeSenActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuAgeSen);
 
         jMenuBar2.add(jMenu4);
 
@@ -248,6 +257,20 @@ public class Inicial extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuAltSenActionPerformed
 
+    private void jMenuAgeSenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAgeSenActionPerformed
+         jDesktopPane1.removeAll();
+        AgendaCliente obj = new AgendaCliente();
+        jDesktopPane1.add(obj);
+        obj.setVisible(true);
+        obj.moveToFront();
+
+        try {
+            obj.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e) {
+        }
+        
+    }//GEN-LAST:event_jMenuAgeSenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -291,6 +314,7 @@ public class Inicial extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenuItem jMenuAgeSen;
     private javax.swing.JMenuItem jMenuAgeTreino;
     private javax.swing.JMenuItem jMenuAltCli;
     private javax.swing.JMenuItem jMenuAltSen;

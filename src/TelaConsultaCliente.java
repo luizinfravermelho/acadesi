@@ -19,7 +19,7 @@ public class TelaConsultaCliente extends javax.swing.JInternalFrame {
     public static String cod;
 
     public void PopularJTable(String sql) {
-
+   
         String driver = "org.postgresql.Driver";
         String user = "postgres";
         String senha = "senai";

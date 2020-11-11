@@ -968,7 +968,7 @@ public class TelaCadastroTreinos extends javax.swing.JInternalFrame {
                                 .addComponent(jLabelCategoria1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelCategoria2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

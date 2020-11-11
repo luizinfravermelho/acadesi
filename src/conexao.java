@@ -697,4 +697,34 @@ public class conexao {
             System.err.print(e.getMessage());
         }
     }
+    
+     public static void Teste() {
+
+        String driver = "org.postgresql.Driver";
+        String user = "postgres";
+        String senha = "senai";
+        String url = "jdbc:postgresql://localhost:5432/sesiacademia";
+        String a = AgendaCliente.nome.getText();
+       
+        String sql = "select a.nomcat from categoria a, cliente b where a.codcat= b.codcat and codcli = (select codcli from cliente where nomcli ilike '"+a+"');";
+
+        try {
+            Connection con = DriverManager.getConnection(url, user, senha);
+            PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
+            banco.execute(); // cria o vetor
+
+            ResultSet resultado = banco.executeQuery();
+
+            while (resultado.next()) {
+               AgendaCliente.teste.setText(resultado.getString(1));
+               AgendaCliente.teste.updateUI();
+              
+            }
+            banco.close();
+
+            con.close();
+        } catch (SQLException ex) {
+            System.out.println("o erro foi " + ex);
+        }
+    }
 }
