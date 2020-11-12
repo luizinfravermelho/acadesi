@@ -88,7 +88,13 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
                     resultado.getString("cpf"),
                     resultado.getString("celular"),});
             }
-            JDqtdpes.setText(model.getRowCount() + "/15");
+            if (jComboBoxSala.getSelectedItem().equals("Musculação")) {
+                JDqtdpes.setText(model.getRowCount() + "/25");
+            }
+            else{
+                JDqtdpes.setText(model.getRowCount() + "/12");
+            }
+            
             banco.close();
             con.close();
         } catch (SQLException ex) {
@@ -145,7 +151,7 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
                         jTable1.removeColumn(jTable1.getColumnModel().getColumn(3));
                     }
 
-                    this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario, (15-a.qtdpesmc)||'/15' as pessoas, c.nomcat as categoria\n"
+                    this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))as horario, (25-a.qtdpesmc)||'/25' as pessoas, c.nomcat as categoria\n"
                             + "from agendamentomc a, horariomc b, categoria c \n"
                             + "where a.hormc = (concat(to_char(horariomcini, 'HH24:mi')||' - ',to_char(horariomcfim, 'HH24:mi'))) and a.codcat = c.codcat\n"
                             + "and a.dia >='" + data + "'\n"
@@ -157,7 +163,7 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
                             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                             model.fireTableStructureChanged();
                         }
-                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario, (25-a.qtdpesmf)||'/25' as pessoas, c.nomcat as categoria \n"
+                        this.PopularJTable("select to_char(a.dia, 'DD/MM/YYYY') as dia, concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))as horario, (12-a.qtdpesmf)||'/12' as pessoas, c.nomcat as categoria \n"
                                 + "from agendamentomf a, horariomf b, categoria c\n"
                                 + "where a.hormf = (concat(to_char(horariomfini, 'HH24:mi')||' - ',to_char(horariomffim, 'HH24:mi'))) and a.codcat = c.codcat\n"
                                 + "and a.dia >='" + data + "'\n"
