@@ -258,7 +258,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         jLabel10.setText("Categoria:");
 
         try {
-            cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -660,8 +660,8 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if (cpf.getText().equals(null)) {
-            JOptionPane.showMessageDialog(null, "Olha");
+        if (conexao.ValidadorCpfCadastroCliente() == false) {
+            JOptionPane.showMessageDialog(null, "CPF Inválido!");
         } else {
             System.out.println(cpf);
             conexao.InsertCliente();

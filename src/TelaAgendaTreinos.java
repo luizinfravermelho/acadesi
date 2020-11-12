@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -91,11 +92,10 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
             }
             if (jComboBoxSala.getSelectedItem().equals("Musculação")) {
                 JDqtdpes.setText(model.getRowCount() + "/25");
-            }
-            else{
+            } else {
                 JDqtdpes.setText(model.getRowCount() + "/12");
             }
-            
+
             banco.close();
             con.close();
         } catch (SQLException ex) {
@@ -716,25 +716,27 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.data(data1.getText(), data2.getText());
+        if (data2.getText().equals("  /  /    ")) {
+            this.data(data1.getText(), data1.getText());
+        } else {
+            this.data(data1.getText(), data2.getText());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (JDcat.getText().equals("Musculação")) {
-            if(JDhor.getText().equals("06:30 - 07:15") || JDhor.getText().equals("07:30 - 08:15") || JDhor.getText().equals("08:30 - 09:15") || JDhor.getText().equals("09:30 - 10:15") || JDhor.getText().equals("11:30 - 12:15") || JDhor.getText().equals("12:30 - 13:15") || JDhor.getText().equals("13:30 - 14:15") || JDhor.getText().equals("14:30 - 15:15") || JDhor.getText().equals("16:00 - 16:45")){
+            if (JDhor.getText().equals("06:30 - 07:15") || JDhor.getText().equals("07:30 - 08:15") || JDhor.getText().equals("08:30 - 09:15") || JDhor.getText().equals("09:30 - 10:15") || JDhor.getText().equals("11:30 - 12:15") || JDhor.getText().equals("12:30 - 13:15") || JDhor.getText().equals("13:30 - 14:15") || JDhor.getText().equals("14:30 - 15:15") || JDhor.getText().equals("16:00 - 16:45")) {
                 PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=1 or codcat=2 or codcat=7");
-            }
-            else{
+            } else {
                 PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=1 or codcat=7");
             }
         } else {
-            if(JDcat.getText().equals("Pilates") || JDcat.getText().equals("Funcional")){
+            if (JDcat.getText().equals("Pilates") || JDcat.getText().equals("Funcional")) {
                 PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=7 or codcat=(select codcat from categoria where nomcat ilike 'Ginástica') or codcat=(select codcat from categoria where nomcat like '" + JDcat.getText() + "');");
-            }
-            else{
+            } else {
                 PopularJTableAddAluno("select nomcli, cpf from cliente where codcat=7 or codcat=(select codcat from categoria where nomcat like '" + JDcat.getText() + "');");
             }
-            }
+        }
 
         jDialog2.setVisible(true);
         jDialog2.setLocationRelativeTo(null);
@@ -810,14 +812,13 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyReleased
-        
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
-            this.data(data1.getText(), data2.getText());
-        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (data2.getText().equals("  /  /    ")) {
+                this.data(data1.getText(), data1.getText());
+            } else {
+                this.data(data1.getText(), data2.getText());
+            }
         }
-        
-        
     }//GEN-LAST:event_jButton1KeyReleased
 
 

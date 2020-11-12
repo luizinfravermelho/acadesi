@@ -86,10 +86,9 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
         data1 = new javax.swing.JFormattedTextField();
         data2 = new javax.swing.JFormattedTextField();
         teste = new javax.swing.JLabel();
-        nome = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox();
+        nome = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -133,6 +132,7 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        data1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         data1.setNextFocusableComponent(data2);
 
         try {
@@ -140,11 +140,10 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        data2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         data2.setNextFocusableComponent(jButton3);
 
         teste.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
-
-        nome.setNextFocusableComponent(data1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -171,8 +170,13 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
             jTable2.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        jComboBox1.setEditable(true);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        nome.setEditable(true);
+        nome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -181,39 +185,33 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(42, 42, 42)
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabelCategoria)
-                        .addGap(18, 18, 18)
-                        .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelCategoria1)
-                        .addGap(38, 38, 38)
-                        .addComponent(data1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabelCategoria2)
-                        .addGap(18, 18, 18)
-                        .addComponent(data2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65))))
+                        .addComponent(jLabel2)
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addComponent(jScrollPane2)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(teste, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(488, 488, 488)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(teste, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1039, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabelCategoria)
+                .addGap(18, 18, 18)
+                .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(jLabelCategoria1)
+                .addGap(18, 18, 18)
+                .addComponent(data1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(jLabelCategoria2)
+                .addGap(18, 18, 18)
+                .addComponent(data2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,21 +225,16 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1))))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabelCategoria1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(data1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(data2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCategoria2)
-                            .addComponent(jButton3)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(nome, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabelCategoria, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCategoria1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(data1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCategoria2)
+                    .addComponent(data2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3)
+                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCategoria))
+                .addGap(39, 39, 39)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(87, Short.MAX_VALUE))
         );
@@ -261,40 +254,32 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // conexao.Teste();
-        //System.out.println(teste.getText());
-
-        //if (teste.getText().equals("Funcional") || teste.getText().equals("Yoga") || teste.getText().equals("Pilates") || teste.getText().equals("Ginastica") || teste.getText().equals("Livre")) {
-        this.PopularJTable("(select a.nomcli,a.cpf, b.hormf as horario,  to_char (c.dia, 'DD/MM/YYYY') dia, d.nomcat\n"
-                + "from cliente a, agendamentomf b, agendacliente c, categoria d\n"
-                + "where a.codcli = c.codcli\n"
-                + "and b.codagemf = c.codagemf\n"
-                + "and b.codcat = d.codcat\n"
-                + "and c.dia between '" + data1.getText() + "' and '" + data2.getText() + "'\n"
-                + "and a.nomcli ilike '%" + nome.getText() + "%')\n"
-                + "union all\n"
-                + "(select a.nomcli,a.cpf, b.hormc as horario, to_char (c.dia, 'DD/MM/YYYY')dia, d.nomcat\n"
-                + "from cliente a, agendamentomc b, agendacliente c, categoria d\n"
-                + "where a.codcli = c.codcli\n"
-                + "and b.codagemc = c.codagemc\n"
-                + "and b.codcat = d.codcat\n"
-                + "and c.dia between '" + data1.getText() + "' and '" + data2.getText() + "'\n"
-                + "and a.nomcli ilike '%" + nome.getText() + "%')\n"
-                + "order by dia\n"
-                + ";");
-
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (data2.getText().equals("  /  /    ")) { //Verifica se o campo de Data Final (data2) está vazio e procura no banco só a data1
+            this.PopularJTable("(select a.nomcli,a.cpf, b.hormf as horario,  to_char (c.dia, 'DD/MM/YYYY') dia, d.nomcat\n"
+                    + "from cliente a, agendamentomf b, agendacliente c, categoria d\n"
+                    + "where a.codcli = c.codcli\n"
+                    + "and b.codagemf = c.codagemf\n"
+                    + "and b.codcat = d.codcat\n"
+                    + "and c.dia between '" + data1.getText() + "' and '" + data1.getText() + "'\n"
+                    + "and a.nomcli ilike '%" + nome.getSelectedItem() + "%')\n"
+                    + "union all\n"
+                    + "(select a.nomcli,a.cpf, b.hormc as horario, to_char (c.dia, 'DD/MM/YYYY')dia, d.nomcat\n"
+                    + "from cliente a, agendamentomc b, agendacliente c, categoria d\n"
+                    + "where a.codcli = c.codcli\n"
+                    + "and b.codagemc = c.codagemc\n"
+                    + "and b.codcat = d.codcat\n"
+                    + "and c.dia between '" + data1.getText() + "' and '" + data1.getText() + "'\n"
+                    + "and a.nomcli ilike '%" + nome.getSelectedItem() + "%')\n"
+                    + "order by dia\n"
+                    + ";");
+        } else {
             this.PopularJTable("(select a.nomcli,a.cpf, b.hormf as horario,  to_char (c.dia, 'DD/MM/YYYY') dia, d.nomcat\n"
                     + "from cliente a, agendamentomf b, agendacliente c, categoria d\n"
                     + "where a.codcli = c.codcli\n"
                     + "and b.codagemf = c.codagemf\n"
                     + "and b.codcat = d.codcat\n"
                     + "and c.dia between '" + data1.getText() + "' and '" + data2.getText() + "'\n"
-                    + "and a.nomcli ilike '%" + nome.getText() + "%')\n"
+                    + "and a.nomcli ilike '%" + nome.getSelectedItem() + "%')\n"
                     + "union all\n"
                     + "(select a.nomcli,a.cpf, b.hormc as horario, to_char (c.dia, 'DD/MM/YYYY')dia, d.nomcat\n"
                     + "from cliente a, agendamentomc b, agendacliente c, categoria d\n"
@@ -302,18 +287,63 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
                     + "and b.codagemc = c.codagemc\n"
                     + "and b.codcat = d.codcat\n"
                     + "and c.dia between '" + data1.getText() + "' and '" + data2.getText() + "'\n"
-                    + "and a.nomcli ilike '%" + nome.getText() + "%')\n"
+                    + "and a.nomcli ilike '%" + nome.getSelectedItem() + "%')\n"
                     + "order by dia\n"
                     + ";");
         }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (data2.getText().equals("  /  /    ")) {
+                this.PopularJTable("(select a.nomcli,a.cpf, b.hormf as horario,  to_char (c.dia, 'DD/MM/YYYY') dia, d.nomcat\n"
+                        + "from cliente a, agendamentomf b, agendacliente c, categoria d\n"
+                        + "where a.codcli = c.codcli\n"
+                        + "and b.codagemf = c.codagemf\n"
+                        + "and b.codcat = d.codcat\n"
+                        + "and c.dia between '" + data1.getText() + "' and '" + data1.getText() + "'\n"
+                        + "and a.nomcli ilike '%" + nome.getSelectedItem() + "%')\n"
+                        + "union all\n"
+                        + "(select a.nomcli,a.cpf, b.hormc as horario, to_char (c.dia, 'DD/MM/YYYY')dia, d.nomcat\n"
+                        + "from cliente a, agendamentomc b, agendacliente c, categoria d\n"
+                        + "where a.codcli = c.codcli\n"
+                        + "and b.codagemc = c.codagemc\n"
+                        + "and b.codcat = d.codcat\n"
+                        + "and c.dia between '" + data1.getText() + "' and '" + data1.getText() + "'\n"
+                        + "and a.nomcli ilike '%" + nome.getSelectedItem() + "%')\n"
+                        + "order by dia\n"
+                        + ";");
+            } else {
+                this.PopularJTable("(select a.nomcli,a.cpf, b.hormf as horario,  to_char (c.dia, 'DD/MM/YYYY') dia, d.nomcat\n"
+                        + "from cliente a, agendamentomf b, agendacliente c, categoria d\n"
+                        + "where a.codcli = c.codcli\n"
+                        + "and b.codagemf = c.codagemf\n"
+                        + "and b.codcat = d.codcat\n"
+                        + "and c.dia between '" + data1.getText() + "' and '" + data2.getText() + "'\n"
+                        + "and a.nomcli ilike '%" + nome.getSelectedItem() + "%')\n"
+                        + "union all\n"
+                        + "(select a.nomcli,a.cpf, b.hormc as horario, to_char (c.dia, 'DD/MM/YYYY')dia, d.nomcat\n"
+                        + "from cliente a, agendamentomc b, agendacliente c, categoria d\n"
+                        + "where a.codcli = c.codcli\n"
+                        + "and b.codagemc = c.codagemc\n"
+                        + "and b.codcat = d.codcat\n"
+                        + "and c.dia between '" + data1.getText() + "' and '" + data2.getText() + "'\n"
+                        + "and a.nomcli ilike '%" + nome.getSelectedItem() + "%')\n"
+                        + "order by dia\n"
+                        + ";");
+            }
+        }
     }//GEN-LAST:event_jButton3KeyReleased
+
+    private void nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeActionPerformed
+        conexao.AgendaClienteComboBox();
+    }//GEN-LAST:event_nomeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFormattedTextField data1;
     private javax.swing.JFormattedTextField data2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCategoria;
@@ -323,7 +353,7 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable2;
-    public static javax.swing.JTextField nome;
+    public static javax.swing.JComboBox<String> nome;
     public static javax.swing.JLabel teste;
     // End of variables declaration//GEN-END:variables
 }

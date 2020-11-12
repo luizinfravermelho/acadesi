@@ -1,3 +1,4 @@
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -5,9 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
-//bom dia
-//boa noite, Pachequitos
 
 public class conexao {
 
@@ -71,7 +71,7 @@ public class conexao {
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
         String cod = (String) TelaConsultaCliente.cod;
-        String sql = "select to_char (a.ana, 'DD/MM/YYYY') as ana, to_char (a.datnas, 'DD/MM/YYYY') as datnas,  a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.email, a.celular, d.nomcat, e.nomemp, a.tipo, a.classificacao, a.cep,  a.obs, a.genero from cliente a, cidade b, estado c, categoria d, empresa e where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codemp = e.codemp and a.codcli = (select codcli from cliente where cpf like '"+cod+"');";
+        String sql = "select to_char (a.ana, 'DD/MM/YYYY') as ana, to_char (a.datnas, 'DD/MM/YYYY') as datnas,  a.nomcli, a.cpf, b.nomcid, c.nomest, a.endereco, a.email, a.celular, d.nomcat, e.nomemp, a.tipo, a.classificacao, a.cep,  a.obs, a.genero from cliente a, cidade b, estado c, categoria d, empresa e where a.codcat=d.codcat and b.codcid=a.codcid and b.codest=c.codest and a.codemp = e.codemp and a.codcli = (select codcli from cliente where cpf like '" + cod + "');";
 
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
@@ -251,7 +251,6 @@ public class conexao {
 
             stmt.executeUpdate(Insert);
             JOptionPane.showMessageDialog(null, "Dados inseridos!");
-            
 
             con.close();
 
@@ -386,7 +385,6 @@ public class conexao {
 
             if (dia == null) {
                 JOptionPane.showMessageDialog(null, "Selecione um dia!");
-                
 
             } else {
 
@@ -494,7 +492,7 @@ public class conexao {
                             + "'" + dia + "',(select codagemf from agendamentomf where dia = '" + dia + "' and hormf like '" + hor + "'),null,0);";
                     System.out.println(Insert);
                     stmt.executeUpdate(Insert);
-                    
+
                 }
 
             } else if (op == 2) {
@@ -697,34 +695,162 @@ public class conexao {
             System.err.print(e.getMessage());
         }
     }
-    
-     public static void Teste() {
+
+    public static void AgendaClienteComboBox() {
 
         String driver = "org.postgresql.Driver";
         String user = "postgres";
         String senha = "senai";
         String url = "jdbc:postgresql://localhost:5432/sesiacademia";
-        String a = AgendaCliente.nome.getText();
-       
-        String sql = "select a.nomcat from categoria a, cliente b where a.codcat= b.codcat and codcli = (select codcli from cliente where nomcli ilike '"+a+"');";
-
+        String nome = AgendaCliente.nome.getSelectedItem().toString();
+        String sql = "select nomcli from cliente where nomcli ilike '" + nome + "%'";
         try {
             Connection con = DriverManager.getConnection(url, user, senha);
             PreparedStatement banco = (PreparedStatement) con.prepareStatement(sql);
             banco.execute(); // cria o vetor
 
+            AgendaCliente.nome.removeAllItems();
+
             ResultSet resultado = banco.executeQuery();
 
             while (resultado.next()) {
-               AgendaCliente.teste.setText(resultado.getString(1));
-               AgendaCliente.teste.updateUI();
-              
+
+                AgendaCliente.nome.addItem(resultado.getString(1));
+                AgendaCliente.nome.updateUI();
+                System.out.println(resultado.getString(1));
+
             }
             banco.close();
-
             con.close();
         } catch (SQLException ex) {
             System.out.println("o erro foi " + ex);
         }
     }
+
+    public static boolean ValidadorCpfCadastroCliente() {
+
+        String cpf = TelaCadastroCliente.cpf.getText();
+        if (cpf.equals("00000000000")
+                || cpf.equals("11111111111")
+                || cpf.equals("22222222222") || cpf.equals("33333333333")
+                || cpf.equals("44444444444") || cpf.equals("55555555555")
+                || cpf.equals("66666666666") || cpf.equals("77777777777")
+                || cpf.equals("88888888888") || cpf.equals("99999999999")
+                || (cpf.length() != 11)) {
+            return (false);
+        }
+
+        char dig10, dig11;
+        int sm, i, r, num, peso;
+
+        // "try" - protege o codigo para eventuais erros de conversao de tipo (int)
+        try {
+            // Calculo do 1o. Digito Verificador
+            sm = 0;
+            peso = 10;
+            for (i = 0; i < 9; i++) {
+                // converte o i-esimo caractere do cpf em um numero:
+                // por exemplo, transforma o caractere '0' no inteiro 0
+                // (48 eh a posicao de '0' na tabela ASCII)
+                num = (int) (cpf.charAt(i) - 48);
+                sm = sm + (num * peso);
+                peso = peso - 1;
+            }
+
+            r = 11 - (sm % 11);
+            if ((r == 10) || (r == 11)) {
+                dig10 = '0';
+            } else {
+                dig10 = (char) (r + 48); // converte no respectivo caractere numerico
+            }
+            // Calculo do 2o. Digito Verificador
+            sm = 0;
+            peso = 11;
+            for (i = 0; i < 10; i++) {
+                num = (int) (cpf.charAt(i) - 48);
+                sm = sm + (num * peso);
+                peso = peso - 1;
+            }
+
+            r = 11 - (sm % 11);
+            if ((r == 10) || (r == 11)) {
+                dig11 = '0';
+            } else {
+                dig11 = (char) (r + 48);
+            }
+
+            // Verifica se os digitos calculados conferem com os digitos informados.
+            if ((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10))) {
+                return (true);
+            } else {
+                return (false);
+            }
+        } catch (InputMismatchException erro) {
+            return (false);
+        }
+    }
+
+    public static boolean ValidadorCpfAlteracaoCliente() {
+
+        String cpf = TelaAlteracaoCliente.cpf.getText();
+        if (cpf.equals("00000000000")
+                || cpf.equals("11111111111")
+                || cpf.equals("22222222222") || cpf.equals("33333333333")
+                || cpf.equals("44444444444") || cpf.equals("55555555555")
+                || cpf.equals("66666666666") || cpf.equals("77777777777")
+                || cpf.equals("88888888888") || cpf.equals("99999999999")
+                || (cpf.length() != 11)) {
+            return (false);
+        }
+
+        char dig10, dig11;
+        int sm, i, r, num, peso;
+
+        // "try" - protege o codigo para eventuais erros de conversao de tipo (int)
+        try {
+            // Calculo do 1o. Digito Verificador
+            sm = 0;
+            peso = 10;
+            for (i = 0; i < 9; i++) {
+                // converte o i-esimo caractere do cpf em um numero:
+                // por exemplo, transforma o caractere '0' no inteiro 0
+                // (48 eh a posicao de '0' na tabela ASCII)
+                num = (int) (cpf.charAt(i) - 48);
+                sm = sm + (num * peso);
+                peso = peso - 1;
+            }
+
+            r = 11 - (sm % 11);
+            if ((r == 10) || (r == 11)) {
+                dig10 = '0';
+            } else {
+                dig10 = (char) (r + 48); // converte no respectivo caractere numerico
+            }
+            // Calculo do 2o. Digito Verificador
+            sm = 0;
+            peso = 11;
+            for (i = 0; i < 10; i++) {
+                num = (int) (cpf.charAt(i) - 48);
+                sm = sm + (num * peso);
+                peso = peso - 1;
+            }
+
+            r = 11 - (sm % 11);
+            if ((r == 10) || (r == 11)) {
+                dig11 = '0';
+            } else {
+                dig11 = (char) (r + 48);
+            }
+
+            // Verifica se os digitos calculados conferem com os digitos informados.
+            if ((dig10 == cpf.charAt(9)) && (dig11 == cpf.charAt(10))) {
+                return (true);
+            } else {
+                return (false);
+            }
+        } catch (InputMismatchException erro) {
+            return (false);
+        }
+    }
+
 }

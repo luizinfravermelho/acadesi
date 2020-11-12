@@ -351,7 +351,7 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         nome.setNextFocusableComponent(cpf);
 
         try {
-            cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -663,7 +663,11 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void botaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoActionPerformed
-        this.data(datnas.getText(), ana.getText());
+        if (conexao.ValidadorCpfAlteracaoCliente() == false) {
+            JOptionPane.showMessageDialog(null, "CPF Inválido!");
+        } else {
+            this.data(datnas.getText(), ana.getText());
+        }
     }//GEN-LAST:event_botaoActionPerformed
 
     private void addempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addempActionPerformed
