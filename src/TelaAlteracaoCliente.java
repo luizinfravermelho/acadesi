@@ -1,6 +1,8 @@
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -60,8 +62,8 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         } catch (ParseException ex) {
             //se algum passo dentro do "try" der errado quer dizer que sua data é falsa, então,
             //retorna falso
-         //   datnas.setText(null);
-          //  ana.setText(null);
+            //   datnas.setText(null);
+            //  ana.setText(null);
             JOptionPane.showMessageDialog(null, "Insira um valor de data válido");
 
             return false;
@@ -99,6 +101,7 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         botao.setVisible(false);
         end.setEnabled(false);
         addemp.setEnabled(false);
+        jButton2.setFocusable(true);
 
     }
 
@@ -179,17 +182,21 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_sesi_topo2.png"))); // NOI18N
         jLabel23.setText("jLabel23");
 
+        nomemp.setNextFocusableComponent(telemp);
+
         try {
             cnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cnpj.setNextFocusableComponent(nomemp);
 
         try {
             telemp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        telemp.setNextFocusableComponent(jButton4);
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(9, 82, 82));
@@ -197,6 +204,11 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+        jButton4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton4KeyReleased(evt);
             }
         });
 
@@ -333,43 +345,66 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         obs.setLineWrap(true);
         obs.setRows(5);
         obs.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        obs.setNextFocusableComponent(botao);
         jScrollPane2.setViewportView(obs);
+
+        nome.setNextFocusableComponent(cpf);
 
         try {
             cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cpf.setNextFocusableComponent(estado);
 
+        estado.setNextFocusableComponent(cidade);
         estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoActionPerformed(evt);
             }
         });
 
+        cidade.setNextFocusableComponent(datnas);
+
         try {
             cep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cep.setNextFocusableComponent(end);
 
         try {
             tel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tel.setNextFocusableComponent(email);
+
+        email.setNextFocusableComponent(tipo);
 
         tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Titular", "Dependente" }));
+        tipo.setNextFocusableComponent(emp);
+
+        emp.setNextFocusableComponent(addemp);
+
+        cate.setNextFocusableComponent(cla);
 
         cla.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Colaborador FIESC", "Comunidade", "Convenio", "Industria", "Industria associada" }));
+        cla.setNextFocusableComponent(obs);
 
         botao.setBackground(new java.awt.Color(9, 82, 82));
         botao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         botao.setForeground(new java.awt.Color(255, 255, 255));
         botao.setText("Salvar");
+        botao.setNextFocusableComponent(obs);
         botao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoActionPerformed(evt);
+            }
+        });
+        botao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                botaoKeyReleased(evt);
             }
         });
 
@@ -378,14 +413,21 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        datnas.setNextFocusableComponent(cep);
 
         jButton2.setBackground(new java.awt.Color(9, 82, 82));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Editar");
+        jButton2.setNextFocusableComponent(nome);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton2KeyReleased(evt);
             }
         });
 
@@ -393,12 +435,16 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         jLabel15.setForeground(new java.awt.Color(9, 82, 82));
         jLabel15.setText("Gênero:");
 
+        end.setNextFocusableComponent(ana);
+
         gen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Feminino", "Masculino" }));
+        gen.setNextFocusableComponent(tel);
 
         addemp.setBackground(new java.awt.Color(9, 82, 82));
         addemp.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         addemp.setForeground(new java.awt.Color(255, 255, 255));
         addemp.setText("+");
+        addemp.setNextFocusableComponent(cate);
         addemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addempActionPerformed(evt);
@@ -410,6 +456,7 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ana.setNextFocusableComponent(gen);
 
         javax.swing.GroupLayout oLayout = new javax.swing.GroupLayout(o);
         o.setLayout(oLayout);
@@ -573,7 +620,7 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(o, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
+                .addComponent(o, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -581,7 +628,6 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoActionPerformed
-        // TODO add your handling code here:
         conexao.CidadeComboBoxConsultaCliente();
     }//GEN-LAST:event_estadoActionPerformed
 
@@ -605,7 +651,7 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         end.setEnabled(true);
         botao.setVisible(true);
         addemp.setEnabled(true);
-
+        jButton2.setEnabled(false);
         cidade.removeAllItems();
         cate.removeAllItems();
         emp.removeAllItems();
@@ -618,8 +664,6 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
 
     private void botaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoActionPerformed
         this.data(datnas.getText(), ana.getText());
-
-
     }//GEN-LAST:event_botaoActionPerformed
 
     private void addempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addempActionPerformed
@@ -632,9 +676,54 @@ public class TelaAlteracaoCliente extends javax.swing.JInternalFrame {
         conexao.InsertEmpresaNovaConsulta();
         conexao.EmpresaComboBoxConsultaCliente();
         jDialog1.setVisible(false);
-
-
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            nome.setEnabled(true);
+            cpf.setEnabled(true);
+            cep.setEnabled(true);
+            gen.setEnabled(true);
+            datnas.setEnabled(true);
+            email.setEnabled(true);
+            estado.setEnabled(true);
+            cidade.setEnabled(true);
+            ana.setEnabled(true);
+            tel.setEnabled(true);
+            tipo.setEnabled(true);
+            cate.setEnabled(true);
+            emp.setEnabled(true);
+            cla.setEnabled(true);
+            obs.setEnabled(true);
+            end.setEnabled(true);
+            botao.setVisible(true);
+            addemp.setEnabled(true);
+            jButton2.setEnabled(false);
+            cidade.removeAllItems();
+            cate.removeAllItems();
+            emp.removeAllItems();
+            //jButton2.nextFocus();
+
+            conexao.EmpresaComboBoxConsultaCliente();
+            conexao.CategoriaComboBoxConsultaCliente();
+
+            conexao.PesquisaCliente();
+        }
+    }//GEN-LAST:event_jButton2KeyReleased
+
+    private void botaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_botaoKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.data(datnas.getText(), ana.getText());
+        }
+    }//GEN-LAST:event_botaoKeyReleased
+
+    private void jButton4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            conexao.InsertEmpresaNovaConsulta();
+            conexao.EmpresaComboBoxConsultaCliente();
+            jDialog1.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton4KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

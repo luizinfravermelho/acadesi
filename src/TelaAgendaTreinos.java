@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -252,9 +253,9 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabelCategoria = new javax.swing.JLabel();
-        jComboBoxSala = new javax.swing.JComboBox<String>();
+        jComboBoxSala = new javax.swing.JComboBox<>();
         jLabelCategoria1 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<String>();
+        jComboBox3 = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jLabelCategoria2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -494,8 +495,9 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
         jLabelCategoria.setText("Sala:");
 
         jComboBoxSala.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBoxSala.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação", "Multifuncional" }));
+        jComboBoxSala.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Musculação", "Multifuncional" }));
         jComboBoxSala.setToolTipText("TEste");
+        jComboBoxSala.setNextFocusableComponent(jComboBox3);
         jComboBoxSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSalaActionPerformed(evt);
@@ -507,7 +509,8 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
         jLabelCategoria1.setText("Categoria:");
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Musculação" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Musculação" }));
+        jComboBox3.setNextFocusableComponent(data1);
 
         jLabelCategoria2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelCategoria2.setForeground(new java.awt.Color(9, 82, 82));
@@ -530,6 +533,7 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
             }
         });
         jTable1.setGridColor(new java.awt.Color(0, 102, 102));
+        jTable1.setNextFocusableComponent(jComboBoxSala);
         jTable1.setRowHeight(22);
         jTable1.setSelectionBackground(new java.awt.Color(0, 102, 102));
         jTable1.setShowHorizontalLines(false);
@@ -547,6 +551,7 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         data1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        data1.setNextFocusableComponent(data2);
 
         jLabelCategoria3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabelCategoria3.setForeground(new java.awt.Color(9, 82, 82));
@@ -559,14 +564,21 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         data2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        data2.setNextFocusableComponent(jButton1);
 
         jButton1.setBackground(new java.awt.Color(9, 82, 82));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Buscar");
+        jButton1.setNextFocusableComponent(jTable1);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton1KeyReleased(evt);
             }
         });
 
@@ -796,6 +808,17 @@ public class TelaAgendaTreinos extends javax.swing.JInternalFrame {
             jDialog2.dispose();
         }
     }//GEN-LAST:event_jTable3MouseClicked
+
+    private void jButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyReleased
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            this.data(data1.getText(), data2.getText());
+        
+        }
+        
+        
+    }//GEN-LAST:event_jButton1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

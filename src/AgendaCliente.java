@@ -1,6 +1,8 @@
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -54,7 +56,7 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
                     resultado.getString("horario"),
                     resultado.getString("dia"),
                     resultado.getString("nomcat")
-                    
+
                 });
             }
             banco.close();
@@ -102,9 +104,15 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Buscar");
+        jButton3.setNextFocusableComponent(nome);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+        jButton3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton3KeyReleased(evt);
             }
         });
 
@@ -125,14 +133,18 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        data1.setNextFocusableComponent(data2);
 
         try {
             data2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        data2.setNextFocusableComponent(jButton3);
 
         teste.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
+
+        nome.setNextFocusableComponent(data1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -249,32 +261,52 @@ public class AgendaCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       // conexao.Teste();
+        // conexao.Teste();
         //System.out.println(teste.getText());
 
         //if (teste.getText().equals("Funcional") || teste.getText().equals("Yoga") || teste.getText().equals("Pilates") || teste.getText().equals("Ginastica") || teste.getText().equals("Livre")) {
+        this.PopularJTable("(select a.nomcli,a.cpf, b.hormf as horario,  to_char (c.dia, 'DD/MM/YYYY') dia, d.nomcat\n"
+                + "from cliente a, agendamentomf b, agendacliente c, categoria d\n"
+                + "where a.codcli = c.codcli\n"
+                + "and b.codagemf = c.codagemf\n"
+                + "and b.codcat = d.codcat\n"
+                + "and c.dia between '" + data1.getText() + "' and '" + data2.getText() + "'\n"
+                + "and a.nomcli ilike '%" + nome.getText() + "%')\n"
+                + "union all\n"
+                + "(select a.nomcli,a.cpf, b.hormc as horario, to_char (c.dia, 'DD/MM/YYYY')dia, d.nomcat\n"
+                + "from cliente a, agendamentomc b, agendacliente c, categoria d\n"
+                + "where a.codcli = c.codcli\n"
+                + "and b.codagemc = c.codagemc\n"
+                + "and b.codcat = d.codcat\n"
+                + "and c.dia between '" + data1.getText() + "' and '" + data2.getText() + "'\n"
+                + "and a.nomcli ilike '%" + nome.getText() + "%')\n"
+                + "order by dia\n"
+                + ";");
+
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             this.PopularJTable("(select a.nomcli,a.cpf, b.hormf as horario,  to_char (c.dia, 'DD/MM/YYYY') dia, d.nomcat\n"
                     + "from cliente a, agendamentomf b, agendacliente c, categoria d\n"
                     + "where a.codcli = c.codcli\n"
                     + "and b.codagemf = c.codagemf\n"
                     + "and b.codcat = d.codcat\n"
-                    + "and c.dia between '"+data1.getText()+"' and '"+data2.getText()+"'\n"
-                    + "and a.nomcli ilike '%"+nome.getText()+"%')\n"
+                    + "and c.dia between '" + data1.getText() + "' and '" + data2.getText() + "'\n"
+                    + "and a.nomcli ilike '%" + nome.getText() + "%')\n"
                     + "union all\n"
                     + "(select a.nomcli,a.cpf, b.hormc as horario, to_char (c.dia, 'DD/MM/YYYY')dia, d.nomcat\n"
                     + "from cliente a, agendamentomc b, agendacliente c, categoria d\n"
                     + "where a.codcli = c.codcli\n"
                     + "and b.codagemc = c.codagemc\n"
                     + "and b.codcat = d.codcat\n"
-                    + "and c.dia between '"+data1.getText()+"' and '"+data2.getText()+"'\n"
-                    + "and a.nomcli ilike '%"+nome.getText()+"%')\n"
+                    + "and c.dia between '" + data1.getText() + "' and '" + data2.getText() + "'\n"
+                    + "and a.nomcli ilike '%" + nome.getText() + "%')\n"
                     + "order by dia\n"
                     + ";");
-
-       
-
-
-    }//GEN-LAST:event_jButton3ActionPerformed
+        }
+    }//GEN-LAST:event_jButton3KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -3,11 +3,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class TelaAlteracaoSenha extends javax.swing.JInternalFrame {
-     private void pegarResolucao() {
+
+    private void pegarResolucao() {
         //Faz a tela pegar o tamanho inteiro 
         Toolkit t = Toolkit.getDefaultToolkit();
         Dimension dimensao = t.getScreenSize();
@@ -26,7 +28,7 @@ public class TelaAlteracaoSenha extends javax.swing.JInternalFrame {
     }
 
     public TelaAlteracaoSenha() {
-         pegarResolucao();
+        pegarResolucao();
         initComponents();
     }
 
@@ -62,11 +64,7 @@ public class TelaAlteracaoSenha extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(9, 82, 82));
         jLabel4.setText("Nova Senha:");
 
-        senha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                senhaActionPerformed(evt);
-            }
-        });
+        senha.setNextFocusableComponent(jButton1);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(9, 82, 82));
@@ -74,6 +72,11 @@ public class TelaAlteracaoSenha extends javax.swing.JInternalFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton1KeyReleased(evt);
             }
         });
 
@@ -88,6 +91,7 @@ public class TelaAlteracaoSenha extends javax.swing.JInternalFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cpf.setNextFocusableComponent(senha);
         cpf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cpfKeyPressed(evt);
@@ -168,24 +172,29 @@ public class TelaAlteracaoSenha extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         conexao.updateSenha();
         senha.setText(null);
         cpf.setText(null);
-        senha.setText(null);
-       
+        nome.setText(null);
+        JOptionPane.showMessageDialog(null, "Alteração Feita com Sucesso!");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cpfKeyPressed
-        // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            conexao.nomcliLabel();}
-
+            conexao.nomcliLabel();
+        }
     }//GEN-LAST:event_cpfKeyPressed
 
-    private void senhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_senhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_senhaActionPerformed
+    private void jButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            conexao.updateSenha();
+            senha.setText(null);
+            cpf.setText(null);
+            senha.setText(null);
+            nome.setText(null);
+            JOptionPane.showMessageDialog(null, "Alteração Feita com Sucesso!");
+        }
+    }//GEN-LAST:event_jButton1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

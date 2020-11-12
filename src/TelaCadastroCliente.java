@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -29,8 +30,8 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
     public TelaCadastroCliente() {
         initComponents();
         pegarResolucao();
-        
-                estado.removeAllItems();
+
+        estado.removeAllItems();
         conexao.CategoriaComboBoxCliente();
         conexao.EstadoComboBoxCliente();
         empresa.removeAllItems();
@@ -127,24 +128,34 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_sesi_topo2.png"))); // NOI18N
         jLabel23.setText("jLabel23");
 
+        empresaemp.setNextFocusableComponent(telemp);
+
         try {
             cnpjemp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cnpjemp.setNextFocusableComponent(empresaemp);
 
         try {
             telemp.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        telemp.setNextFocusableComponent(jButton4);
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(9, 82, 82));
         jButton4.setText("Cadastrar");
+        jButton4.setNextFocusableComponent(cnpjemp);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+        jButton4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton4KeyReleased(evt);
             }
         });
 
@@ -202,7 +213,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         jDialog1Layout.setHorizontalGroup(
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDialog1Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jDialog1Layout.setVerticalGroup(
@@ -252,25 +263,20 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         cpf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cpf.setNextFocusableComponent(email);
 
         cidade.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
-        cidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cidadeActionPerformed(evt);
-            }
-        });
+        cidade.setNextFocusableComponent(cep);
 
         nome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        nome.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                nomeFocusLost(evt);
-            }
-        });
+        nome.setNextFocusableComponent(dia);
 
         rua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        rua.setNextFocusableComponent(bairro);
 
         email.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        email.setNextFocusableComponent(telefone);
 
         try {
             telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
@@ -278,8 +284,10 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         telefone.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        telefone.setNextFocusableComponent(ana);
 
         categoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        categoria.setNextFocusableComponent(classificacao);
         categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoriaActionPerformed(evt);
@@ -294,14 +302,21 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("CADASTRAR");
+        jButton1.setNextFocusableComponent(obs);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton1KeyReleased(evt);
+            }
+        });
 
         estado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+        estado.setNextFocusableComponent(cidade);
         estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoActionPerformed(evt);
@@ -318,8 +333,10 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
 
         genero.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         genero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Feminino", "Masculino" }));
+        genero.setNextFocusableComponent(cpf);
 
         bairro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bairro.setNextFocusableComponent(numero);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(9, 82, 82));
@@ -330,12 +347,14 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         jLabel14.setText("Nº:");
 
         numero.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        numero.setNextFocusableComponent(complemento);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(9, 82, 82));
         jLabel15.setText("Complemento:");
 
         complemento.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        complemento.setNextFocusableComponent(tipo);
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(9, 82, 82));
@@ -347,6 +366,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         cep.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cep.setNextFocusableComponent(rua);
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(9, 82, 82));
@@ -354,11 +374,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
 
         tipo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Titular", "Dependente" }));
-        tipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoActionPerformed(evt);
-            }
-        });
+        tipo.setNextFocusableComponent(empresa);
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(9, 82, 82));
@@ -366,19 +382,25 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
 
         classificacao.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         classificacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "Colaborador FIESC", "Comunidade", "Convenio", "Industria", "Industria associada" }));
+        classificacao.setNextFocusableComponent(senha);
 
         senha.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        senha.setNextFocusableComponent(obs);
 
         dia.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         dia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        dia.setNextFocusableComponent(mes);
 
         mes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         mes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        mes.setNextFocusableComponent(ano);
 
         ano.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ano.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "" }));
+        ano.setNextFocusableComponent(genero);
 
         empresa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        empresa.setNextFocusableComponent(jButton3);
 
         label3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         label3.setForeground(new java.awt.Color(9, 82, 82));
@@ -388,9 +410,15 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("+");
+        jButton3.setNextFocusableComponent(categoria);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
+            }
+        });
+        jButton3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton3KeyReleased(evt);
             }
         });
 
@@ -408,6 +436,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
         ana.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ana.setNextFocusableComponent(estado);
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(9, 82, 82));
@@ -416,6 +445,7 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         obs.setColumns(20);
         obs.setLineWrap(true);
         obs.setRows(5);
+        obs.setNextFocusableComponent(jButton1);
         jScrollPane1.setViewportView(obs);
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_sesi_topo2.png"))); // NOI18N
@@ -531,9 +561,8 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
                         .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ano, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)))
+                    .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -615,8 +644,8 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         conexao.InsertEmpresaNova();
         empresa.removeAllItems();
         conexao.EmpresaComboBoxCliente();
-         jDialog1.setVisible(false);
-       
+        jDialog1.setVisible(false);
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -624,61 +653,97 @@ public class TelaCadastroCliente extends javax.swing.JInternalFrame {
         jDialog1.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoActionPerformed
-
-    }//GEN-LAST:event_tipoActionPerformed
-
     private void estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoActionPerformed
         cidade.removeAllItems();
         conexao.CidadeComboBoxCliente();
     }//GEN-LAST:event_estadoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
-        if (cpf.getText().equals(null)){
-        JOptionPane.showMessageDialog(null, "Olha");}
-       
-        else{
+
+        if (cpf.getText().equals(null)) {
+            JOptionPane.showMessageDialog(null, "Olha");
+        } else {
             System.out.println(cpf);
- conexao.InsertCliente();
- 
-        nome.setText("");
-        dia.setSelectedItem(null);
-        mes.setSelectedItem(null);
-        ano.setSelectedItem(null);
-        cpf.setText("");
-        email.setText("");
-        estado.setSelectedItem(null);
-        cidade.setSelectedItem(null);
-        cep.setText("");
-        rua.setText("");
-        bairro.setText("");
-        numero.setText("");
-        complemento.setText("");
-        telefone.setText("");
-        tipo.setSelectedItem(null);
-        categoria.setSelectedItem(null);
-        classificacao.setSelectedItem(null);
-        senha.setText("");
-        empresa.setSelectedItem(null);
-        genero.setSelectedItem(null);
-        ana.setText("");
-        obs.setText("");
-                }
+            conexao.InsertCliente();
+
+            nome.setText("");
+            dia.setSelectedItem(null);
+            mes.setSelectedItem(null);
+            ano.setSelectedItem(null);
+            cpf.setText("");
+            email.setText("");
+            estado.setSelectedItem(null);
+            cidade.setSelectedItem(null);
+            cep.setText("");
+            rua.setText("");
+            bairro.setText("");
+            numero.setText("");
+            complemento.setText("");
+            telefone.setText("");
+            tipo.setSelectedItem(null);
+            categoria.setSelectedItem(null);
+            classificacao.setSelectedItem(null);
+            senha.setText("");
+            empresa.setSelectedItem(null);
+            genero.setSelectedItem(null);
+            ana.setText("");
+            obs.setText("");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoriaActionPerformed
-        // TODO add your handling code here:
         System.out.println(categoria.getSelectedItem());
     }//GEN-LAST:event_categoriaActionPerformed
 
-    private void cidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cidadeActionPerformed
+    private void jButton3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jDialog1.setVisible(true);
+            jDialog1.setLocationRelativeTo(null);
+        }
+    }//GEN-LAST:event_jButton3KeyReleased
 
-    private void nomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nomeFocusLost
-        rua.transferFocus();
-    }//GEN-LAST:event_nomeFocusLost
+    private void jButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (cpf.getText().equals(null)) {
+                JOptionPane.showMessageDialog(null, "Olha");
+            } else {
+                System.out.println(cpf);
+                conexao.InsertCliente();
+
+                nome.setText("");
+                dia.setSelectedItem(null);
+                mes.setSelectedItem(null);
+                ano.setSelectedItem(null);
+                cpf.setText("");
+                email.setText("");
+                estado.setSelectedItem(null);
+                cidade.setSelectedItem(null);
+                cep.setText("");
+                rua.setText("");
+                bairro.setText("");
+                numero.setText("");
+                complemento.setText("");
+                telefone.setText("");
+                tipo.setSelectedItem(null);
+                categoria.setSelectedItem(null);
+                classificacao.setSelectedItem(null);
+                senha.setText("");
+                empresa.setSelectedItem(null);
+                genero.setSelectedItem(null);
+                ana.setText("");
+                obs.setText("");
+            }
+        }
+    }//GEN-LAST:event_jButton1KeyReleased
+
+    private void jButton4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            conexao.InsertEmpresaNova();
+            empresa.removeAllItems();
+            conexao.EmpresaComboBoxCliente();
+            jDialog1.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton4KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

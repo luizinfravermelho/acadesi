@@ -1,5 +1,5 @@
 
-
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
@@ -13,7 +13,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -23,7 +23,7 @@ public class Login extends javax.swing.JFrame {
         sen = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -73,6 +73,11 @@ public class Login extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+        jButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jButton1KeyReleased(evt);
             }
         });
 
@@ -158,15 +163,35 @@ public class Login extends javax.swing.JFrame {
         if (log.getText().equals("") || sen.getText().equals("")) { //Verifica se tem algum campo não preenchido
 
             JOptionPane.showMessageDialog(null, "Favor preencher todos os campos"); //Mensagem de Erro para Usuário
-         
+
         } else {
 
             dispose(); //Fecha o JFrame
             new Inicial().setVisible(true); //Abre a tela de agendamento
-           // Agendamento.USU.setText(this.log.getText()); //Pega a matrícula do usuário e coloca no agendamento
+            // Agendamento.USU.setText(this.log.getText()); //Pega a matrícula do usuário e coloca no agendamento
 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyReleased
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) { //Verifica se a tecla ENTER foi apertada
+
+            if (log.getText().equals("") || sen.getText().equals("")) { //Verifica se tem algum campo não preenchido
+
+                JOptionPane.showMessageDialog(null, "Favor preencher todos os campos"); //Mensagem de Erro para Usuário
+
+            } else {
+
+                dispose(); //Fecha o JFrame
+                new Inicial().setVisible(true); //Abre a tela de agendamento
+                // Agendamento.USU.setText(this.log.getText()); //Pega a matrícula do usuário e coloca no agendamento
+
+            }
+
+        }
+
+    }//GEN-LAST:event_jButton1KeyReleased
 
     public static void main(String args[]) {
 
